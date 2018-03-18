@@ -1,4 +1,4 @@
-<h1>Docker commands:</h1><br>
+## Docker commands:
 This command will list all running containers, showing information on them including their ID, name, base image name, and port forwarding-> <br>
 <b><code>docker ps</code> </b>
 
@@ -14,9 +14,12 @@ This command starts a container based on a local or remote (e.g. DockerHub) cont
 
 <b><code>docker run</code></b>
 
-This command publishes a built container definition to a repository, typically DockerHub- <br>
 
-<b><code>docker push</code></b>
+### Publishing a container to docker hub
+- docker login             # Log in this CLI session using your Docker credentials
+- docker tag <image> username/repository:tag  # Tag <image> for upload to registry
+- docker push username/repository:tag            # Upload tagged image to registry
+- docker run username/repository:tag                   # Run image from a registry
 
 
 
