@@ -14,6 +14,20 @@ This command starts a container based on a local or remote (e.g. DockerHub) cont
 
 <b><code>docker run</code></b>
 
+# See all images 
+docker images ps
+
+# See Running container
+docker container ps
+
+# See runnig and stopped containers
+docker container ps -a
+
+# Remove all containers
+docker container prune
+
+# Remove an Image
+docker image rm <Image id>
 
 ### Publishing a container to docker hub
 - docker login             # Log in this CLI session using your Docker credentials

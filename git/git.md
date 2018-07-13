@@ -51,3 +51,30 @@ git log -p <commit_hash1> <commit_hash_2>
 git config --global --edit
 ```
 
+
+## Switching a git remote 
+Example from bitbucket to github
+- Clone the existing repo
+- cd to the cloned folder
+- switch the remote repo url
+```
+git remote add new_repo_name new_repo_url
+```
+
+-Push to the new repo
+```
+git push new_repo_name master
+```
+
+-Remove the old remote  ORIGIN
+```
+git remote rm origin
+```
+
+- rename the new_repo to ORIGIN
+```
+git remote rename new_repo_name origin
+```
+
+
+ 
