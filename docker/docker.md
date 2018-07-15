@@ -20,7 +20,7 @@ docker images ps
 # See Running container
 docker container ps
 
-# See runnig and stopped containers
+# See running and stopped containers
 docker container ps -a
 
 # Remove all containers
@@ -35,11 +35,12 @@ docker image rm <Image id>
 - docker push username/repository:tag            # Upload tagged image to registry
 - docker run username/repository:tag                   # Run image from a registry
 
-
-##Login to bash in any container
+-------------------------------------------------------------------------------------------------------------------------------
+## Login to bash in any container
+Lets use mysql as an example
 - docker exec -it <docker-container> bash
 
-## Log to Mysql client
+### Finally Log to Mysql client
 mysql -u “<useranme>” -p
 
 example
@@ -47,25 +48,26 @@ mysql -u root -p test
 
 In my sql you can now run any db commands.
 
+------------------------------------------------------------------------------------------------------------------------------
 
-<h2Container-specific commands</h2><br>
+## Container-specific commands
 These commands take either a container ID or container Name as a parameter:<br>
 
-This command will show the current load on each container specified – it will show CPU%, memory usage, and network traffic-><br>
+### This command will show the current load on each container specified – it will show CPU%, memory usage, and network traffic
 <b><code>docker stats [container name/ID] [container name/ID]</code></b>
 
-This command shows the latest output from the container. The -f option “follows” the output, much like a console “tail-f” command would.-><br>
+### This command shows the latest output from the container. The -f option “follows” the output, much like a console “tail-f” command would.
 <b><code>docker logs [-f] [container name/ID]</code></b>
 
-This command dumps all of the configuration information on the container in JSON format<br>
+### This command dumps all of the configuration information on the container in JSON format
 <b><code>docker inspect [container name/ID]</code></b>
 
 
-This command shows all of the port forwarding between the container host and the container.<br>
+### This command shows all of the port forwarding between the container host and the container.
 <b><code>docker port [container name/ID]</code></b>
 
 
-Command to execute a command on target container, where i indicates to run interactively and t is pseudo tty  <br>
+### Command to execute a command on target container, where i indicates to run interactively and t is pseudo tty  
 <b><code>docker exec -it [container name/ID] sh</code></b>
 
 -----------------------------------------------------------------------------------------------------------------------------
@@ -121,12 +123,6 @@ Use the Hash to find the log - <br>
 <b><code>docker logs 412d1025b8d5abf9878cdca015b01b691edc3adc7ababda889d1b16f729fe37b</code></b>
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-To Delete ALL non runnig docker containers<br>
-<b><code>docker container prune</code></b>
-
--------------------------------------
-
 
 
 
