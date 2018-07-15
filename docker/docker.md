@@ -38,10 +38,10 @@ docker image rm <Image id>
 -------------------------------------------------------------------------------------------------------------------------------
 ## Login to bash in any container
 Lets use mysql as an example
-- docker exec -it <docker-container> bash
+- docker exec -it container_name bash
 
 ### Finally Log to Mysql client
-mysql -u “<useranme>” -p
+mysql -u user_anme -p
 
 example
 mysql -u root -p test
