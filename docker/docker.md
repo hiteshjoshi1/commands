@@ -36,6 +36,17 @@ docker image rm <Image id>
 - docker run username/repository:tag                   # Run image from a registry
 
 
+##Login to bash in any container
+- docker exec -it <docker-container> bash
+
+## Log to Mysql client
+mysql -u “<useranme>” -p
+
+example
+mysql -u root -p test
+
+In my sql you can now run any db commands.
+
 
 <h2Container-specific commands</h2><br>
 These commands take either a container ID or container Name as a parameter:<br>
@@ -116,14 +127,7 @@ To Delete ALL non runnig docker containers<br>
 
 -------------------------------------
 
-Getting to mysql container in docker
-sudo docker exec -t -i docker-mysql /bin/bash
 
-going to mysql client
-mysql -u “<useranme>” -p
-
-example
-mysql -u root -p
 
 
 
