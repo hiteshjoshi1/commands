@@ -1,4 +1,4 @@
-## Docker commands:
+# Docker commands:
 This command will list all running containers, showing information on them including their ID, name, base image name, and port forwarding-> <br>
 <b><code>docker ps</code> </b>
 
@@ -34,6 +34,29 @@ docker image rm <Image id>
 - docker tag <image> username/repository:tag  # Tag <image> for upload to registry
 - docker push username/repository:tag            # Upload tagged image to registry
 - docker run username/repository:tag                   # Run image from a registry
+
+
+
+#Dockerfile
+### Sample DockerFile - which needs an argument called JAR_FILE
+
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"] 
+
+
+
+### Building an Image from a Docker file
+docker build --build-arg JAR_FILE=/target/your-spring-project-1.0-SNAPSHOT.jar -t your/image/name .
+
+### Running the image
+See if image is created
+docker image ls
+
+Run it 
+docker run -p 8080:8081 your/image/name 
 
 -------------------------------------------------------------------------------------------------------------------------------
 ## Login to bash in any container
