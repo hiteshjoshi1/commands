@@ -3,7 +3,11 @@ This command will list all running containers, showing information on them inclu
 <b><code>docker ps</code> </b>
 
 This command is used to define a container — it processes the Dockerfile and creates a new container definition. We’ll use this to define our microservice containers-> <br>
-<b><code> docker build</code> </b>
+<b><code> docker build .</code> </b>
+
+
+
+
 
 
 This command pulls the container image from the remote repository and stores the definition locally-> <br>
@@ -53,6 +57,20 @@ ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 docker build --build-arg JAR_FILE=/target/your-spring-project-1.0-SNAPSHOT.jar -t your/image/name .
 ```
 
+Minimum Build with Tag
+```
+docker build -t <Tag_name> .
+```
+
+## Multistage dockerfile
+
+Lets say you have two stages named builder and runner , you do not want to build whole but stop build at builder , use.
+```
+docker build --target builder -t alexellis2/href-counter:latest .
+```
+
+
+
 ### Running the image
 See if image is created
 ```
@@ -61,6 +79,11 @@ docker image ls
 Run it 
 ```
 docker run -p 8080:8081 your/image/name 
+```
+
+##Remove all docker images with single command
+```
+docker rmi $(docker images -q)
 ```
 -------------------------------------------------------------------------------------------------------------------------------
 ## Login to bash in any container
