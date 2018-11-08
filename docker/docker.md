@@ -1,3 +1,4 @@
+
 # Docker commands:
 This command will list all running containers, showing information on them including their ID, name, base image name, and port forwarding-> <br>
 <b><code>docker ps</code> </b>
@@ -5,6 +6,10 @@ This command will list all running containers, showing information on them inclu
 This command is used to define a container — it processes the Dockerfile and creates a new container definition. We’ll use this to define our microservice containers-> <br>
 <b><code> docker build .</code> </b>
 
+Ideally use it with a tag name
+```
+docker build -t <tag_name> .
+```
 
 
 
@@ -52,14 +57,14 @@ ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 ```
 
 
-### Building an Image from a Docker file
-```
-docker build --build-arg JAR_FILE=/target/your-spring-project-1.0-SNAPSHOT.jar -t your/image/name .
-```
-
-Minimum Build with Tag
+### Minimum Build with Tag
 ```
 docker build -t <Tag_name> .
+```
+
+### Building an Image from a Docker file with Args
+```
+docker build --build-arg JAR_FILE=/target/your-spring-project-1.0-SNAPSHOT.jar -t your/image/name .
 ```
 
 ## Multistage dockerfile
@@ -71,15 +76,31 @@ docker build --target builder -t alexellis2/href-counter:latest .
 
 
 
-### Running the image
+# Running the image
 See if image is created
 ```
 docker image ls
 ```
-Run it 
+### Run it 
 ```
 docker run -p 8080:8081 your/image/name 
 ```
+
+#Notes -
+If you dockerfile just installs a bunch of tools and does not run a process, then if you attempt to start such a container it will exit immediately as their is no running interactive process.
+Example a dockerfile that 
+1. uses Linux
+2. installs Nodejs on top
+
+In order for you to interact with such a docker container , start it in interactive mode
+```
+docker run -dit <Image_name>
+```
+where  d ==> detached
+       i ==> interactive, keep STDIN open even if not attached
+       t ==> Allocate a pseudo tty
+ 
+These flags will allow your container to live on even when you are not running any active process in it.
 
 ##Remove all docker images with single command
 ```
