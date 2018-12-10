@@ -1,0 +1,60 @@
+##Steps for Ethereum
+#Create a new dir - 
+```
+mkdir gethdata
+```
+
+#Create few accounts
+```
+geth account new --datadir gethdata
+```
+
+> b1ff0a9b446096049d72bbd677b1ae0734db0693
+```
+geth account new --datadir gethdata
+```
+> eb258606d2779567cd0bd96c6652ccd267ff584a
+
+
+# Update the genesis block with the seed accounts 
+genesis.json - update the allocation using the account/ accounts generated above
+
+{
+  "config": {
+    "chainId": 15,
+    "homesteadBlock": 0,
+    "eip155Block": 0,
+    "eip158Block": 0
+  },
+
+   "coinbase"   : "0x0000000000000000000000000000000000000000",
+  "difficulty" : "0x400",
+  "extraData"  : "",
+  "gasLimit"   : "0x2fefd8",
+  "nonce"      : "0x0000000000000042",
+  "mixhash"    : "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "parentHash" : "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "timestamp"  : "0x00",
+  	"alloc":{
+	        "b1ff0a9b446096049d72bbd677b1ae0734db0693": {
+			"balance": "130000000"
+		},
+		"eb258606d2779567cd0bd96c6652ccd267ff584a": {
+			"balance": "1400000"
+		}
+	}
+}
+
+# Initiate the chain -- pass the data directory and the genesis block
+```
+geth --datadir ./gethdata init ./gethdata/genesis.json
+```
+# Once the chain is initialized , run it using -
+```
+geth --identity "nodeA" --rpccorsdomain "*" --datadir=./gethdata -verbosity 6 --port 54259  --rpc --rpcapi "eth,net,web3" --rpcaddr "127.0.0.1" --rpcport 8545  --networkid 15 --nodiscover --mine --minerthreads 1 
+```
+
+#With metamask extension integration
+```
+geth --identity "nodeA" --rpccorsdomain "*" --datadir=./gethdata -verbosity 6 --port 54259  --rpc --rpcapi "eth,net,web3" --rpcaddr "127.0.0.1" --rpcport 8545  --networkid 15 --nodiscover --mine --minerthreads 1 --rpccorsdomain="chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn 
+```
