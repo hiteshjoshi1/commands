@@ -1,10 +1,10 @@
-##Steps for Ethereum
-#Create a new dir - 
+## Steps for Ethereum
+# Create a new dir - 
 ```
 mkdir gethdata
 ```
 
-#Create few accounts
+# Create few accounts
 ```
 geth account new --datadir gethdata
 ```
@@ -54,7 +54,7 @@ geth --datadir ./gethdata init ./gethdata/genesis.json
 geth --identity "nodeA" --rpccorsdomain "*" --datadir=./gethdata -verbosity 6 --port 54259  --rpc --rpcapi "eth,net,web3" --rpcaddr "127.0.0.1" --rpcport 8545  --networkid 15 --nodiscover --mine --minerthreads 1 
 ```
 
-#With metamask extension integration
+# With metamask extension integration
 ```
 geth --identity "nodeA" --rpccorsdomain "*" --datadir=./gethdata -verbosity 6 --port 54259  --rpc --rpcapi "eth,net,web3" --rpcaddr "127.0.0.1" --rpcport 8545  --networkid 15 --nodiscover --mine --minerthreads 1 --rpccorsdomain="chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn 
 ```
