@@ -1,10 +1,10 @@
-## Steps for Ethereum
-# Create a new dir - 
+# Steps for Ethereum
+## Create a new dir - 
 ```
 mkdir gethdata
 ```
 
-# Create few accounts
+## Create few accounts
 ```
 geth account new --datadir gethdata
 ```
@@ -16,7 +16,7 @@ geth account new --datadir gethdata
 > eb258606d2779567cd0bd96c6652ccd267ff584a
 
 
-# Update the genesis block with the seed accounts 
+## Update the genesis block with the seed accounts 
 genesis.json - update the allocation using the account/ accounts generated above
 
 {
@@ -45,16 +45,30 @@ genesis.json - update the allocation using the account/ accounts generated above
 	}
 }
 
-# Initiate the chain -- pass the data directory and the genesis block
+## Initiate the chain -- pass the data directory and the genesis block
 ```
 geth --datadir ./gethdata init ./gethdata/genesis.json
 ```
-# Once the chain is initialized , run it using -
+## Once the chain is initialized , run it using -
 ```
-geth --identity "nodeA" --rpccorsdomain "*" --datadir=./gethdata -verbosity 6 --port 54259  --rpc --rpcapi "eth,net,web3" --rpcaddr "127.0.0.1" --rpcport 8545  --networkid 15 --nodiscover --mine --minerthreads 1 
+geth --identity "nodeA" --rpccorsdomain "*" --datadir=./gethdata -verbosity 6 --port 54259  --rpc --rpcapi "eth,net,web3,personal" --rpcaddr "127.0.0.1" --rpcport 8545  --networkid 15 --nodiscover --mine --minerthreads 1 
 ```
 
-# With metamask extension integration
+## With metamask extension integration
 ```
-geth --identity "nodeA" --rpccorsdomain "*" --datadir=./gethdata -verbosity 6 --port 54259  --rpc --rpcapi "eth,net,web3" --rpcaddr "127.0.0.1" --rpcport 8545  --networkid 15 --nodiscover --mine --minerthreads 1 --rpccorsdomain="chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn 
+geth --identity "nodeA" --rpccorsdomain "*" --datadir=./gethdata -verbosity 6 --port 54259  --rpc --rpcapi "eth,net,web3,personal" --rpcaddr "127.0.0.1" --rpcport 8545  --networkid 15 --nodiscover --mine --minerthreads 1 --rpccorsdomain="chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn 
 ```
+
+## Attach a terminal to a running geth node
+```
+geth attach http://127.0.0.1:8545
+```
+
+## to get the coinbase
+eth.coinbase
+
+## to get the balance of an account
+web3.fromWei(eth.getBalance(eth.coinbase), "ether")
+
+
+https://medium.com/cybermiles/running-a-quick-ethereum-private-network-for-experimentation-and-testing-6b1c23605bce
