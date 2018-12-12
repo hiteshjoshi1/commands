@@ -18,7 +18,7 @@ geth account new --datadir gethdata
 
 ## Update the genesis block with the seed accounts 
 genesis.json - update the allocation using the account/ accounts generated above
-
+```
 {
   "config": {
     "chainId": 15,
@@ -44,19 +44,20 @@ genesis.json - update the allocation using the account/ accounts generated above
 		}
 	}
 }
+```
 
 ## Initiate the chain -- pass the data directory and the genesis block
 ```
 geth --datadir ./gethdata init ./gethdata/genesis.json
 ```
-## Once the chain is initialized , run it using -
+## Once the chain is initialized , run it using , unlock only if you need an account unlocked -
 ```
-geth --identity "nodeA" --rpccorsdomain "*" --datadir=./gethdata -verbosity 6 --port 54259  --rpc --rpcapi "eth,net,web3,personal" --rpcaddr "127.0.0.1" --rpcport 8545  --networkid 15 --nodiscover --mine --minerthreads 1 
+geth --identity "nodeA" --rpccorsdomain "*" --datadir=./geth-amalto -verbosity 6 --port 30303  --rpc  --rpcapi=eth,web3,net,debug,shh,personal --rpcvhosts=*  --wsapi=eth,web3,net,shh,debug,pubsub,personal  --rpcaddr localhost --rpcport 8545  --networkid 15 --ws --wsport=8546 --maxpeers=0   --nodiscover --mine --minerthreads 1 --unlock "abf41a21448dee7edcf44fa76bd847a59b3f38a5" console
 ```
 
 ## With metamask extension integration
 ```
-geth --identity "nodeA" --rpccorsdomain "*" --datadir=./gethdata -verbosity 6 --port 54259  --rpc --rpcapi "eth,net,web3,personal" --rpcaddr "127.0.0.1" --rpcport 8545  --networkid 15 --nodiscover --mine --minerthreads 1 --rpccorsdomain="chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn 
+geth --identity "nodeA" --rpccorsdomain "*" --datadir=./geth-amalto -verbosity 6 --port 30303  --rpc  --rpcapi=eth,web3,net,debug,shh,personal --rpcvhosts=*  --wsapi=eth,web3,net,shh,debug,pubsub,personal  --rpcaddr localhost --rpcport 8545  --networkid 15 --ws --wsport=8546 --maxpeers=0   --nodiscover --mine --minerthreads 1 --unlock "abf41a21448dee7edcf44fa76bd847a59b3f38a5" --rpccorsdomain="chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn 
 ```
 
 ## Attach a terminal to a running geth node
