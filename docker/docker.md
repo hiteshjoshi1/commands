@@ -21,32 +21,39 @@ docker build .
 docker build -t <tag_name> .
 ```
 
-
-
 This command pulls the container image from the remote repository and stores the definition locally-> <br>
-
-<b><code>docker pull [image name]</code> </b>
+```
+docker pull [image name]
+```
 
 This command starts a container based on a local or remote (e.g. DockerHub) container definition. We’ll go into this one quite a bit-> <br>
 
 <b><code>docker run</code></b>
 
 # See all images 
+```
 docker images ps
-
+```
 # See Running container
+```
 docker container ps
-
+```
 # See running and stopped containers
+```
 docker container ps -a
+```
 
 # Remove all containers
+```
 docker container prune
+```
 
 # Remove an Image
+```
 docker image rm <Image id>
-
+```
 ### Publishing a container to docker hub
+
 - docker login             # Log in this CLI session using your Docker credentials
 - docker tag <image> username/repository:tag  # Tag <image> for upload to registry
 - docker push username/repository:tag            # Upload tagged image to registry
@@ -65,12 +72,13 @@ ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 ```
 
 
-### Minimum Build with Tag
+### Build an Image with Tag
+
 ```
 docker build -t <Tag_name> .
 ```
 
-### Building an Image from a Docker file with Args
+### Build an Image from a Docker file with Args
 ```
 docker build --build-arg JAR_FILE=/target/your-spring-project-1.0-SNAPSHOT.jar -t your/image/name .
 ```
@@ -85,11 +93,11 @@ docker build --target builder -t alexellis2/href-counter:latest .
 
 
 # Running the image
-See if image is created
+1. See if image is created
 ```
 docker image ls
 ```
-### Run it 
+2. Run it 
 ```
 docker run -p 8080:8081 your/image/name 
 ```
@@ -110,7 +118,7 @@ where  d ==> detached
  
 These flags will allow your container to live on even when you are not running any active process in it.
 
-##Remove all docker images with single command
+## Remove all docker images with single command
 ```
 docker rmi $(docker images -q)
 ```
@@ -130,25 +138,29 @@ In my sql you can now run any db commands.
 ------------------------------------------------------------------------------------------------------------------------------
 
 ## Container-specific commands
-These commands take either a container ID or container Name as a parameter:<br>
+These commands take either a container ID or container Name as a parameter:- 
 
 ### This command will show the current load on each container specified – it will show CPU%, memory usage, and network traffic
-<b><code>docker stats [container name/ID] [container name/ID]</code></b>
+```
+docker stats <containerId/container name>
+```
 
-### This command shows the latest output from the container. The -f option “follows” the output, much like a console “tail-f” command would.
-<b><code>docker logs [-f] [container name/ID]</code></b>
-
-### This command dumps all of the configuration information on the container in JSON format
-<b><code>docker inspect [container name/ID]</code></b>
-
-
-### This command shows all of the port forwarding between the container host and the container.
-<b><code>docker port [container name/ID]</code></b>
+## This command shows the latest output from the container. 
+       The -f option “follows” the output, much like a console “tail-f” command would.
+```
+docker logs -f <containerId/container name>
+```
 
 
-### Command to execute a command on target container, where i indicates to run interactively and t is pseudo tty  
-<b><code>docker exec -it [container name/ID] sh</code></b>
+## This command shows all of the port forwarding between the container host and the container.
+```
+docker port <containerId/container name>
+```
 
+## Command to execute a command on target container, where i indicates to run interactively and t is pseudo tty  
+```
+docker exec -it <containerId/container name> sh
+```
 -----------------------------------------------------------------------------------------------------------------------------
 
 
