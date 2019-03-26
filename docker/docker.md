@@ -1,17 +1,25 @@
 
 # Docker commands:
 This command will list all running containers, showing information on them including their ID, name, base image name, and port forwarding-> <br>
-<b><code>docker ps</code> </b>
+```
+docker ps
+```
+
+## Details of a single container
+```
+docker inspect <container_id>
+```
 
 This command is used to define a container — it processes the Dockerfile and creates a new container definition. We’ll use this to define our microservice containers-> <br>
-<b><code> docker build .</code> </b>
+```
+docker build .
+```
 
-Ideally use it with a tag name
+## Ideally use it with a tag name
+
 ```
 docker build -t <tag_name> .
 ```
-
-
 
 
 
