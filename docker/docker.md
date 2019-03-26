@@ -15,7 +15,7 @@ This command is used to define a container — it processes the Dockerfile and c
 docker build .
 ```
 
-## Ideally use it with a tag name
+## Ideally Build an image with a tag name
 
 ```
 docker build -t <tag_name> .
@@ -52,17 +52,10 @@ docker container prune
 ```
 docker image rm <Image id>
 ```
-### Publishing a container to docker hub
-
-- docker login             # Log in this CLI session using your Docker credentials
-- docker tag <image> username/repository:tag  # Tag <image> for upload to registry
-- docker push username/repository:tag            # Upload tagged image to registry
-- docker run username/repository:tag                   # Run image from a registry
-
-
 
 #Dockerfile
-### Sample DockerFile - which needs an argument called JAR_FILE
+
+# Sample DockerFile - which needs an argument called JAR_FILE
 ```
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
@@ -72,7 +65,7 @@ ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 ```
 
 
-### Build an Image with Tag
+# Build an Image with Tag
 
 ```
 docker build -t <Tag_name> .
@@ -90,8 +83,6 @@ Lets say you have two stages named builder and runner , you do not want to build
 docker build --target builder -t alexellis2/href-counter:latest .
 ```
 
-
-
 # Running the image
 1. See if image is created
 ```
@@ -102,7 +93,32 @@ docker image ls
 docker run -p 8080:8081 your/image/name 
 ```
 
-#Notes -
+# Publishing an Image to docker hub
+
+ ### Log in this CLI session using your Docker credentials
+```
+docker login            
+```
+### Tag <image> for upload to registry
+
+```
+docker tag ts-node:latest hiteshjoshi1/ts-node:latest
+```
+       
+### Upload tagged image to registry
+
+```
+docker push hiteshjoshi1/ts-node:latest         
+```       
+
+### Run image from a registry
+
+```
+docker run username/repository:tag               
+```
+
+
+# Notes -
 If you dockerfile just installs a bunch of tools and does not run a process, then if you attempt to start such a container it will exit immediately as their is no running interactive process.
 Example a dockerfile that 
 1. uses Linux
@@ -146,7 +162,8 @@ docker stats <containerId/container name>
 ```
 
 ## This command shows the latest output from the container. 
-       The -f option “follows” the output, much like a console “tail-f” command would.
+The -f option “follows” the output, much like a console “tail-f” command would.
+
 ```
 docker logs -f <containerId/container name>
 ```
@@ -214,8 +231,3 @@ Use the Hash to find the log - <br>
 <b><code>docker logs 412d1025b8d5abf9878cdca015b01b691edc3adc7ababda889d1b16f729fe37b</code></b>
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
