@@ -52,12 +52,12 @@ geth --datadir ./gethdata init ./gethdata/genesis.json
 ```
 ## Once the chain is initialized , run it using , unlock only if you need an account unlocked -
 ```
-geth --identity "nodeA" --rpccorsdomain "*" --datadir=./geth-amalto -verbosity 6 --port 30303  --rpc  --rpcapi=eth,web3,net,debug,shh,personal --rpcvhosts=*  --wsapi=eth,web3,net,shh,debug,pubsub,personal  --rpcaddr localhost --rpcport 8545  --networkid 15 --ws --wsport=8546 --maxpeers=0   --nodiscover --mine --minerthreads 1 --unlock "abf41a21448dee7edcf44fa76bd847a59b3f38a5" console
+geth --identity "nodeA" --rpccorsdomain "*" --datadir=./gethdata -verbosity 6 --port 30303  --rpc  --rpcapi=eth,web3,net,debug,shh,personal --rpcvhosts=*  --wsapi=eth,web3,net,shh,debug,pubsub,personal  --rpcaddr localhost --rpcport 8545  --networkid 15 --ws --wsport=8546 --maxpeers=0   --nodiscover --mine --minerthreads 1 --unlock "abf41a21448dee7edcf44fa76bd847a59b3f38a5" console
 ```
 
 ## With metamask extension integration
 ```
-geth --identity "nodeA" --rpccorsdomain "*" --datadir=./geth-amalto -verbosity 6 --port 30303  --rpc  --rpcapi=eth,web3,net,debug,shh,personal --rpcvhosts=*  --wsapi=eth,web3,net,shh,debug,pubsub,personal  --rpcaddr localhost --rpcport 8545  --networkid 15 --ws --wsport=8546 --maxpeers=0   --nodiscover --mine --minerthreads 1 --unlock "abf41a21448dee7edcf44fa76bd847a59b3f38a5" --rpccorsdomain="chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn 
+geth --identity "nodeA" --rpccorsdomain "*" --datadir=./gethdata -verbosity 6 --port 30303  --rpc  --rpcapi=eth,web3,net,debug,shh,personal --rpcvhosts=*  --wsapi=eth,web3,net,shh,debug,pubsub,personal  --rpcaddr localhost --rpcport 8545  --networkid 15 --ws --wsport=8546 --maxpeers=0   --nodiscover --mine --minerthreads 1 --unlock "abf41a21448dee7edcf44fa76bd847a59b3f38a5" --rpccorsdomain="chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn 
 ```
 
 ## Attach a terminal to a running geth node
@@ -73,3 +73,6 @@ web3.fromWei(eth.getBalance(eth.coinbase), "ether")
 
 
 https://medium.com/cybermiles/running-a-quick-ethereum-private-network-for-experimentation-and-testing-6b1c23605bce
+
+
+geth --rpccorsdomain "*" --datadir=./geth -verbosity 6 --port 30303  --rpc  --rpcapi=eth,web3,net,debug,shh,personal --rpcvhosts=*  --wsapi=eth,web3,net,shh,debug,pubsub,personal  --rpcaddr localhost --rpcport 8545  --networkid 15 --ws --wsport=8546 --maxpeers=0   --nodiscover --mine --minerthreads 1 --unlock "abf41a21448dee7edcf44fa76bd847a59b3f38a5" --rpccorsdomain="chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn 
