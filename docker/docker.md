@@ -64,6 +64,25 @@ docker container prune
 docker image rm <Image id>
 ```
 
+## Kill all running containers
+
+```
+docker kill $(docker ps -q)
+```
+
+## Delete all the stopped containers
+
+```
+docker rm $(docker ps -a -q)
+```
+
+## Remove all Images
+```
+docker rmi $(docker images -q)
+```
+
+-q will give you the image Id's.
+
 #Dockerfile
 
 # Sample DockerFile - which needs an argument called JAR_FILE
