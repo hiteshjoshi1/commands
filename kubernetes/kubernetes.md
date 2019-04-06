@@ -127,4 +127,16 @@ kubectl port-forward ts-node-5578d8d8c-v8vgd 4100:3000
 kubectl exec <podName> --stdin --tty -c <podName> /bin/ssh
 ```
 
-Deleting
+Switching between Kubernetes Contexts -
+
+
+```
+kubectl config use-context <context_name>
+
+```
+example -
+kubectl config use-context minikube
+
+
+
+
