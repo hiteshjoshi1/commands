@@ -24,7 +24,10 @@ kubectl scale deployment nginx --replicas=6
 ```
 
 Get All Pods, Services and Deployments
+
+```
 kubectl get all
+```
 
 Delete a Deployment and Service
 
@@ -127,16 +130,12 @@ kubectl port-forward ts-node-5578d8d8c-v8vgd 4100:3000
 kubectl exec <podName> --stdin --tty -c <podName> /bin/ssh
 ```
 
-Switching between Kubernetes Contexts -
-
+## Switching between Kubernetes Contexts -
 
 ```
 kubectl config use-context <context_name>
 
 ```
+
 example -
 kubectl config use-context minikube
-
-
-
-
