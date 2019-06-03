@@ -63,42 +63,57 @@ A ARM based workloads
 U Bare metal
 
 ### EC2 Security -
-Security Group - This is the place where you create inbound and outbound rules for access to Ec2 instance.( this will be a rule analogus to Inbound/ outbound rules in Azure). You will create a Security Group that has inbound and outbound Security Rules.
+### Security Group - 
+This is the place where you create inbound and outbound rules for access to Ec2 instance( this will be a rule analogus to Inbound/ outbound rules in Azure). 
+You will create a Security Group that has inbound and outbound Security Rules. Security groups are created for a VPC(Virtual Private Cloud).
+
 KeyPair - Create public private key pair(or use existing) that will allow you to access your instance.(This will be a .pem file)
 
-- Termination protection is disabled by default.
+
+- You cannot Block individual IPs using Security Groups. Use NACL for that (Network Access Control List).
+- No Block rules are allowed, by default everything is blocked and rules allow specific access.
+- All Inbound traffic is blocked by default and we enable rules to allow access.
+- All Outbound traffic is allowed. 
+- Changes to Rules in Security Group takes place immediately.
+- You can add more than one Security Group to an Ec2 Instance.
+
+- Termination protection is disabled by default, enable it for termination protection of EC2 instance.
 - On an EBS backed instance, when the instance is terminated it will by default delete the root EBS volume. This can be changed so that Volume is not deleted when EC2 instance is terminated.
+ (EBS covered later)   
 - When Adding Storage - Root device volume cannot be encrypted on launch, however if you add new Volumes those can be encrypted. Root device volume is the volume where the Operating System is stored.
 Root device volumes can later be encrypted.
 
+## Practical
 Connecting with Pem file (Private key)
-Get AWS Public IP
-Go to the folder where Pem is kept in Terminal
-change the permission of PEM - Read permission only (Not sure why)
+1. Get AWS Public IP
+2. Go to the folder where Pem is kept in Terminal
+3. change the permission of PEM - Read permission only (Not sure why)
+```
 chmod 400 MYAWSKEYPair.pem
+```
 
-Then connect using
+4. Then connect using
 ```
 ssh ec2-user@<publicIP> -i MYAWSKEYPair.pem 
 
 ```
 
-Update Linux once you are in
+5. Once connected, Update Linux 
 ```
 yum update -y
 ```
 
-Install Apache(Webserver)
+6. Install Apache(Webserver)
 ```
 yum install httpd
 ```
 
-Start Apache
+7. Start Apache
 ```
 httpd start
 ```
 
-Put your static website under  -
+8. Put your static website under  -
 /var/www/html/
 
 Apache will serve the website at the public IP of AWS EC2.
