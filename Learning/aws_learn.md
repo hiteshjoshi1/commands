@@ -1,8 +1,33 @@
 # AWS Notes
 
-IAM
-S3
-Buckets
+## S3 et al
+
+IAM - IAM (Identity Access Management) is universal and not specific to a region.
+S3 - is a universal namespace
+Buckets - so Bucket Name has to be unique.
+
+S3 is filestore
+
+### Consistency in S3 -->
+
+Read after Write consistency for PUTS of New Objects
+Eventual consistency for overwrite PUTS and Deletes
+
+### S3 classes of Storage --
+
+- S3 Standard {can sustain loss of 2 facilities concurrently}
+- S3- IA (S3 Infrequently Accessed - lower fee than s3 but you are charged retrieval fee)
+- S3 One zone -IA (Only in one zone - multi zone resilence not required)
+- S3 Intelligent Tiering - Moves data to most cost effective access Tier
+- S3 Glacier - data archiving, retrieval time from Mins to Hours
+- S3 Glacier - Deep Archive [12 hours]
+
+### Encryption in Transit is achieved by
+
+- S3 Managed Keys - SSE-S3
+- SSE- KMS (Key Management Service)
+- SSE with customer provided keys(SSE-C)
+- Client side encryption
 
 ## Creating buckets in S3
 
@@ -10,14 +35,14 @@ Buckets
 
 ## Lifecycle Rules for S3 Bucket objects
 
-    Automate movement of object between storage tiers.
+    Automate movement of object in S3 between storage tiers.
     Can be used in conjuction with versioning - that means version of documents can also be moved between  Storage tiers using Lifecycle Rules.
 
     Bucket> Management> Lifecycle Rules
 
 ### Bucket Cross Region replication
 
-    Cross Region Replication requires versioning enabled
+- Cross Region Replication requires versioning enabled
 
 Can replicate entire buckets using Replication
 or can replicate specific tags or Prefix
@@ -29,9 +54,8 @@ Deleting individual versions would also not be replicated
 
 ### S3 transfer acceleration
 
-Upload a file to edge location
-
-Which will then moved to S3 bucket. This is faster
+Upload a file to edge location. Which will then moved to S3 bucket. This is faster
+So you are region1 and your user is half way across the world you would benefit from Transfer acceleration when he uploads a file.
 
 ## CloudFront - CloudFront is AWS CDN
 
@@ -47,15 +71,16 @@ Distribution Types
 - Web Dsitribution
 - RTMP - Media Streaming
 
-Objects in the edge locations are cached for the life of TTL (Time to Live). You can clear cached objects(Cache Invalidate). But that will be charged.
+Objects in the edge locations are cached for the life of TTL (Time to Live).
+You can clear cached objects(Cache Invalidate). But that will be charged.
 
-Restrict Viewer Access in Cloud Front -
-(Use Signed URLs or
-Signed Cookies) ---> Choose whether you want CloudFront to require users to access your content using a signed URL or a signed cookie.
+- Restrict Viewer Access in Cloud Front -
+  (Use Signed URLs or
+  Signed Cookies) ---> Choose whether you want CloudFront to require users to access your content using a signed URL or a signed cookie.
 
-Cloud Front Enable -
+Enable Cloud Front Enable and use as
 
-CLoud URL/Object/s in S3.
+http://CLoudfrontURL/<Object in S3>
 
 Select a Cloud Front and click Distribution Settings
 
@@ -76,12 +101,12 @@ Available as Virtual Machine [VmWare WSXi or icrosodt Hyper- V]
 
 Install the gateway --> associate it with your AWS a/c
 
-Storage gateway type-
-File Gateway (NFS)
-Volume Gateway
+### Storage gateway type ->
 
-- Stored Volume - Cached Volumes
-  Tape Gateway (VTL) - Virtual Tape Library
+- File Gateway (NFS)
+- Volume Gateway
+  Types - - Stored Volume - Cached Volumes
+- Tape Gateway (VTL) - Virtual Tape Library
 
 ### File Gateway
 
@@ -96,10 +121,12 @@ Data written in the volumes can be backed up as point in time snapshots of your 
 
 Snapshots are incremental snapshots that only capture changed blocks, the snapshot storage is also compressed to minimize your storage charges.
 
-Stored Volumes -
+### Stored Volumes -
+
 Entire dataset is kept locally(local SAN) and asychronously backed up to S3.
 
-Cached Volumes-  
+### Cached Volumes-
+
 Only recently used data is stored in on prem storage gateway.
 The entire dataset actually resides in S3, however the recently used data is cached in the local storage Gateway.
 
