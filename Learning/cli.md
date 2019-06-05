@@ -29,3 +29,15 @@ cat credentials
 The credentials are stored in .aws/credentials file when we do aws configure.
 
 https://docs.aws.amazon.com/cli/latest/reference/
+
+
+IAM Roles -
+
+Roles are far more secure than storing your access key Id and private key in individual EC2 instances.
+
+Create a Role, assign that role to Ec2. 
+Now you cannot login with aws configure if you have that role.
+
+Ec2 Instance --> Instance Settings --> Attach Replace IAM role
+
+then add the Role
