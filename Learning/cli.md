@@ -38,6 +38,18 @@ Roles are far more secure than storing your access key Id and private key in ind
 Create a Role, assign that role to Ec2. 
 Now you cannot login with aws configure if you have that role.
 
+
+Get Instance metadata
+```
+curl http://169.254.169.254/latest/meta-data/
+```
+
+Get user meta data - startup scripts
+```
+curl http://169.254.169.254/latest/user-data/
+```
+
+
 Ec2 Instance --> Instance Settings --> Attach Replace IAM role
 
 then add the Role
