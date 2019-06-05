@@ -12,3 +12,12 @@ aws s3 ls
 
 Create an Aws bucket - name should be unique
 aws s3 mb s3://my_fancy_aws_bucket_name
+
+To see your creds in AWS -
+cd ~
+Hidden directory
+cd .aws
+cat credentials
+
+
+https://docs.aws.amazon.com/cli/latest/reference/
