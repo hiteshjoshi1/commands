@@ -1,4 +1,4 @@
-#AWS RDS -
+# AWS RDS -
 
 **Supported Relational Dbs** ->
 Microsoft Sql Server
@@ -29,10 +29,9 @@ AWS instances are n ot serverless. They are physical Ec2 machines but we(end use
 SSH - not allowed. 
 AWS Aurora however can be serverless.
 
-Backups-
+## Backups-
 
 The restored version of database from a backup would be a brand new RDS instance with a new endpoint.
-
 - Automated Backups
 - Database Snapshots
 
@@ -67,7 +66,9 @@ MariaDb
 
 **Read Replicas**
 
-For Performance improvement. They need to have backups turned ON.
+For Performance improvement. 
+They need to have backups turned ON. So TUrn on Deployment first before you can enable Read replicas.
+They can be Multi AZ or be in Different Region altogether.
 Ec2 instances can READ from multiple replicas. But they all write to one primary which is then asynchronously replicated to the Read replicas.
 
 How do you increase database performance?
@@ -87,12 +88,7 @@ You can have replicas of replicas.
 Each replica will have its own DNS endpoint.
 You can have replicas that have Multi-AZ.
 You can have Read replicas of multi AZ source databases
-Read replicas can be promoted to be their own databases - this breaks this replication.
+Read replicas can be promoted to be their own databases(be their own Master) - this breaks this replication.
 You can have read replica in a completely seprate region.
-
-
-
-
-
 
 
