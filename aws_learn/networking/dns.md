@@ -69,8 +69,15 @@ DNS servers cache results until the TTL.
 
 ISP DNS -->Root Name Server --> SOA(example amazon SOA or google SOA) -->IP
 
+__DNS Zone__ -
+The domain name space of the Internet is organized into a hierarchical layout of subdomains below the DNS root domain.
+The domain name space is partitioned into  these areas (zones) so that they can be managed independently.A DNS zone is a distinct part of the domain namespace which is delegated to a legal entity—a person, organization or company, who are responsible for maintaining the DNS zone. 
 
-Zone file (on DNS Server) components -
+A DNS zone is implemented in the configuration system of a domain name server. Historically, it is defined in the zone file, an operating system text file that starts with the special DNS record type Start of Authority (SOA) and contains all records for the resources described within the zone. 
+
+Most top-level domain name registry operators offer their name spaces to the public for registration of second-level domains. Similarly an organization in charge of a lower level domain may operate its name space similarly and subdivide its space.
+
+DNS Zone file (on DNS Server) has following components -
 
 __CNAME Record __ -
 
@@ -78,7 +85,11 @@ CNAME or Canonical Name links an alias name to another true or canonical domain 
 for example - www.example.com may be linked to the naked domain example.com
 
 __A Record__-
+IPv4 Address Mapping records (A)—a hostname and its IPv4 address.
 Mapping of the IP address to Host Name.
+
+__AAAA Record__ -
+IPv6 Address records (AAAA)—a hostname and its IPv6 address.
 
 __NS Record__
 Name server (NS) records determine which servers will communicate DNS information for a domain. Generally, you have primary and secondary name server records for your domain. 
@@ -89,16 +100,35 @@ This is one larger record at the beginning of every zone file with the primary n
 
 __Mail Exchanger(MX)__
 
-Mail Exchange (MX) records direct a domain's email to the servers hosting the domain's user accounts.  For example, people who use Google for the e-mail for their domain will create an MX record that points to ghs.google.com.
+Mail Exchange (MX) records direct a domain's email to the servers hosting the domain's user accounts.  
+The MX records allows you to point your mail services somewhere other than your hosting company (example GoDaddy) if you choose to use something like Google Apps for your domain. For example, people who use Google for the e-mail for their domain will create an MX record that points to ghs.google.com.
+
+__Reverse-lookup Pointer records (PTR Record)__—
+Allows a DNS resolver to provide an IP address and receive a hostname (reverse DNS lookup).
+
+__Certificate record (CERT Record)__ -
+Stores encryption certificates—PKIX, SPKI, PGP, and so on.
+
+
+Root zone
+Managed by IANA. Operated by 13 servers from organizations such as Verisign ,NASA.
+
+TLD Zones-
+.gov,.com, .co.uk etc - over 1500 TLD domains. Managed by IANA
+
+Domain Zones-
+Second-level domains like the domain you are viewing now, “ns1.com”, are defined as separate DNS zones, operated by individuals or organizations. Organizations can run their own DNS name servers, or delegate management to an external provider.
+example - ns1.google.com
+
 
 
 -------------------------------------------------------------------
 
-IP Address
+## IP Address
 
 IPv4 address contains octets(8 bits) , that is their range is from 0 - 2^8(255).
 
-42 = 00101010
+42 in Binary- 00101010
 
 There are 4 octets in an IPv4 address-
 
@@ -116,6 +146,10 @@ Class	Theoretical Address Range	Binary Start	Used for-
 |   D           |224.0.0.0 to 239.255.255.255   | 1110            | Multicast            |
 |   E           |240.0.0.0 to 247.255.255.255   | 1111            | Experimental         |
 
+Class A - The first bit of the first octet is always set to 0 (zero). Thus the first octet ranges from 1 – 127.
+7 bits remain - 2^7= 127
+
+TODO- Subnets and Subnet masking - do seprately
 
 
 
