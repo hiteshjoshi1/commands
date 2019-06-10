@@ -106,8 +106,9 @@ There are 4 octets in an IPv4 address-
 
 IPv4 parts -
 
-Class	Theoretical Address Range	Binary Start	Used for
-| Class         | Theoretical Address Range     |   |Binary Start | Used For             |
+Class	Theoretical Address Range	Binary Start	Used for-
+
+| Class         | Theoretical Address Range     |   Binary Start  | Used For             |
 | ------------- |:----------------------------- |:----------------|:--------------------:|
 |   A           | 0.0.0.0 to 127.255.255.255    |  0              | Very Large Networks  |
 |   B           | 128.0.0.0 to 191.255.255.255  |	10	             | Medium networks      | 
