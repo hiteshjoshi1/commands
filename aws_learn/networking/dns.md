@@ -63,6 +63,8 @@ Unique list of domain names maintained by ICANN. A regitrar (example aws or GoDa
 ## SOA Records
 A DNS Server that manages a specific domain is called the Start of Authority(SOA) for that Domain.
 
+The SOA record specifies core information about a DNS zone, including the primary name server(NS), the email of the domain administrator, the domain serial number, and several timers relating to refreshing the zone.
+
 DNS servers cache results until the TTL.
 
 ISP DNS -->Root Name Server --> SOA(example amazon SOA or google SOA) -->IP
@@ -104,6 +106,14 @@ There are 4 octets in an IPv4 address-
 
 IPv4 parts -
 
+Class	Theoretical Address Range	Binary Start	Used for
+| Class      | Theoretical Address Range        |Binary Start  |Used For             |
+| ------------- |:-----------------------------:| ------------:| -------------------:|
+|   A           | 0.0.0.0 to 127.255.255.255    |  0           | Very Large Networks |
+|   B           | 128.0.0.0 to 191.255.255.255  |	10	          | Medium networks     | 
+|   C           |192.0.0.0 to 223.255.255.255	  | 110          | Small networks      |
+|   D           |224.0.0.0 to 239.255.255.255   | 1110         | Multicast           |
+|   E           |240.0.0.0 to 247.255.255.255   | 1111         | Experimental        |
 
 
 
@@ -137,4 +147,16 @@ Domain Registrar -
 
 Companies which sell availaible domain names. Eg GoDaddy
 Most of these companies also provide domain hosting.
+
+
+# ICANN
+Internet Corporation for Assigned Names and Numbers
+A nonprofit private American corporation that oversees global IP address allocation, autonomous system number allocation, root zone management in the Domain Name System (DNS), media types, and other Internet Protocol-related symbols and Internet numbers.
+
+## IANA
+The Internet Assigned Numbers Authority (IANA) is a function of ICANN. IANA is however now under private sector.
+IANA administers the data in the root nameservers, which form the top of the hierarchical Domain name system (DNS) tree.
+
+IANA delegates allocations of IP address blocks to regional Internet registries (RIRs). Each RIR allocates addresses for a different area of the world.Collectively the RIRs have created the Number Resource Organization formed as a body to represent their collective interests and ensure that policy statements are coordinated globally.
+
 
