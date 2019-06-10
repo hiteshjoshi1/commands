@@ -107,20 +107,16 @@ There are 4 octets in an IPv4 address-
 IPv4 parts -
 
 Class	Theoretical Address Range	Binary Start	Used for
-| Class      | Theoretical Address Range        |Binary Start  |Used For             |
-| ------------- |:----------------------------- |:-------------|:-------------------:|
-|   A           | 0.0.0.0 to 127.255.255.255    |  0           | Very Large Networks |
-|   B           | 128.0.0.0 to 191.255.255.255  |	10	          | Medium networks     | 
-|   C           |192.0.0.0 to 223.255.255.255	  | 110          | Small networks      |
-|   D           |224.0.0.0 to 239.255.255.255   | 1110         | Multicast           |
-|   E           |240.0.0.0 to 247.255.255.255   | 1111         | Experimental        |
+| Class         | Theoretical Address Range     |   |Binary Start | Used For             |
+| ------------- |:----------------------------- |:----------------|:--------------------:|
+|   A           | 0.0.0.0 to 127.255.255.255    |  0              | Very Large Networks  |
+|   B           | 128.0.0.0 to 191.255.255.255  |	10	             | Medium networks      | 
+|   C           |192.0.0.0 to 223.255.255.255	  | 110             | Small networks       |
+|   D           |224.0.0.0 to 239.255.255.255   | 1110            | Multicast            |
+|   E           |240.0.0.0 to 247.255.255.255   | 1111            | Experimental         |
 
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+
 
 
 ------------------------------------------------------------------------
