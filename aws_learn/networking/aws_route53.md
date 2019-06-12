@@ -25,6 +25,12 @@ Amazon
 godaddy
 123-reg.co.uk
 
+------------------------
+NS Records for AWS -
+ns-1780.awsdns-30.co.uk. 
+ns-480.awsdns-60.com. 
+ns-1380.awsdns-44.org. 
+ns-983.awsdns-58.net.
 --------------------------------------------------
 
 
@@ -70,7 +76,7 @@ __Routing Policies__ -
 7. Multivalue Answer Routing
 
 Use Case -
-Your App is deployed in 3 Regions, for example
+Your App is deployed in 3 Regions, for example -
 
 US Virginia
 APAC Singapore
@@ -79,15 +85,32 @@ Ireland
 Routing will allow you to direct traffic across respective servers. This is defined in Route52 routing policies.
 
 
-### Simple Routing
+### Simple Routing Policy
 One record with multiple IP addresses linked to it is Simple Ruting.
 In Simple Routing Route53 would return any of the IP values to the end user randomly.
 
-NS Records for AWS -
-ns-1780.awsdns-30.co.uk. 
-ns-480.awsdns-60.com. 
-ns-1380.awsdns-44.org. 
-ns-983.awsdns-58.net.
+### Weighted Routing policy
+Split traffic based on the weights assigned.
+Example-
+70% traffic goes US Virginia
+20% traffic to SG
+10% traffic to Ireland.
+
+You can create health checks for individual IP's(A records). If a record fails it would be removed from Route53. You can also set alarms if the healthcheck fails.
+
+### Latency Based Routing Policy
+
+Route the traffic based on least network latency for the end user of the site.
+
+Create 3 policy of type latency based for each IP. Route 52 will redirect the user based on where he is getting the least network latency.
+
+### Failover Routing
+
+Has a primary(Active site) and a secondary(Passive Site). It is mandatory to have a health check on primary for failover routing.
+Primary goes down , traffic is routed to Secondary.
+
+### Geo Location Routing 
+
 
 
 
