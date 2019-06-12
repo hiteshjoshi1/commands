@@ -81,10 +81,11 @@ Most top-level domain name registry operators offer their name spaces to the pub
 
 DNS Zone file (on DNS Server) has following components -
 
-__CNAME Record __ -
+__CNAME Record__ -
 
 CNAME or Canonical Name links an alias name to another true or canonical domain name.
-for example - www.example.com may be linked to the naked domain example.com
+for example - www.example.com m and mobile.example.com
+
 
 __A Record__-
 IPv4 Address Mapping records (A)—a hostname and its IPv4 address.
