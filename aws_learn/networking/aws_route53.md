@@ -26,8 +26,6 @@ godaddy
 123-reg.co.uk
 
 --------------------------------------------------
-State of Authority Record -
-Where DNS going to start
 
 
 ## NS Records
@@ -47,6 +45,53 @@ Can be used to map one domain name to the other
 For example www.dbs.com can be canonically mapped so that it resoves to mobile.dbs.com for Mobile browsers.
 
 ### Alias Records -
+
+Used to map resource record sets in your hosted zone to Elastic Load balancers, Cloud front distributions, or S3 buckets that are configured as websites.
+
+A CNAME cannot be used for a naked domain name(Zone apex record).
+
+# Exam Tips-
+- Elastic Load Balancers ELBs do not have a pre defined IPv4 address, you always resolve to them using a DNS name.
+- In AWS , given a choice between Alias Record and CName , always use Alias Record.
+- SOA records, NS Record, A Record, CNames,MX Records, PTR Records
+
+------------------------
+Provisioned -> hiteshjoshi.net
+ 
+Create a Record Set in the Hosted Zone. Every Record Set is created with a Routing policy.
+
+__Routing Policies__ -
+1. Simple Routing
+2. Weighted Routing
+3. Latency based routing
+4. Failover Routing
+5. Geolocation routing
+6. Geoproximity Routing
+7. Multivalue Answer Routing
+
+Use Case -
+Your App is deployed in 3 Regions, for example
+
+US Virginia
+APAC Singapore
+Ireland
+
+Routing will allow you to direct traffic across respective servers. This is defined in Route52 routing policies.
+
+
+### Simple Routing
+One record with multiple IP addresses linked to it is Simple Ruting.
+In Simple Routing Route53 would return any of the IP values to the end user randomly.
+
+NS Records for AWS -
+ns-1780.awsdns-30.co.uk. 
+ns-480.awsdns-60.com. 
+ns-1380.awsdns-44.org. 
+ns-983.awsdns-58.net.
+
+
+
+
 
 
 
