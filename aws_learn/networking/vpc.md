@@ -1,5 +1,6 @@
-# VPC 
-Virtual Private cloud
+# VPC - Virtual Private cloud
+  - So far we have been using default VPC. All subnets in default VPC have internet access. Each Ec2 instance has both public and private IP address.
+  
 
 A VPC allows you to create a virtualized enviornment where you have complete control over 
 - Selecting IP address Range
@@ -22,5 +23,13 @@ Region--> VPC --> [Internet gateway and Virtual Private Gateway] ---> Router -->
 
 
 Network ACLS allows you to do allow and deny rules, which means you can block specific IP's.
+
+## VPC peering
+
+- Allows you to connect one VPC with another with another via direct network route using private IP address.
+- You can pair VPCs with other VPC's and with VPC's in other AWS accounts.
+- You can peer VPC between regions.
+- VPC peering is not transitive. It is a star config, 1 central VPC pairs with 4 others.
+
 
 
