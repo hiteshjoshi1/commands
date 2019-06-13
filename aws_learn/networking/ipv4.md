@@ -103,6 +103,7 @@ and it has a destination address of 192.168.123.132, your computer will receive 
 
 
 ### CIDR notation
+Classless Inter Domain Routing Notation.
 IP addresses contain 4 octets, each consisting of 8 bits giving values between 0 and 255.
 The decimal value that comes after the slash is the number of bits consisting of the routing prefix. 
 
@@ -118,4 +119,17 @@ First IP that can be represented - 192.168.0.1
 Last IP that can be represented - 192.168.255.254  
 
 16 bits for prefix means = out of 4 octets of 8 bit each =  first 16 bits are fixed for network address, remaining 16 for subnet mask. So you start at the range from 0.1 and go to max 255.254.
+
+
+## DHCP
+Dynamic Host Configuration protocol. 
+A DHCP server is used for Dynamic Addressing, that is automatic assignment of IP addresses.
+
+The basic function of the DHCP service is to automatically assign IP addresses to client systems. To do this, ranges of IP addresses, known as scopes, are defined on a system running a DHCP server application. When another system configured as a DHCP client is initialized, it asks the server for an address. If all things are as they should be, the server assigns an address to the client for a predetermined amount of time, which is known as the lease, from the scope.
+
+A DHCP server typically can be configured to assign more than just IP addresses. It often is used to assign the subnet mask, the default gateway, and Domain Name Service (DNS) information.
+
+
+## Private Networks
+
 
