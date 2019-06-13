@@ -105,7 +105,7 @@ Routing will allow you to direct traffic across respective servers. This is defi
 
 
 ### Simple Routing Policy
-One record with multiple IP addresses linked to it is Simple Ruting.
+One record with multiple IP addresses linked to it is Simple Ruting. - need to create only one Simple Routing policy with multiple IPS in different lines.
 In Simple Routing Route53 would return any of the IP values to the end user randomly.
 
 ### Weighted Routing policy
@@ -142,18 +142,5 @@ Side Note - The traffic flow visual editor lets you create sophisticated routing
 
 ### Multivalue Answer Route
 Same as Simple Routing, but it allows you to put healthcheck on each record. Basically same as Failover routing but with multiple Secondaries. 1 fails go to 2. 2 fails go to 3 and so on.
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
