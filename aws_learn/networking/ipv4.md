@@ -32,8 +32,8 @@ Class	Theoretical Address Range	Binary Start	Used for-
 
 
 
-|Class|Leading bits |	Size of network |number bit field |	Size of rest bit field |	Number of networks | Addresses per network |	Total addresses in class |	Start address	|End address |
-|-------|: --------- |:---------- |:--------------- |: ----------------- |:-------------|:----------------|: ------------|: -------------------	|: --------------- |
+|Class|Leading bits |	Size of network |number bit field |	Size of rest bit field |	Number of networks | Addresses per network |	Total addresses in class |	Start address	|End address|
+|-------|: --------- |:---------- |:--------------- |: ----------------- |:-------------|:----------------|: ------------|: -------------------	|: --------------- :|
 
 
 ### Class A - The first bit of the first octet is always set to 0 (zero).
