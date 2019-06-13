@@ -91,33 +91,31 @@ Then the address is divided as follows
 
 
 ### Based on the class of address, different subnet masks are used.
-Class A has 24 bit subnet mask(255.0.0.0). That is first octet reserved for Network
-Class B has 16 bit subnet mask(255.255.0.0). That is first two octets reserved for network.
-Class C has 8 bit subnet mask(255.255.255.0), that is first three octets reserved for network.
+- Class A has 24 bit subnet mask(255.0.0.0). That is first octet reserved for Network
+- Class B has 16 bit subnet mask(255.255.0.0). That is first two octets reserved for network.
+- Class C has 8 bit subnet mask(255.255.255.0), that is first three octets reserved for network.
 
 So in the above example case, the first 24 bits (the number of ones in the subnet mask) are used to identify as the network address, with the last 8 bits identifying the host address(the number of remaining zeros in the subnet mask)
 
 
-When a packet arrives on the 192.168.123.0 subnet (from the local subnet or a remote network), 
+When a packet arrives on the 192.168.123.0 network (from the local subnet or a remote network), 
 and it has a destination address of 192.168.123.132, your computer will receive it from the network and process it.
 
 
-
-
-## CIDR notation
-P addresses contain 4 octets, each consisting of 8 bits giving values between 0 and 255.
+### CIDR notation
+IP addresses contain 4 octets, each consisting of 8 bits giving values between 0 and 255.
 The decimal value that comes after the slash is the number of bits consisting of the routing prefix. 
 
-192.168.123.132/16
+__192.168.123.132/16__
 IP - 192.168.123.132
 Routing prefix - 16
 
 Routing prefix 16 means that there are 16 bits available in the subnet mask to represent address.
+Which means the subnet mask is 255.255.0.0
 Which mean that we can represent 2^16 address using this subnet mask.
 
 First IP that can be represented - 192.168.0.1 
 Last IP that can be represented - 192.168.255.254  
 
-16 bits for prefix means = out of 4 octets of 8 bit each =  first 16 bits are fixed for network address, remaining 16 for subnet mask. 
-So you start at the range from 0.1 and go to max 255.254.
+16 bits for prefix means = out of 4 octets of 8 bit each =  first 16 bits are fixed for network address, remaining 16 for subnet mask. So you start at the range from 0.1 and go to max 255.254.
 
