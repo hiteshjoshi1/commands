@@ -5,6 +5,8 @@ DNS is on port 53. Hence the name Route53.
 DNS - Domain Name Service
 Human friendly names to IPv4 and IPv6.
 
+ELB- Elasic Load Balancers do not have predefined IP v4 address, you resolve to them using a DNS Name.
+
 
 IPv4 is a 32 bit field  = 2^32 number of addresses available
 
@@ -64,7 +66,24 @@ A CNAME cannot be used for a naked domain name(Zone apex record).
 ------------------------
 Provisioned -> hiteshjoshi.net
  
-Create a Record Set in the Hosted Zone. Every Record Set is created with a Routing policy.
+
+
+After you register your domain name, Route 53 automatically creates a public hosted zone that has the same name as the domain.
+
+### Records in Route53 
+To route traffic to your resources, you create records, also known as resource record sets, in your hosted zone. 
+
+Each record includes information about how you want to route traffic for your domain, such as the following:
+
+__Name__
+The name of the record corresponds with the domain name (example.com) or subdomain name (www.example.com, retail.example.com) that you want Route 53 to route traffic for.
+The name of every record in a hosted zone must end with the name of the hosted zone. For example, if the name of the hosted zone is example.com, all record names must end in example.com. The Route 53 console does this for you automatically.
+
+__Type__
+The record type usually determines the type of resource that you want traffic to be routed to. For example, to route traffic to an email server, you specify MX for Type. To route traffic to a web server that has an IPv4 IP address, you specify A for Type.
+
+__Value__
+Value is closely related to Type. If you specify MX for Type, you specify the names of one or more email servers for Value. If you specify A for Type, you specify an IP address in IPv4 format, such as 192.0.2.136
 
 __Routing Policies__ -
 1. Simple Routing
@@ -99,7 +118,6 @@ Example-
 You can create health checks for individual IP's(A records). If a record fails it would be removed from Route53. You can also set alarms if the healthcheck fails.
 
 ### Latency Based Routing Policy
-
 Route the traffic based on least network latency for the end user of the site.
 
 Create 3 policy of type latency based for each IP. Route 52 will redirect the user based on where he is getting the least network latency.
@@ -111,7 +129,19 @@ Primary goes down , traffic is routed to Secondary.
 
 ### Geo Location Routing 
 
+Based on the Geolocation Routing
 
+Europe origin goes to a European customer. APAC routes can be routed to Singapore.
+
+### Geoproximity Routing
+Routing is done based on the geolocation of the end user (as in Geo location routing) and also on the basis of our resources.
+You can also choose to route more or less traffic to a given resource by specifying a value called Bias.
+
+Note - To use geoproximity routing you need to use Route53 traffic flow.
+Side Note - The traffic flow visual editor lets you create sophisticated routing configurations for your resources using existing routing types such as failover and geolocation. You save the configuration as a traffic policy and then use it to create one or more policy records. Each policy record routes DNS queries for a specified domain or subdomain.
+
+### Multivalue Answer Route
+Same as Simple Routing, but it allows you to put healthcheck on each record. Basically same as Failover routing but with multiple Secondaries. 1 fails go to 2. 2 fails go to 3 and so on.
 
 
 
