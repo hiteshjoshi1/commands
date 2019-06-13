@@ -133,37 +133,6 @@ example - ns1.google.com
 
 -------------------------------------------------------------------
 
-## IP Address
-
-IPv4 address contains octets(8 bits) , that is their range is from 0 - 2^8(255).
-
-42 in Binary- 00101010
-
-There are 4 octets in an IPv4 address-
-
-127.0.0.1 - reserved by IANA to identify the computer you are using.(Localhost)
-
-IPv4 parts -
-
-Class	Theoretical Address Range	Binary Start	Used for-
-
-| Class         | Theoretical Address Range     |   Binary Start  | Used For             |
-| ------------- |:----------------------------- |:----------------|:--------------------:|
-|   A           | 0.0.0.0 to 127.255.255.255    |  0              | Very Large Networks  |
-|   B           | 128.0.0.0 to 191.255.255.255  |	10	             | Medium networks      | 
-|   C           |192.0.0.0 to 223.255.255.255	  | 110             | Small networks       |
-|   D           |224.0.0.0 to 239.255.255.255   | 1110            | Multicast            |
-|   E           |240.0.0.0 to 247.255.255.255   | 1111            | Experimental         |
-
-Class A - The first bit of the first octet is always set to 0 (zero). Thus the first octet ranges from 1 – 127.
-7 bits remain - 2^7= 127
-
-TODO- Subnets and Subnet masking - do seprately
-
-
-
-
-------------------------------------------------------------------------
 
 ## MAC Address-
 Every network interface, both wired and wireless, has a unique MAC address embedded in it by the manufacturer.
