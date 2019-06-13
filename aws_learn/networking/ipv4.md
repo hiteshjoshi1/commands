@@ -32,9 +32,13 @@ Class	Theoretical Address Range	Binary Start	Used for-
 
 
 
-|Class|Leading bits |	Size of network |number bit field |	Size of rest bit field |	Number of networks | Addresses per network |	Total addresses in class |	Start address	|End address|
-|-------|: ---------|:----------------|:--------------- |: ----------------------|:--------------------|:----------------|:---------|: ---------|: ------------- :|
-
+| Class               | Leading bits | Size of network number bit field | Size of rest bit field | Number of networks | Addresses per network | Total addresses in class | Start address | End address     |
+|---------------------|--------------|----------------------------------|------------------------|--------------------|-----------------------|--------------------------|---------------|-----------------|
+| Class A             | 0            | 8                                | 24                     | 128 (27)           | 16777216 (2^24)        | 2147483648 (2^31)         | 0.0.0.0       | 127.255.255.255 |
+| Class B             | 10           | 16                               | 16                     | 16384 (214)        | 65536 (2^16)           | 1073741824 (2^30)         | 128.0.0.0     | 191.255.255.255 |
+| Class C             | 110          | 24                               | 8                      | 2097152 (221)      | 256 (2^8)              | 536870912 (2^29)          | 192.0.0.0     | 223.255.255.255 |
+| Class D (multicast) | 1110         | not defined                      | not defined            | not defined        | not defined           | 268435456 (2^28)          | 224.0.0.0     | 239.255.255.255 |
+| Class E (reserved)  | 1111         | not defined                      | not defined            | not defined        | not defined           | 268435456 (2^28)          | 240.0.0.0     | 255.255.255.255 |
 
 ### Class A - The first bit of the first octet is always set to 0 (zero).
 Binary start = 0
