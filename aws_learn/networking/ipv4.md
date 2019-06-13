@@ -75,46 +75,31 @@ So First IP octet could range from 240 -247 in class B. (240+16 = 248)
 Class C networks use a default subnet mask of 255.255.255.0 and have 192-223 as their first octet. 
 Address 192.168.123.132 is a class C address. Its first octet is 192, which is between 192 and 223, inclusive.
 
-## Subnets and Subnet masking
-
-192.168.123.132 is (in binary notation) the 32 bit number
-11000000.10101000.01111011.10000100 in binary
-
-
-  192.168.123. Network .132 Host
-  
-  192.168.123.0 - network address. 0.0.0.132 - host address.
-  
+ 
   
  ## Subnet Mask -
   The subnet mask is used by the TCP/IP protocol to determine whether a host is on the local subnet or on a remote network.
-example,
-If the subnet mask is 255.255.255.0. 
+Consider IP 192.168.123.132 
+In binary 11000000.10101000.01111011.10000100 
+
+Now, If the subnet mask is 255.255.255.0. 
 That is in Binary - 11111111.11111111.11111111.00000000 
 
-# The first 24 bits (the number of ones in the subnet mask) are used to identify as the network address, 
-with the last 8 bits identifying the host address(the number of remaining zeros in the subnet mask)
+Then the address is divided as follows
+ 192.168.123.0 - network address
+ 0.0.0.132 - host address.
 
-So the maximum number of Ip's a Host address with 8 bits can represent is 2^8 = 256. 
-Basically all Permutations and Combinations of 00000000.
 
-In this example, Network Id  - 192.168.123.0
-Host address - 0.0.0.132. 
+### Based on the class of address, different subnet masks are used.
+Class A has 24 bit subnet mask(255.0.0.0). That is first octet reserved for Network
+Class B has 16 bit subnet mask(255.255.0.0). That is first two octets reserved for network.
+Class C has 8 bit subnet mask(255.255.255.0), that is first three octets reserved for network.
+
+So in the above example case, the first 24 bits (the number of ones in the subnet mask) are used to identify as the network address, with the last 8 bits identifying the host address(the number of remaining zeros in the subnet mask)
+
 
 When a packet arrives on the 192.168.123.0 subnet (from the local subnet or a remote network), 
 and it has a destination address of 192.168.123.132, your computer will receive it from the network and process it.
-
-
-Class A networks use a default subnet mask of 255.0.0.0 and have 0-127 as their first octet.
-example, 10.52.36.11 is a class A address. Its first octet is 10
-
-
-Class A can represent 16777216 IPs in the subnet = you have Subnet mask of 24 bits. 2^24 = 16,777,216
-10.x.x.x so 16777216 IPs starting from 10.
-
-
-Class B networks use a default subnet mask of 255.255.0.0 and have 128-191 as their first octet. 
-address 172.16.52.63 is a class B address. Its first octet is 172, which is between 128 and 191, inclusive.
 
 
 
@@ -136,9 +121,3 @@ Last IP that can be represented - 192.168.255.254
 16 bits for prefix means = out of 4 octets of 8 bit each =  first 16 bits are fixed for network address, remaining 16 for subnet mask. 
 So you start at the range from 0.1 and go to max 255.254.
 
-
-
-
-------------------------------------------------------------------------
-© 2019 GitHub, Inc.
-Terms
