@@ -132,4 +132,4 @@ A DHCP server typically can be configured to assign more than just IP addresses.
 
 ## Private Networks
 
-
+![](private_network.png)
