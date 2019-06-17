@@ -106,7 +106,7 @@ Two types
 
 ### NAT Gateway -
 
-1.Create a NAT gateway in your public subnet.
+1. Create a NAT gateway in your public subnet.
 2. Auto assign an IP to it.
 3. Add the NAT gatweway to the default route table of VPC, which will give all subnets access to it. 
 Destination = 0.0.0.0/0 
@@ -114,7 +114,7 @@ Target  = NAT ID
 4. Can only be one NAT instances in a Azones.
 5. Are not associated to a Security Zones.
 6. No need to disable any source and destination checks - config is straightforward
-7.If resources are in multiple AZ share a NAT gateway. If the NAT gateway is down with a AZ, the resources in other AZ will also loose access.
+7. If resources are in multiple AZ share a NAT gateway. If the NAT gateway is down with a AZ, the resources in other AZ will also loose access.
 Recommended -  Create one NAT per AZ so that instances in other AZ are not affected if this AZ goes down.
 
 
