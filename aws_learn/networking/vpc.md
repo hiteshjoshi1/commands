@@ -78,15 +78,46 @@ Note- Security Groups cannot span VPC's.
 ## NAT - Network Address Translation
 Allows Ec2 instances in private subnets have access to internet to may be install software.
 
-Nat Instances(ec2 -  instance , older)  and NAT Gateways(Highly availaible gateway - used now).
+Two types 
+1. NAT Instances(individual ec2 -  instance , not highly available - Older)  
+2. NAT Gateways(Highly availaible gateway - used now).
 
-NAT Instance -
+### NAT Instance -
 
-Create using Amazon community instances -> search NAT and hit enter.
+1.Create using Amazon community instances of EC2 -> search NAT and hit enter.
 
-Create the NAT in your VPC in the same AZ where the public Subnet is.
+2. Create the NAT in your VPC in the same AZ where the public Subnet is.
 
-Edit the route table of the VPC, add a route to the __instance__ of NAT. This will give the subnet access to subnet.
+3.Edit the route table of the VPC, add a route to the __instance__ of NAT. This will give the subnet access to subnet.
+
+4.Single point of failure , which is a bottleneck for all machines that dependent on NAT instance for internet access.
+
+5. ** When creating a NAT Instance disable Source and destination check on that instance.
+
+6. NAT instances should be in public subnet.
+
+7. There must be a route out of the public subnet to the private subnet for this to work.
+
+8. They have to be created behind a security group.
+
+9. The traffic a NAT instance can handle depends on its instance size. You can increase the instance size and manually create autoscaling groups, multiple subnets in different AZs and a script to automatic failover.
+
+10. Due to point 9, NAT instances are on their way out.
+
+### NAT Gateway -
+
+1.Create a NAT gateway in your public subnet.
+2. Auto assign an IP to it.
+3. Add the NAT gatweway to the default route table of VPC, which will give all subnets access to it. 
+Destination = 0.0.0.0/0 
+Target  = NAT ID
+4. Can only be one NAT instances in a Azones.
+5. Are not associated to a Security Zones.
+6. No need to disable any source and destination checks - config is straightforward
+7.If resources are in multiple AZ share a NAT gateway. If the NAT gateway is down with a AZ, the resources in other AZ will also loose access.
+Recommended -  Create one NAT per AZ so that instances in other AZ are not affected if this AZ goes down.
+
+
 
 
 
