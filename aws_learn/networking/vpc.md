@@ -50,8 +50,6 @@ Allows communication between instances in the VPC and the internet. It does 2 th
 2.To perform network address translation (NAT) for instances that have been assigned public IPv4 addresses.
 
 
-
-
 To enable internet access to or from the internet for instances in a VPC subnet, you must do the following:
 
 - Attach an internet gateway to your VPC.(Create one--> detached --> attach to a VPC).
@@ -168,17 +166,14 @@ Stable or reliable secure connection.
 
 ## VPC endpoints 
 
-VPC end point enables you to privately connect your VPC to supported AWP services and VPC endpoint
+- VPC end point enables you to privately connect your VPC to supported AWP services and VPC endpoint
 services powered by private link without requiring an Internet gateway and Nat device a VPN connection
 or an AWP Direct Connect connection. 
-Instances in your VPC do not require public IP addresses to communicate
-with resources in the service, so traffic between your VPC and other services does not leave the Amazon
-Network.
-So it's a way of traversing your traffic without having to leave the Amazon Network.
-You don't need to go over the Internet and points of virtual devices and they are horizontally scaled
-redundant and highly available VPC components that allow communication between instances in your VPC
-and services without imposing availability risk or bandwidth constraints on your network traffic.
 
+- Instances in your VPC do not require public IP addresses to communicate with resources in the service, so traffic between your VPC and other services does not leave the Amazon Network.
+
+You don't need to go over the Internet. 
+VPC endpoints are horizontally scaled and highly available.
 
 Types of VPC endpoints- 
 1. Interface endpoints
@@ -192,13 +187,4 @@ VPC Gateway endpoints - supported for Dynamo DB and S3 currently.
 
 NOT CLEAR - Bastions and VPC Endpoints
 
-
-
-  
-
-
-
-
-
-
-
+ 
