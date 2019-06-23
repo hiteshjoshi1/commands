@@ -6,7 +6,7 @@ Balance load balancer
 2. Network Load Balancer
 3. Classic Load Balancer
 
-## Application LB -
+## Application Load Balancers -
 1. Load balancing of http and https traffic
 2. Operate at layer 7 and are application aware.
 3. Can do advace request routing - sending specified request to specified web servers etc
@@ -26,4 +26,16 @@ Elastic LB  will return 504 error, which means GATEWAY Timeout, that is either a
 
 Elastic load balancers will have their own IP(example 10.0.0.23), if you want to get end user IP address for a request coming through ELB,
 you can use X-Forwarded-For.
+
+
+A classic LB is sort of a dumb router which will route traffic to your EC2 instances randomly.
+
+### Application load balancers
+1. create target groups - can be done based on Instance(ec2), IP, or Lambda function.
+2. Use the target group when creating the application Load balancer, you can define advance routing in application Load Balancer .
+
+#TODO - Read the FAQ of Load Balancer, not done thoroughly
+
+
+### Sticky Sessions
 
