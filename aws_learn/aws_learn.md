@@ -33,8 +33,12 @@ Service  to convert media files to different formats to suit different devices.
 IAM - IAM (Identity Access Management) is universal and not specific to a region.
 S3 - is a universal namespace
 Buckets - so Bucket Name has to be unique.
+RRS - Reduced Redundancy Storage has 99.99% availability and durability.
 
-S3 is filestore
+S3 has 99.99%  availability
+
+
+S3 is filestore which is file Based whereas EBS is Block based.
 
 ### Consistency in S3 -->
 
