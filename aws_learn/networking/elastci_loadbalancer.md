@@ -38,4 +38,21 @@ A classic LB is sort of a dumb router which will route traffic to your EC2 insta
 
 
 ### Sticky Sessions
+Classic load balancers route the traffic to EC2 instances with the smallest load.
+Sticky sesisons allows you to bind a user session to a specific EC2 instance on a classic load balancers. This ensures all the request from the user during a session are served by the same instance.
+
+You can enable sticky session on an Application Load Balancer as well, but the traffic would be sent at target group level.
+
+
+### Cross Zone load Balancing
+Across zone load balancing can be done using Load balancers in different Availability zones.
+
+### Path Patterns
+
+Path based Routing - routing is done based on the URL path.
+
+
+
+
+
 
