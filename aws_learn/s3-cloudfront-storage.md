@@ -13,7 +13,6 @@ Elastic BeanStalk automatically handles deployment capacity privisioning, load b
 
 Cloud Formation is an automated provisoning engine designed to deploy entire cloud environments via JSON script.
 
-### CDN - Cloudfront
 
 ### kinesis - 
 For collecting large amount of data streamed from various sources
@@ -89,30 +88,37 @@ Deleting individual versions would also not be replicated
 Upload a file to edge location. Which will then moved to S3 bucket. This is faster
 So you are region1 and your user is half way across the world you would benefit from Transfer acceleration when he uploads a file.
 
-## CloudFront - CloudFront is AWS CDN
+## CloudFront - CloudFront is an AWS CDN
 
-Edge Location - Location where content is cached.
+So that your media files and othere things are cached across the world and user do not have suffer latency downloading them from one location half way around the world.
 
-### Origin - origin of all files that CDN will distribute. Example, S3 Bucket, EC2, Elastic Load Balancer,Route53.
+ - Edge Location - Location where content is cached. Edge locations are not just read only. You can write to them.
 
-### Distribution - Cloud Distribution types -
+- Origin - origin of all files that CDN will distribute - The origin could be an - S3 Bucket, EC2, Elastic Load Balancer,Route53.
+
+- Distribution - A collection of edge locations.
+
+
+
+### Cloud Distribution types -
 
 A distribution is the name given to a CDN which consists of collection of Edge Locations.
 Distribution Types
 
-- Web Dsitribution
-- RTMP - Media Streaming
+- Web Dsitribution - (for websites)
+- RTMP - Media Streaming (adobe)
+
 
 Objects in the edge locations are cached for the life of TTL (Time to Live).
-You can clear cached objects(Cache Invalidate). But that will be charged.
+You can clear cached objects(Cache Invalidate).<b> But that will be charged.</b>
 
 - Restrict Viewer Access in Cloud Front -
   (Use Signed URLs or
   Signed Cookies) ---> Choose whether you want CloudFront to require users to access your content using a signed URL or a signed cookie.
 
-Enable Cloud Front Enable and use as
+Enable Cloud Front Enable and use as -
 
-http://CLoudfrontURL/<Object in S3>
+http://<Your CLoud front URL>/<Object in S3>
 
 Select a Cloud Front and click Distribution Settings
 
