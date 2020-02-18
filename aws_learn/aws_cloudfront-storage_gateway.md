@@ -1,4 +1,4 @@
-## CloudFront - CloudFront is an AWS Content Delivery Network (CDN)
+# CloudFront - CloudFront is an AWS Content Delivery Network (CDN)
 -- Part of Networking - is a global service
 
 So that your media files and other things are cached across the world and user do not have suffer latency downloading them from one location half way around the world.
@@ -42,24 +42,24 @@ You can Invalidate objects. -- In case some wrong data is published. Invalidate 
 
 ### Snowball Data Storage
 
-Import to S3, Export to S3
-Snowball
-Snowball Edge
-SnowMobile
+Used for  Import to S3, Export from S3
+- Snowball
+- Snowball Edge (100 TB , comes with compute and storage)
+- SnowMobile (100 Peta bytes)
 
 ## Storage Gateway
 
-Replicate your on-prem device to AWS cloud.
+Replicate your on-prem data to AWS cloud.
 
-Available as Virtual Machine [VmWare WSXi or Microsodt Hyper- V]
+Available as Virtual Machine [VmWare WSXi or Microsodt Hyper- V] or phsyical device.
 
 Install the gateway --> associate it with your AWS a/c
 
 ### Storage gateway type ->
 
-- File Gateway (NFS)
-- Volume Gateway
-  Types - - Stored Volume - Cached Volumes
+- File Gateway (NFS or SMB)
+- Volume Gateway(iSCSi )
+  Types of Volume Gateway - 1. Stored Volume 2. Cached Volumes
 - Tape Gateway (VTL) - Virtual Tape Library
 
 ### File Gateway
@@ -70,20 +70,19 @@ All user metadata, permissions and timestamps are stored in user metadata of the
 
 ### Volume Gateway
 
-Back up your data disk drives using the iSCI block protocol.
-Data written in the volumes can be backed up as point in time snapshots of your volumes and stored as EBS Snapshots
+Back up your hard disk drives using the iSCI block protocol.
+Data written in the volumes can be asynchronously backed up as point in time snapshots of your volumes and stored as EBS Snapshots. Snapshots are incremental snapshots that only capture changed blocks, the snapshot storage is also compressed to minimize your storage charges.
 
-Snapshots are incremental snapshots that only capture changed blocks, the snapshot storage is also compressed to minimize your storage charges.
-
+Volume Gateway is of 2 types ->
+1. Stored Volumes
+2. Cached Volumes
 ### Stored Volumes -
-
-Entire dataset is kept locally(local SAN) and asychronously backed up to S3.
+Entire dataset is kept locally(local SAN) and asychronously backed up to S3. Entire data set is onsite.
 
 ### Cached Volumes-
-
-Only recently used data is stored in on prem storage gateway.
+Only recently used data is stored in on prem storage gateway. Only freequently accessed data is stored onsite.
 The entire dataset actually resides in S3, however the recently used data is cached in the local storage Gateway.
 
-Tape Gateway -
+### Tape Gateway -
 Lets you archive your data to AWS cloud.
 VTL interface allows existing Tape data to S3.
