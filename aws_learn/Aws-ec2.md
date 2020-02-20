@@ -71,26 +71,31 @@ U Bare metal
 
 You specify what type of EC2 instances.
 How much Storage (EBS)  for root device volume? --> this is where the OS gets installed.
+**NOTE Root device volume -- can be encrypted. When instance gets deleted, the root device volume will get deleted. Any additional volume wont be get deleted.**
+
+Termination protection is turned off by default.
 You also create a pub/ private key pair to connect to your ec2 using SSH.
 
 
 ### EC2 Security -
 
-### Security Group -
+### Security Group - This is the place where you create inbound and outbound rules for access to Ec2 instances.
 
-This is the place where you create inbound and outbound rules for access to Ec2 instance( this will be a rule analogus to Inbound/ outbound rules in Azure).
-You will create a Security Group that has inbound and outbound Security Rules. Security groups are created for a VPC(Virtual Private Cloud).
+Security groups are created for a VPC(Virtual Private Cloud).
+Changes to inbound and outbound rules take effect immediately. 
+Are stateful - an inbound rule also creates a outbound rule.
+
 
 KeyPair - Create public private key pair(or use existing) that will allow you to access your instance.(This will be a .pem file)
 
 - You cannot Block individual IPs using Security Groups. Use NACL for that (Network Access Control List).
-- No Block rules are allowed, by default everything is blocked and rules allow specific access.
+- No block rules(block any specific IPs) are allowed, by default everything is blocked and rules allow specific access.
 - All Inbound traffic is blocked by default and we enable rules to allow access.
 - All Outbound traffic is allowed.
 - Changes to Rules in Security Group takes place immediately.
-- You can add more than one Security Group to an Ec2 Instance.
+- You can add more than one Security Group attached to an Ec2 Instance.
 
-- Termination protection is disabled by default, enable it for termination protection of EC2 instance.
+
 - On an EBS backed instance, when the instance is terminated it will by default delete the root EBS volume. This can be changed so that Volume is not deleted when EC2 instance is terminated.
   (EBS covered later)
 - When Adding Storage - Root device volume cannot be encrypted on launch, however if you add new Volumes those can be encrypted. Root device volume is the volume where the Operating System is stored.
