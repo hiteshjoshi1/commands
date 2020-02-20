@@ -9,9 +9,14 @@ Pricing philosophy(Not needed for exam)
 ## EC2 Pricing Models -
 
 - On Demand
-- Reserved
-- Spot - Price moves around
+- Reserved (1 yr or 3 yr contracts, predictable work loads)
+    1. Standard Reserved instances
+    2. Convertible reserved instances (can change instance types)
+    3. Scheduled reserve instances
+- Spot - Price moves around, excess capacity
 - Dedicated Hosts
+
+
 
 ### On Demand -
 
@@ -47,7 +52,7 @@ Can be purchased ON -Demand or at Reserved Pricing(Discounted 70% of On Demand).
 
 ### EC2 Instance Types - {Not required for Soln Arch Assoc exam}
 
-FIGHT-DR-MC-PXZ-AU
+FIGHT-DR-MC-PXZ-AU (Fight DR Mc Pxz Australia)
 F FPGA
 I IOps
 G Graphics
@@ -62,6 +67,12 @@ X Extreme memory
 Z Extreme Memory and CPU
 A ARM based workloads
 U Bare metal
+
+
+You specify what type of EC2 instances.
+How much Storage (EBS)  for root device volume? --> this is where the OS gets installed.
+You also create a pub/ private key pair to connect to your ec2 using SSH.
+
 
 ### EC2 Security -
 
