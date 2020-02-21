@@ -1,6 +1,6 @@
 # EBS - Elastic Block Store
 it is under EC2--> Volumes
-EBS will be in same Availability Instance as EC2.
+EBS will always be in same Availability Instance as the EC2.
 
 Virtual Hardisk on the cloud provided with EC2. Each EBS is automatically replicated within its Availability zones.
 
@@ -48,7 +48,7 @@ When you Terminate EC2 Instance, root device volume will also be deleted. Any ot
   - Instance Store(Ephemeral Storage) - Root device is created from template stored in S3, cannot stop such an Ec2 instance, only restart, terminate.
   - EBS Backed Volumes - Root device volume is created from snapshot.
 
-  
+NOTE - You can create AMI's from both a Volume or from a snapshot.  
 
 ## AMI Types
 - EBS (Amazon EBS Volume created from an Amazon EBS Snapshot)
