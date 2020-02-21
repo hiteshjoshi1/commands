@@ -1,12 +1,14 @@
 # AWS RDS -
 
-**Supported Relational Dbs** ->
-Microsoft Sql Server
-Oracle
-Mysql Server
-PostgreSql
-Amazon Aurora
-MariaDb
+Multi AZ(DNS pointing to primary but if primary fails, rolls over to secondary) and read replicas(copies of primary for reads).
+
+## Supported Relational Dbs ->
+- Microsoft Sql Server
+- Oracle
+- Mysql Server
+- PostgreSql
+- Amazon Aurora
+- MariaDb
 
 **NOSql DBS** ->
 Dynamo Db
