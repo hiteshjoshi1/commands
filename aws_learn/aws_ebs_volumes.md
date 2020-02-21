@@ -3,6 +3,9 @@ it is under EC2--> Volumes
 EBS will always be in same Availability Instance as the EC2.
 
 Virtual Hardisk on the cloud provided with EC2. Each EBS is automatically replicated within its Availability zones.
+EBS, EFS, and FSx are all storage services based on block storage.
+
+An EBS volume(if not the root volume) can be detached from an EC2 without stopping the Ec2 instance.
 
 ## EBS Types -
 
@@ -65,9 +68,8 @@ Steps -
 - Create an AMI from the Encrypted Snapshot.
 - Launch the Image(AMI) as an Ec2 instance, which will now have Encrypted Volumes.
 
-
-You can share snapshots but inly if they are not unencrypted.
-
+Can I delete a snapshot of an EBS Volume that is used as the root device of a registered AMI?
+NO
 
 
 
