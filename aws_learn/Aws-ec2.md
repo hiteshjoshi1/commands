@@ -29,15 +29,20 @@ Good for short term, spiky or unpredicatble workloads that cannot be interrupted
 Used for predictable usage
 Upfront payments lead to cheaper pricing, 1 or 3 years instances
 
-    + Standard Reserved Instances -
+    - Standard Reserved Instances -
     75% cheaper, more you pay upfront, longer the contract, higher the discount.
     You cant convert one reserved instances to other instances.
 
-    + Convertible Reserved Instances -
+    - Convertible Reserved Instances -
     You can convert one reserved instances to another.
 
-    + Scheduled Reserved Instances -
+    - Scheduled Reserved Instances -
     Available within the time windows you reserve.
+    
+    Can a reserved instance be moved from 1 region to another? NO
+  Depending on you type of RI you can You can modify the AZ, scope, network platform, or instance size (within the same instance type), but not Region. In some circumstances you can sell RIs, but only if you have a US bank account.
+
+
 
 ### Spot Pricing - Might use this for own websites
 
@@ -158,6 +163,7 @@ This cannot span multiple AZ.
 Are each placed on distinct underlying Hardware. Reduce to overall business risk.
 Spread Placement group can even be in multiple availability zones.
 Small number of critical instances that should be kept seprate from each other.
+Spread placement groups have a specific limitation that you can only have a maximum of 7 running instances per Availability Zone. 
 
 #### Partitioned Placement Groups
 Similiar to Spread Placement group, but can have multiple ec2 instances. Multiple instances in 1 rack and other instances in other rack. All racks have their own network and power source.
@@ -170,3 +176,4 @@ placement group.
 - AWS recommends homogenous instances in EC2
 - only certain type of instances can be in placement group - Compute optimized, GPU, Memory Optmized, Storage optimized,etc
 - You can move an existing instance into a Placement group, but the instance has to be in stopped state.This can be done via cli or AWS SDK, not through console yet.
+- No charge for creating placement groups.
