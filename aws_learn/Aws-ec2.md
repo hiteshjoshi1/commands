@@ -144,19 +144,28 @@ httpd start
 Apache will serve the website at the public IP of AWS EC2.
 
 ## Ec2 Placement Groups
+Placement grops are recommended for applications that require low network latency, high n/w throughput or both.
 
 - Cluster Placement Group
 - Spread Placement Groups
+- Partitioned Placement Groups
 
-Clustered Placement Groups -
-is a Grouping of instances within an availability zone. Placement grps are recommended for applications that require low network latency, high n/w throughput or both.
+#### Clustered Placement Groups -
+is a Grouping of instances all within an availability zone. When you want EC2 instances as closely a possible.
+This cannot span multiple AZ.
 
-Spread Placement Group -
+#### Spread Placement Group -
 Are each placed on distinct underlying Hardware. Reduce to overall business risk.
-Spread Placement group can be in multiple availability zones.
+Spread Placement group can even be in multiple availability zones.
+Small number of critical instances that should be kept seprate from each other.
 
-You cant merge placement groups.
-You cant move an existing instance into a placement group.
-You can create an AMI from your existing instance nd then launch the new instance from the AMI into a
+#### Partitioned Placement Groups
+Similiar to Spread Placement group, but can have multiple ec2 instances. Multiple instances in 1 rack and other instances in other rack. All racks have their own network and power source.
+
+Note -
+- You cant merge placement groups.
+- You cant move an existing instance into a placement group.
+- You can create an AMI from your existing instance and then launch the new instance from the AMI into a
 placement group.
-AWS recommends homogenous instances in EC2- example different types of EC2 instances.
+- AWS recommends homogenous instances in EC2
+- only certain type of instances can be in placement group - Compute optimized, GPU, Memory Optmized, Storage optimized,etc
