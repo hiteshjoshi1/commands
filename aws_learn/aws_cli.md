@@ -68,13 +68,14 @@ then add the Role
 
 
 -------------------
-Get Instance metadata
+## EC2 Instance metadata
 
+### Get the ec2 - metadata
 ```
 curl http://169.254.169.254/latest/meta-data/
 ```
 
-Get user meta data - startup scripts
+### Get user meta data -  get the bootstrap scripts
 
 ```
 curl http://169.254.169.254/latest/user-data/
