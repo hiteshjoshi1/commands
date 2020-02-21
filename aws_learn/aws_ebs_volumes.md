@@ -71,6 +71,6 @@ Steps -
 Can I delete a snapshot of an EBS Volume that is used as the root device of a registered AMI?
 NO
 
-
+aws ec2 create-snapshot
 
 
