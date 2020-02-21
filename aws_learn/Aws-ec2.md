@@ -169,3 +169,4 @@ Note -
 placement group.
 - AWS recommends homogenous instances in EC2
 - only certain type of instances can be in placement group - Compute optimized, GPU, Memory Optmized, Storage optimized,etc
+- You can move an existing instance into a Placement group, but the instance has to be in stopped state.This can be done via cli or AWS SDK, not through console yet.
