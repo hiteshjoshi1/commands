@@ -1,13 +1,15 @@
 # AWS EFS - Elastic File System
+  -- Under Storage
 
-Grows and Shrinks automaticallu
+- Great for sharing files between multiple Ec2 servers. This is basically a file system that can be shared between compute instances(ec2). It can be mounted and both instances can access it.
 
-Great for file servers
+- Storage grows and Shrinks automatically
+- Great for file servers.
+- Pay as we go , no pre provisioning required.
+- can support 1000 of concurrent NFS connections.
 
-Great for sharing files between multiple Ec2 servers.
-
-A website can be stored on an EFS
-/var/www
+Example, 
+- A website can be stored on an EFS   /var/www
 and are mounted to multiple Ec2 instances.
 
 "
@@ -40,7 +42,9 @@ Notes -
 - EFS with Security group A should have an inbound Rule in A to allow NFS connections from Security group B which is the Security Group of All EC2 Instances.
 
 Mount an EFS file system on /var/www/html directory of apache -
+run this command from www folder 
 
 ```
 sudo mount -t efs -o tls fs-f9af20b8:/ /var/www/html
 ```
+where var/www/html is the mount point.
