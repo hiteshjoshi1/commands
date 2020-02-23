@@ -1,7 +1,46 @@
 # Main Kubernetes Commands
 
-Pods -
-A Kubernetes Pod is a group of one or more Containers, tied together for the purposes of administration and networking.
+
+## Minikube and tutorial
+After installing minikube and kubectl
+```
+minikube version
+```
+
+```
+minikube start
+```
+
+```
+kubectl version
+```
+
+```
+kubectl cluster-info
+```
+
+Get Nodes in the cluster
+```
+kubectl get nodes
+```
+This will return minikube , if it is the minikube cluster.
+
+
+Now you can create deployments. for example
+```
+kubectl create deployment mydeployment --image=gcr.io/google-samples/kubernetes-bootcamp:v1
+```
+
+Summary:
+Pods
+Nodes
+Kubectl main commands
+A Pod is a group of one or more application containers (such as Docker or rkt) and includes shared storage (volumes), IP address and information about how to run them.
+
+
+
+
+
 
 Deployment -
 A Kubernetes Deployment checks on the health of your Pod and restarts the Pod’s Container if it terminates. Deployments are the recommended way to manage the creation and scaling of Pods.
