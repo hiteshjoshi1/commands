@@ -35,7 +35,7 @@ OR
 ```
 kubectl create deployment nginx --image=nginx
 ```
-
+You can create a Service at the same time you create a Deployment by using --expose in kubectl.
 
 
 Describe all Pods
@@ -61,9 +61,24 @@ kubectl exec -ti $POD_NAME bash
 Service -
 By default, the Pod is only accessible by its internal IP address within the Kubernetes cluster. To make a Container accessible from outside the Kubernetes virtual network, you have to expose the Pod as a Kubernetes Service.
 
+
+Get all running services
+```
+kubectl get services
+```
+-- We have a Service called kubernetes that is created by default when minikube starts the cluster. 
+
+Create a New Service ~
+nginx deployment service(Service type - external)
 ```
 kubectl expose deployment nginx --external-ip=$MASTER_IP --port=80 --target-port=80
 ```
+Nodejs example service (Service type - NodePort) With this exposed, you will get response from Nodejs at MinikubeIp:NodePort
+
+```
+kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
+```
+
 
 Scale out a deployment
 
