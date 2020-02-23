@@ -141,7 +141,15 @@ Pods are the atomic unit on the Kubernetes platform. When we create a Deployment
 **Each Pod is tied to the Node where it is scheduled**, and remains there until termination (according to restart policy) or deletion. In case of a Node failure, identical Pods are scheduled on other available Nodes in the cluster.
 
 ## Nodes
-A Pod always runs on a Node. A node can have multiple Pods. Each Node is managed by the Master. The Kubernetes master automatically handles scheduling of pods across the Nodes in the cluster based on the resources available on each node.
+A Pod always runs on a Node. A node can have multiple Pods. Each Node is managed by the Master. The Kubernetes master automatically handles scheduling of pods across the Nodes in the cluster based on the resources available on each node. When a node crashes , pods in the node die with it.
+
+## Service
+Each Pod in a Kubernetes cluster has a unique IP address, even Pods on the same Node.Although each Pod has a unique IP address, those IPs are not exposed outside the cluster without a Service. Services allow your applications to receive traffic.
+
+A Service in Kubernetes is an abstraction which defines a logical set of Pods and a policy by which to access them.
+Services enable a loose coupling between dependent Pods. A Service is defined using YAML (preferred) or JSON, like all Kubernetes objects. The set of Pods targeted by a Service is usually determined by a LabelSelector.
+Discovery and routing among dependent Pods (such as the frontend and backend components in an application) is handled by Kubernetes Services.
+
 
 
 ## Kubernetes Higher level abstractions(rely on controllers)
