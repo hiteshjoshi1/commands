@@ -30,23 +30,32 @@ Now you can create deployments. for example
 ```
 kubectl create deployment mydeployment --image=gcr.io/google-samples/kubernetes-bootcamp:v1
 ```
-
-Summary:
-Pods
-Nodes
-Kubectl main commands
-A Pod is a group of one or more application containers (such as Docker or rkt) and includes shared storage (volumes), IP address and information about how to run them.
-
-
-
-
-
-
-Deployment -
-A Kubernetes Deployment checks on the health of your Pod and restarts the Pod’s Container if it terminates. Deployments are the recommended way to manage the creation and scaling of Pods.
+OR
 
 ```
 kubectl create deployment nginx --image=nginx
+```
+
+
+
+Describe all Pods
+```
+kubectl describe pods
+```
+Get a pod logs
+```
+kubectl logs <pod-name>
+```
+
+Use exec to run commands directly on the pod once the container is up and running
+Below command lists the environment variables of a pod.
+
+```
+kubectl exec <Pod_name> env
+```
+**Or start a bash session with a pod
+```
+kubectl exec -ti $POD_NAME bash
 ```
 
 Service -
@@ -93,7 +102,7 @@ kubectl get pods
 kubectl run nginx --image=nginx:1.10.0
 ```
 
-### Create a deployment- example for Nginx
+### Create a deployment- example for Nginx -
 
 ```
 kubectl create deployment nginx --image=nginx
