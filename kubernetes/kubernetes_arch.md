@@ -123,10 +123,25 @@ kubectl apply -f https://k8s.io/examples/application/deployment.yaml --record
 
  
 Following are K8s objects-
-1. Pods
-2. Service
-3. Volume
-4. Namespace
+1.Nodes 
+2. Pods
+3. Service
+4. Volume
+5. Namespace
+
+
+## Pods -
+A Kubernetes Pod is a group of one or more Containers(such as Docker or rkt), tied together for the purposes of administration and networking. Containers in a pod share same IP and ports.
+Pod resources include:
+- Shared storage, as Volumes
+- Networking, as a unique cluster IP address
+- Information about how to run each container, such as the container image version or specific ports to use
+
+Pods are the atomic unit on the Kubernetes platform. When we create a Deployment on Kubernetes, that Deployment creates Pods with containers inside them (as opposed to creating containers directly). 
+**Each Pod is tied to the Node where it is scheduled**, and remains there until termination (according to restart policy) or deletion. In case of a Node failure, identical Pods are scheduled on other available Nodes in the cluster.
+
+## Nodes
+A Pod always runs on a Node. A node can have multiple Pods. Each Node is managed by the Master. The Kubernetes master automatically handles scheduling of pods across the Nodes in the cluster based on the resources available on each node.
 
 
 ## Kubernetes Higher level abstractions(rely on controllers)
