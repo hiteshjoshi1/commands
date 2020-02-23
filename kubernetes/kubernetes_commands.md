@@ -26,7 +26,14 @@ kubectl get nodes
 This will return minikube , if it is the minikube cluster.
 
 
-Now you can create deployments. for example
+## Deployment
+
+### describe a Deployment
+```
+kubectl describe deployment
+```
+
+### Create a deployment
 ```
 kubectl create deployment mydeployment --image=gcr.io/google-samples/kubernetes-bootcamp:v1
 ```
@@ -35,14 +42,29 @@ OR
 ```
 kubectl create deployment nginx --image=nginx
 ```
-You can create a Service at the same time you create a Deployment by using --expose in kubectl.
 
+### Scale UP a deployment
 
-Describe all Pods
+```
+kubectl scale deployment nginx --replicas=6
+```
+
+### Scale down
+
+```
+kubectl scale deployments/kubernetes-bootcamp --replicas=2
+
+or
+
+kubectl scale deployment nginx --replicas=3
+
+```
+
+### Describe all Pods
 ```
 kubectl describe pods
 ```
-Get a pod logs
+### Get pod logs
 ```
 kubectl logs <pod-name>
 ```
@@ -58,32 +80,48 @@ kubectl exec <Pod_name> env
 kubectl exec -ti $POD_NAME bash
 ```
 
-Service -
-By default, the Pod is only accessible by its internal IP address within the Kubernetes cluster. To make a Container accessible from outside the Kubernetes virtual network, you have to expose the Pod as a Kubernetes Service.
+### Service -
+By default, the Pod is only accessible by its internal IP address within the Kubernetes cluster. To make a Container accessible from outside the Kubernetes virtual network, you have to expose the Pod as a Kubernetes Service. Services do the load balancing.
 
 
 Get all running services
 ```
 kubectl get services
 ```
--- We have a Service called kubernetes that is created by default when minikube starts the cluster. 
+Note - A Service called kubernetes is created by default when minikube starts the cluster. 
 
-Create a New Service ~
-nginx deployment service(Service type - external)
+### Expose a  Service ~
+example nginx deployment service
 ```
 kubectl expose deployment nginx --external-ip=$MASTER_IP --port=80 --target-port=80
 ```
-Nodejs example service (Service type - NodePort) With this exposed, you will get response from Nodejs at MinikubeIp:NodePort
+
+
+Or Nodejs example service. With this service exposed, you will get response from Nodejs at MinikubeIp:NodePort
 
 ```
 kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
 ```
+This will expose a service named service/kubernetes-bootcamp
 
-
-Scale out a deployment
-
+### Describe a service
 ```
-kubectl scale deployment nginx --replicas=6
+kubectl describe services/kubernetes-bootcamp
+```
+### Delete a service
+```
+kubectl delete service -l <labelName=labelValue>
+```
+
+
+You can query a pod or service by label
+kubectl get pods -l <labelName=labelValue>
+```
+kubectl get pods -l app=v1
+```
+or
+```
+kubectl get services -l <labelName=labelValue>
 ```
 
 Get All Pods, Services and Deployments
@@ -123,17 +161,42 @@ kubectl run nginx --image=nginx:1.10.0
 kubectl create deployment nginx --image=nginx
 ```
 
-### Expose a deployment as a service -
+### Expose a deployment as a service on a certain port -
 
 ```
 kubectl expose deployment nginx --external-ip=10.96.0.1 --port=80 --target-port=80
 ```
 
-### Scale a Deployment
 
+## See a replica set
+```
+kubectl get rs
+```
+## Scale the Deployments in the replica set
 ```
 kubectl scale deployment nginx --replicas=6
 ```
+
+### To Update a deployment to a new image
+```
+kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2
+```
+
+To see rollout status after the update or rollback command above
+```
+kubectl rollout status deployments/kubernetes-bootcamp
+```
+
+To see current image version of the app
+```
+kubectl describe pods
+```
+
+To rollback a rollout 
+```
+kubectl rollout undo deployments/kubernetes-bootcamp
+```
+
 
 ### Run your own image from DockerHub
 
@@ -141,7 +204,7 @@ kubectl scale deployment nginx --replicas=6
 kubectl run ts-node --image hiteshjoshi1/ts-node:latest
 ```
 
-### Expose the running service out
+### Expose the Deployment out as a service
 
 --type= Loadbalancer will get you an external IP
 
