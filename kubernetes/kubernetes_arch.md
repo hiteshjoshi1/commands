@@ -177,4 +177,5 @@ Ingresses
 Ingress Controllers (example NGINX Ingress controller)
 
 
+For AWS you can use an external LoadBalancer to route the traffic to correct pods in kubernetes. In kubernetes terms this is equivalent to creating a service with type = Loadbalancer.
 
