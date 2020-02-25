@@ -27,10 +27,14 @@ This will return minikube , if it is the minikube cluster.
 
 
 ## Deployment
+is a state of Application.K8s will match the current state to the desired state.
+
 
 ### describe a Deployment
 ```
+kubectl get deployments
 kubectl describe deployment
+kubectl get rs
 ```
 
 ### Create a deployment
@@ -49,7 +53,39 @@ kubectl create deployment nginx --image=nginx
 kubectl scale deployment nginx --replicas=6
 ```
 
-### Scale down
+## Scale a Deployments 
+```
+kubectl scale deployment nginx --replicas=6
+```
+
+### To Update a deployment to a new image
+```
+kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2
+```
+or
+```kubectl set image deployment/helloworld-deployment k8s-demo=wardviaene/k8s-demo:2```
+
+
+### Then check rollout status after the update or rollback command above
+```
+kubectl rollout status deployments/kubernetes-bootcamp
+```
+
+### To rollback a rollout 
+```kubectl rollout undo deployments/kubernetes-bootcamp```
+or to a particular revision
+```kubectl rollout history deployment/helloworld-deployment --to-revision=3 ```
+
+### check rollout history
+```kubectl rollout history deployments/kubernetes-bootcamp```
+
+### Expose Deployment as a service
+``` kubectl expose deployment helloworld-deployment --type=NodePort```
+
+#### Get the URL of service from minikube cluster
+```minikube service helloworld-deployment --url```
+
+### Scale down a deployment
 
 ```
 kubectl scale deployments/kubernetes-bootcamp --replicas=2
@@ -59,6 +95,26 @@ or
 kubectl scale deployment nginx --replicas=3
 
 ```
+_______________________________________
+##### Replication Controller (Old way- Ignore)
+If you are using a replication controller, get its name first 
+Snippet of Replication controller yaml.
+```
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: helloworld-controller
+```
+```
+ kubectl get rc 
+ kubectl scale --replicas=4 rc/helloworld-controller
+```
+or use the YAML
+```kubectl scale --replicas=1 -f replication-controller/helloworld-repl-controller.yml```
+________________________________________________
+
+
+
 
 ### Describe all Pods
 ```
@@ -90,12 +146,11 @@ kubectl get services
 ```
 Note - A Service called kubernetes is created by default when minikube starts the cluster. 
 
-### Expose a  Service ~
+### Expose a Deployment with a Service ~
 example nginx deployment service
 ```
 kubectl expose deployment nginx --external-ip=$MASTER_IP --port=80 --target-port=80
 ```
-
 
 Or Nodejs example service. With this service exposed, you will get response from Nodejs at MinikubeIp:NodePort
 
@@ -172,31 +227,6 @@ kubectl expose deployment nginx --external-ip=10.96.0.1 --port=80 --target-port=
 ```
 kubectl get rs
 ```
-## Scale the Deployments in the replica set
-```
-kubectl scale deployment nginx --replicas=6
-```
-
-### To Update a deployment to a new image
-```
-kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2
-```
-
-To see rollout status after the update or rollback command above
-```
-kubectl rollout status deployments/kubernetes-bootcamp
-```
-
-To see current image version of the app
-```
-kubectl describe pods
-```
-
-To rollback a rollout 
-```
-kubectl rollout undo deployments/kubernetes-bootcamp
-```
-
 
 ### Run your own image from DockerHub
 
@@ -297,11 +327,4 @@ kubectl describe service nodehelloworld-service
 
 When we do ```kubectl get service```
 The IP address shown is the cluster IP, not accesible to outside or to host machine.
-
-
-
-
-
-
-
 
