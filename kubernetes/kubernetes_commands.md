@@ -299,7 +299,7 @@ When we do ```kubectl get service```
 The IP address shown is the cluster IP, not accesible to outside or to host machine.
 |NAME    |                 TYPE   |     CLUSTER-IP  |   EXTERNAL-IP  | PORT(S)      |    AGE|
 | ------ |:----------------------:| -------:| -----:| --------------:| ------------:| -----:|
-nodehelloworld-service |  NodePort  |  10.109.92.81 |  <none>    |    3000:31784/TCP |   3m38s
+|nodehelloworld-service |  NodePort  |  10.109.92.81 |  <none>    |    3000:31784/TCP |   3m38s|
 
 
 
