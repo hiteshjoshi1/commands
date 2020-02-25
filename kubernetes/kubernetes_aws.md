@@ -71,3 +71,27 @@ kubectl get service
 ```
 kops delete cluster --name subdomain.domain.com --state=s3://kops-state-hitesh --yes
 ```
+
+example - create a pod
+```
+kubectl create -f first-app/helloworld.yml
+```
+If you want to create a Loadbalncer using kubernetes service
+```
+aws iam create-service-linked-role --aws-service-name "elasticloadbalancing.amazonaws.com" 
+```
+Expose it via Loadbalancer- This will create a LB in Aws
+
+kubectl create -f first-app/helloworld-service.yml  
+```
+
+
+```
+
+
+How does the AWS LoadBalancer routes traffic to the correct pod?
+AWS loadbalancer uses NodePort that is exposed on all non master nodes.
+
+
+
+
