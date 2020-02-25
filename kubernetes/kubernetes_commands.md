@@ -25,6 +25,10 @@ kubectl get nodes
 ```
 This will return minikube , if it is the minikube cluster.
 
+To see the Kubernetes system components
+```
+kubectl get pods --namespace=kube-system
+```
 
 ## Deployment
 is a state of Application.K8s will match the current state to the desired state.
@@ -333,4 +337,25 @@ now the minikube node is labeled, we can check as
 
 NOTES
 1. You can define liveness and readiness probes in your deployment yaml to check the state of pods.
+
+### Service discovery between 2 Deployments
+
+Two containers in the same POD can communicate via localhost:portnum.
+
+But containers in different PODS require service discovery to communicate between them. Example
+
+1. DB pod And DB Service POd
+```
+```
+kubectl create -f service-discovery/secrets.yml
+kubectl create -f service-discovery/database.yml
+kubectl create -f service-discovery/database-service.yml
+```
+3. App POD uses the DB Service to connect to DB, the helloworld-db.yml used database-service to connect to db
+```
+kubectl create -f service-discovery/helloworld-db.yml   
+kubectl create -f service-discovery/helloworld-db-service.yml
+```
+
+
 
