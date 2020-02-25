@@ -47,13 +47,31 @@ OR
 kubectl create deployment nginx --image=nginx
 ```
 
+**OR via a YAML file
+```
+kubectl create -f firstapp/helloworld.yaml
+```
+
+### Create a service of a deployment
+example nginx deployment service
+```
+kubectl expose deployment nginx --external-ip=$MASTER_IP --port=80 --target-port=80
+```
+
+Or Nodejs example service. With this service exposed, you will get response from Nodejs at MinikubeIp:NodePort
+
+```
+kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
+```
+This will expose a service named service/kubernetes-bootcamp
+
+**or using a yml file -
+``` kubectl create -f first-app/helloworld-service.yml```
+
+
+
 ### Scale UP a deployment
 
-```
-kubectl scale deployment nginx --replicas=6
-```
-
-## Scale a Deployments 
 ```
 kubectl scale deployment nginx --replicas=6
 ```
@@ -113,9 +131,6 @@ or use the YAML
 ```kubectl scale --replicas=1 -f replication-controller/helloworld-repl-controller.yml```
 ________________________________________________
 
-
-
-
 ### Describe all Pods
 ```
 kubectl describe pods
@@ -139,6 +154,19 @@ kubectl exec -ti $POD_NAME bash
 ### Service -
 By default, the Pod is only accessible by its internal IP address within the Kubernetes cluster. To make a Container accessible from outside the Kubernetes virtual network, you have to expose the Pod as a Kubernetes Service. Services do the load balancing.
 
+### Creating a service for a pod(note not deployment)
+```
+kubectl expose pod nodehelloworld.example.com --type=NodePort --name=nodehelloworld-service 
+```
+Once the service is created, get the node address. If in cloud, get the master IP address. 
+For minikube, get the service URL as
+```
+minikube service nodehelloworld-service  --url 
+```
+Another way to do is to get
+```
+kubectl describe service nodehelloworld-service
+```
 
 Get all running services
 ```
@@ -146,30 +174,17 @@ kubectl get services
 ```
 Note - A Service called kubernetes is created by default when minikube starts the cluster. 
 
-### Expose a Deployment with a Service ~
-example nginx deployment service
-```
-kubectl expose deployment nginx --external-ip=$MASTER_IP --port=80 --target-port=80
-```
 
-Or Nodejs example service. With this service exposed, you will get response from Nodejs at MinikubeIp:NodePort
-
-```
-kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
-```
-This will expose a service named service/kubernetes-bootcamp
 
 ### Describe a service
 ```
 kubectl describe services/kubernetes-bootcamp
 ```
 ### Delete a service
-```
-kubectl delete service -l <labelName=labelValue>
-```
+```kubectl delete service -l <labelName=labelValue>```
 
 
-You can query a pod or service by label
+You can query a pod or service by label- 
 kubectl get pods -l <labelName=labelValue>
 ```
 kubectl get pods -l app=v1
@@ -236,7 +251,7 @@ kubectl run ts-node --image hiteshjoshi1/ts-node:latest
 
 ### Expose the Deployment out as a service
 
---type= Loadbalancer will get you an external IP
+--type=Loadbalancer will get you an external IP
 
 ```
 kubectl expose deployments nginx --port 80 --type LoadBalancer
@@ -288,10 +303,7 @@ kubectl exec <podName> --stdin --tty -c <podName> /bin/ssh
 
 ## Switching between Kubernetes Contexts -
 
-```
-kubectl config use-context <context_name>
-
-```
+```kubectl config use-context <context_name>```
 
 example -
 ```
@@ -311,20 +323,14 @@ kubectl port-forward <pod-name> <forwardToPort>:<portonPOD>
 kubectl port-forward nodehelloworld.example.com 8081:3000
 ```
 
-### Creating a service
-```
-kubectl expose pod nodehelloworld.example.com --type=NodePort --name=nodehelloworld-service 
-```
-Once the service is created, get the node address. If in cloud, get the master IP address. 
-For minikube, get the service URL as
-```
-minikube service nodehelloworld-service  --url 
-```
-Another way to do is to get
-```
-kubectl describe service nodehelloworld-service
-```
+### Labels
+Can label pods, nodes, services etc. Useful when you want to make sure that certain workloads only runs on a certain node with a specific hardware.
 
-When we do ```kubectl get service```
-The IP address shown is the cluster IP, not accesible to outside or to host machine.
+Example labeling a node
+```kubectl label nodes minikube hardware=high-spec```
+now the minikube node is labeled, we can check as
+```kubectl get nodes --show-labels```
+
+NOTES
+1. You can define liveness and readiness probes in your deployment yaml to check the state of pods.
 
