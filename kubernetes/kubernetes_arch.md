@@ -77,7 +77,7 @@ described in PodSpecs are running and healthy.
 
 ### kube-proxy
 kube-proxy maintains network rules on nodes. These network rules allow network communication to your Pods
-from network sessions inside or outside of your cluster.
+from network sessions inside or outside of your cluster. The kube-proxy will make changes to iptables to ensure correct routing to pods/services is set up
 
 
 --- Image Here -----
@@ -139,6 +139,16 @@ Pod resources include:
 
 Pods are the atomic unit on the Kubernetes platform. When we create a Deployment on Kubernetes, that Deployment creates Pods with containers inside them (as opposed to creating containers directly). 
 **Each Pod is tied to the Node where it is scheduled**, and remains there until termination (according to restart policy) or deletion. In case of a Node failure, identical Pods are scheduled on other available Nodes in the cluster.
+
+### Pod Lifecycle methods
+Lifecycle
+init>PodInitializing>Running>Terminating > Terminated
+
+- init container (if defined)
+- post start hook
+- any probes -> Liveness Probe, readineess probe
+- pre stop hooks
+https://github.com/wardviaene/kubernetes-course/blob/master/pod-lifecycle/lifecycle.yaml
 
 ## Nodes
 A Pod always runs on a Node. A node can have multiple Pods. Each Node is managed by the Master. The Kubernetes master automatically handles scheduling of pods across the Nodes in the cluster based on the resources available on each node. When a node crashes , pods in the node die with it.
