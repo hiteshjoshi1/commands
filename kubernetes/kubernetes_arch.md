@@ -153,11 +153,13 @@ Discovery and routing among dependent Pods (such as the frontend and backend com
 
 Services can be exposed in different ways by specifying a type in the ServiceSpec:
 
-1. ClusterIP (default) - Exposes the Service on an internal IP in the cluster. This type makes the Service only reachable from within the cluster.
+1. ClusterIP (default) - Exposes the Service on an internal IP in the cluster. Only reachable from within the cluster.
 2. NodePort - Exposes the Service on the same port of each selected Node in the cluster using NAT. Makes a Service accessible from outside the cluster using <NodeIP>:<NodePort>. Superset of ClusterIP.
-3. LoadBalancer - Creates an external load balancer in the current cloud (if supported) and assigns a fixed, external IP to the Service. Superset of NodePort.
-4. ExternalName - Exposes the Service using an arbitrary name (specified by externalName in the spec) by returning a CNAME record with the name. No proxy is used. This type requires v1.7 or higher of kube-dns.
+3. LoadBalancer - Creates an external load balancer in the current cloud (if supported) and assigns a fixed, external IP to the Service. Superset of NodePort.example AWS ELB
+4. ExternalName - Exposes the Service using an arbitrary name (specified by externalName in the spec) by returning a CNAME record with the name. No proxy is used. This type requires v1.7 or higher of kube-dns(dns addon)
 
+
+By default service can run only on port range 30000- 32767.
 
 ## Kubernetes Higher level abstractions(rely on controllers)
 
