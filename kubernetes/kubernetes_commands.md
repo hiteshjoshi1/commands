@@ -264,4 +264,45 @@ kubectl config use-context <context_name>
 ```
 
 example -
+```
 kubectl config use-context minikube
+```
+
+-----------------------------------------------
+### Describe a pod - This will give the port, containerId, Image , image id etc
+```
+kubectl describe pods nodehelloworld.example.com
+```
+
+### Simple Port Forwarding
+For quick and dirty testing( ends with Ctrl+C)
+```
+kubectl port-forward <pod-name> <forwardToPort>:<portonPOD>
+kubectl port-forward nodehelloworld.example.com 8081:3000
+```
+
+### Creating a service
+```
+kubectl expose pod nodehelloworld.example.com --type=NodePort --name=nodehelloworld-service 
+```
+Once the service is created, get the node address. If in cloud, get the master IP address. 
+For minikube, get the service URL as
+```
+minikube service nodehelloworld-service  --url 
+```
+Another way to do is to get
+```
+kubectl describe service nodehelloworld-service
+```
+
+When we do ```kubectl get service```
+The IP address shown is the cluster IP, not accesible to outside or to host machine.
+NAME    |                 TYPE   |     CLUSTER-IP  |   EXTERNAL-IP  | PORT(S)      |    AGE
+nodehelloworld-service |  NodePort  |  10.109.92.81 |  <none>    |    3000:31784/TCP |   3m38s
+
+
+
+
+
+
+
