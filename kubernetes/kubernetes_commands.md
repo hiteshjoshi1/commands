@@ -346,15 +346,19 @@ But containers in different PODS require service discovery to communicate betwee
 
 1. DB pod And DB Service POd
 ```
-```
 kubectl create -f service-discovery/secrets.yml
 kubectl create -f service-discovery/database.yml
 kubectl create -f service-discovery/database-service.yml
 ```
-3. App POD uses the DB Service to connect to DB, the helloworld-db.yml used database-service to connect to db
+3. App POD uses the DB Service to connect to DB, the helloworld-db.yml uses database-service to connect to db
+https://github.com/hiteshjoshi1/kubernetes-course/blob/c82d702edbac8cccb7f846ec43b490094c852208/service-discovery/helloworld-db.yml#L24
 ```
 kubectl create -f service-discovery/helloworld-db.yml   
 kubectl create -f service-discovery/helloworld-db-service.yml
+```
+### Create a configmap from a file - not for secrets but for general config
+```
+kubectl create configmap nginx-conf --from-file=configmap/reverseproxy.conf
 ```
 
 
