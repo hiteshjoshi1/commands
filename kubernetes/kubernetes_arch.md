@@ -184,10 +184,36 @@ For example, a Kubernetes Deployment is an object that can represent an applicat
 When you create the Deployment, you might set the Deployment spec to specify that you want three replicas of the application to be running. The Kubernetes system reads the Deployment spec and starts three instances of your desired application–updating the status to match your spec. If any of those instances should fail (a status change), the Kubernetes system responds to the difference between spec and status by making a correction–in this case, starting a replacement instance.
 
 -----------
-Services
-Ingresses
-Ingress Controllers (example NGINX Ingress controller)
-
-
 For AWS you can use an external LoadBalancer to route the traffic to correct pods in kubernetes. In kubernetes terms this is equivalent to creating a service with type = Loadbalancer.
+
+## Ingress
+
+Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
+***You must have an ingress controller to satisfy an Ingress. Only creating an Ingress resource has no effect.You may need to deploy an Ingress controller such as ingress-nginx.
+
+On cloud providers you can use Ingress controller to reduce the cost of your Load Balancers.We can use 1 LB to capture all teh traffic and send it to Ingress controller, the ingress controller will then route the traffic to different applications based on http rules. 
+
+
+**Alternative of LoadBalancer and NodePort
+
+
+Use Service.Type=LoadBalancer
+Use Service.Type=NodePort
+
+## Deployments, demonsets, statefulsets, ReplicationController
+### Deployments 
+Deployments manage stateless services running on your cluster (as opposed to for example StatefulSets which do manage stateful services). Their purpose is to keep a set of identical pods running and upgrade them in a controlled way. For example, if you say 5 replica's over 3 node then some nodes have more than one replica of your app running. ReplicationController old way of doing Deployments.
+### DaemonSets
+DaemonSets manage groups of replicated Pods. However, DaemonSets attempt to adhere to a one-Pod-per-node model, either across the entire cluster or a subset of nodes. Daemonset will not run more than one replica per node. Another advantage of using Daemonset is, If you add a node to the cluster then Daemonset will automatically spawn pod on that node, which deployment will not do.
+DaemonSets are useful for deploying ongoing background tasks that you need to run on all or certain nodes, and which do not require user intervention. Examples of such tasks include storage daemons like ceph, log collection daemons like fluentd, and node monitoring daemons like collectd
+
+Lets take example you mentioned in question, why coredns is deployment and kube-proxy is daemonset?
+```
+kubectl get daemonSets --namespace=kube-system
+kubectl get deployments --namespace=kube-system
+```
+The reason behind that is kube-proxy is needed on every node in cluster to run IP tables so that every node can access every pod no matter on which node it resides. Hence, when we make kube-proxy a daemonset and another node is added to cluster at later time kube-proxy is automatically spawned on that node.
+Kube-dns responsibility is to discover the service IP using its name and even one replica of kube-dns is enough to resolve the service name to its IP and hence we make kube-dns a deployment because we don't need kube-dns on every node.
+### StatefulSet
+POds have state...
 
