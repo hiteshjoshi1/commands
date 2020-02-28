@@ -204,8 +204,15 @@ Use Service.Type=NodePort
 ### Deployments 
 Deployments manage stateless services running on your cluster (as opposed to for example StatefulSets which do manage stateful services). Their purpose is to keep a set of identical pods running and upgrade them in a controlled way. For example, if you say 5 replica's over 3 node then some nodes have more than one replica of your app running. ReplicationController old way of doing Deployments.
 ### DaemonSets
-DaemonSets manage groups of replicated Pods. However, DaemonSets attempt to adhere to a one-Pod-per-node model, either across the entire cluster or a subset of nodes. Daemonset will not run more than one replica per node. Another advantage of using Daemonset is, If you add a node to the cluster then Daemonset will automatically spawn pod on that node, which deployment will not do.
+DaemonSets manage groups of replicated Pods. However, DaemonSets attempt to adhere to a one-Pod-per-node model, either across the entire cluster or a subset of nodes. Daemonset will not run more than one replica per node.
+Another advantage of using Daemonset is, if you add a node to the cluster then Daemonset will automatically spawn pod on that node, which deployment will not do.
 DaemonSets are useful for deploying ongoing background tasks that you need to run on all or certain nodes, and which do not require user intervention. Examples of such tasks include storage daemons like ceph, log collection daemons like fluentd, and node monitoring daemons like collectd
+Also when a node is remove, its pod will not be rescheduled in another node.
+
+Typical Use cases
+- Logging Aggregators
+- Load Balancers, reverse proxies, Api gateways
+- Monitong 
 
 Lets take example you mentioned in question, why coredns is deployment and kube-proxy is daemonset?
 ```
@@ -214,6 +221,41 @@ kubectl get deployments --namespace=kube-system
 ```
 The reason behind that is kube-proxy is needed on every node in cluster to run IP tables so that every node can access every pod no matter on which node it resides. Hence, when we make kube-proxy a daemonset and another node is added to cluster at later time kube-proxy is automatically spawned on that node.
 Kube-dns responsibility is to discover the service IP using its name and even one replica of kube-dns is enough to resolve the service name to its IP and hence we make kube-dns a deployment because we don't need kube-dns on every node.
-### StatefulSet
-POds have state...
+
+### ReplicaSet
+ReplicaSet ensures that a specified number of pod replicas are running at any given time. However, a Deployment is a higher-level concept that manages ReplicaSets and provides declarative updates to Pods along with a lot of other useful features. Use Deployment instead of replicaset.
+
+### StatefulSets
+Like a Deployment, a StatefulSet manages Pods that are based on an identical container spec. Unlike a Deployment, a StatefulSet maintains a sticky identity for each of their Pods. These pods are created from the same spec, but are not interchangeable: each has a persistent identifier that it maintains across any rescheduling.
+example, Cassandra clusters, ElasticSearch Clusters
+A statefulset will also allow you to order startup and teardown.
+StatefulSets are valuable for applications that require one or more of the following.
+-Stable, unique network identifiers.
+-Stable, persistent storage.
+-Ordered, graceful deployment and scaling.
+-Ordered, automated rolling updates.
+
+The pods have a particular name and have their own storage, pods die but storage does not. Pods when the come back online will have the same name as the one that died. Example Cassandra cluster which has a master as described here
+Example - https://kubernetes.io/docs/tutorials/stateful-application/cassandra/
+This needs a larger minikube ```minikube start --memory 8192 --cpus=4```
+
+
+### Autoscaling (UP and Down) pods
+Horizontal pods autoscaler yml below. This will scale your initial configuration of pods to a max of 10 if your cpu utilization goes above 50%, So if you have provisioned 200m, then when CPU util reaches 100m, it starts auto scaling . If your cpu util goes zero, it will bring the replicas to just 1 instance running.
+
+```
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-example-autoscaler
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: your-deployment-name
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
+```
+
 
