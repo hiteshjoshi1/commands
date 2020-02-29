@@ -28,7 +28,7 @@ Exposes the k8s APIs. This is what kubectl calls when you use kubectl in cli.
 Kubectl converts the yaml file to JSON and sends the request to kube-apiserver
 
 ### etcd
- etcd is a key-value store, and is used as backing store of all cluster data.
+ etcd is a distributed key-value store, and is used as backing store of all cluster data. All pod definition is stored in here.
  
 ### kube-scheduler
 Component that watches for newly created pods with no assigned node, and selects a node for them to run on. This is based on various factors
@@ -45,8 +45,6 @@ These controllers include:
 3. Endpoints Controller: Populates the Endpoints object (that is, joins Services & Pods).
 4. Service & Token Controllers: Create default accounts and API access tokens for new namespaces.
 5. Route controller
-
-
 
 ___________________________________
 
@@ -258,4 +256,5 @@ spec:
   targetCPUUtilizationPercentage: 50
 ```
 
-
+#### Fault Tolerance in Master
+You can have multiple master nodes with each having their own etcd database which will store the cluster state. In addition the cluster state can also be stored in S3 Bucket and if the master and the associated volumes go down, the S3 backup can be used to bring back the cluster.
