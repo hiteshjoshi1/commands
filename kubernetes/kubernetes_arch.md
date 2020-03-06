@@ -258,3 +258,5 @@ spec:
 
 #### Fault Tolerance in Master
 You can have multiple master nodes with each having their own etcd database which will store the cluster state. In addition the cluster state can also be stored in S3 Bucket and if the master and the associated volumes go down, the S3 backup can be used to bring back the cluster.
+
+### Tolerations, Affinity, Anti Affinity
