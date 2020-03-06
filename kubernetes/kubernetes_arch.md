@@ -78,7 +78,7 @@ kube-proxy maintains network rules on nodes. These network rules allow network c
 from network sessions inside or outside of your cluster. The kube-proxy will make changes to iptables to ensure correct routing to pods/services is set up
 
 
---- Image Here -----
+![kubernetes Architecture](https://github.com/hiteshjoshi1/commands/blob/master/images/kubernetes_arc.png)
 
 
 
