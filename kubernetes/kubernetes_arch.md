@@ -190,6 +190,31 @@ Ingress exposes HTTP and HTTPS routes from outside the cluster to services withi
 ***You must have an ingress controller to satisfy an Ingress. Only creating an Ingress resource has no effect.You may need to deploy an Ingress controller such as ingress-nginx.
 
 On cloud providers you can use Ingress controller to reduce the cost of your Load Balancers.We can use 1 LB to capture all teh traffic and send it to Ingress controller, the ingress controller will then route the traffic to different applications based on http rules. 
+Example of traffic routing 
+foo.bar.com/foo goes to service1
+foo.bar.com/bar goes to service2
+
+```
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: simple-fanout-example
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: foo.bar.com
+    http:
+      paths:
+      - path: /foo
+        backend:
+          serviceName: service1
+          servicePort: 4200
+      - path: /bar
+        backend:
+          serviceName: service2
+          servicePort: 8080
+```
 
 
 **Alternative of LoadBalancer and NodePort
@@ -260,3 +285,7 @@ spec:
 You can have multiple master nodes with each having their own etcd database which will store the cluster state. In addition the cluster state can also be stored in S3 Bucket and if the master and the associated volumes go down, the S3 backup can be used to bring back the cluster.
 
 ### Tolerations, Affinity, Anti Affinity
+
+
+
+
