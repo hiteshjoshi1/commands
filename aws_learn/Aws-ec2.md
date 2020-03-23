@@ -198,3 +198,12 @@ Uses SR-IOV(Single root I/O Virtualization) to provide high performance n/w for 
 N/w device that you attach to your n/w to acclerate HPC(High performance Computing) and machine learning application.
 EFA can use OS-bypass and gives very low latency, but not supported Linux only Linux.
 
+#### FSx for windows server
+Built on windows file server, it is a fully managed native Microsoft windows file system. Runs windows server message block based file services. Supports AS Users, ACL and DFS.
+
+#### FSx for Lustre
+File system for compute intensive workloads, example HPC, machine learning, media data processing workflows and electronic design automation. Millions of IOPS and sub sec latencies.
+
+
+
+
