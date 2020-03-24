@@ -18,7 +18,7 @@ IPv6 is 138 bit field = 2^128  number of addresses
 
 ## Top level Domains are controlled - IANA(Internet Assigned Numbers Authority) 
 
-##Domain Registrars
+## Domain Registrars
 A registrar is an authority that can assign domain names directly under one or more domains. Uniqueness of domains across the interbet is enforced by ICANN using its service InterNIC
 Domain registrars use InterNIC to register domain names with ICANN. The domain name is registered when it becomes part of WhoIS database.
 
@@ -94,21 +94,18 @@ __Routing Policies__ -
 6. Geoproximity Routing
 7. Multivalue Answer Routing
 
-Use Case -
-Your App is deployed in 3 Regions, for example -
 
-US Virginia
-APAC Singapore
-Ireland
+Routing will allow you to direct traffic across respective servers. 
 
-Routing will allow you to direct traffic across respective servers. This is defined in Route52 routing policies.
-
+## Route52 routing policies.
 
 ### Simple Routing Policy
+(Random)
 One record with multiple IP addresses linked to it is Simple Ruting. - need to create only one Simple Routing policy with multiple IPS in different lines.
 In Simple Routing Route53 would return any of the IP values to the end user randomly.
 
 ### Weighted Routing policy
+(Weighted)
 Split traffic based on the weights assigned.
 Example-
 70% traffic goes US Virginia
@@ -118,26 +115,26 @@ Example-
 You can create health checks for individual IP's(A records). If a record fails it would be removed from Route53. You can also set alarms if the healthcheck fails.
 
 ### Latency Based Routing Policy
+(Least Network latency routing)
 Route the traffic based on least network latency for the end user of the site.
 
 Create 3 policy of type latency based for each IP. Route 52 will redirect the user based on where he is getting the least network latency.
 
 ### Failover Routing
-
+(Primary Site -- Secondary Site)
 Has a primary(Active site) and a secondary(Passive Site). It is mandatory to have a health check on primary for failover routing.
-Primary goes down , traffic is routed to Secondary.
+Primary goes down, traffic is routed to Secondary.
 
 ### Geo Location Routing 
-
-Based on the Geolocation Routing
-
+(Based on the Geolocation Routing)
 Europe origin goes to a European customer. APAC routes can be routed to Singapore.
 
-### Geoproximity Routing
+### Geoproximity Routing(Traffic Flow mode)
 Routing is done based on the geolocation of the end user (as in Geo location routing) and also on the basis of our resources.
 You can also choose to route more or less traffic to a given resource by specifying a value called Bias.
 
 Note - To use geoproximity routing you need to use Route53 traffic flow.
+
 Side Note - The traffic flow visual editor lets you create sophisticated routing configurations for your resources using existing routing types such as failover and geolocation. You save the configuration as a traffic policy and then use it to create one or more policy records. Each policy record routes DNS queries for a specified domain or subdomain.
 
 ### Multivalue Answer Route
