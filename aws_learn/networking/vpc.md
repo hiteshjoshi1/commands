@@ -1,5 +1,40 @@
 # VPC - Virtual Private cloud
+
+Create a VPC -
+You need to define IPv4 CIDR address block - example 10.0.0.0/16
+
+By default VPC creation(does not create any subnets), creates
+1. Route table
+2. Network ACL
+3. Security group
+
+Does not create by default -
+1.Subnets
+2.Internet gateway
+
+
+### Creation order
+1. create VPC (10.0.0.0/16)
+
+2. create subnet (specifiy VPC and subnet address range example 10.0.1.0/24  10.0.2.0/24   and availability zone)
+  A subnet cannot span multiple AZ.
+  
+
+
+
+Logically isolate section of AWS where you can control Virtual n/w environment including IP addres, subnets, configuration of route tables, network gateways.
   - So far we have been using default VPC. All subnets in default VPC have internet access. Each Ec2 instance has both public and private IP address.
+  
+  Can connect to a VPC from outside using
+  1. Internet Gateway
+  2. Virtual Private gateway.
+  
+  VPC is typically a collection of -
+  1. Router
+  2.Route table
+  3. Network ACL
+  4. Security Group in public net and Sec Group in pvt subnets
+  5. Bastion hosts
   
 
 A VPC allows you to create a virtualized enviornment where you have complete control over 
