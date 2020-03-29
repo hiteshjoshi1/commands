@@ -177,3 +177,33 @@ placement group.
 - only certain type of instances can be in placement group - Compute optimized, GPU, Memory Optmized, Storage optimized,etc
 - You can move an existing instance into a Placement group, but the instance has to be in stopped state.This can be done via cli or AWS SDK, not through console yet.
 - No charge for creating placement groups.
+
+#### ENI
+Elastic Network Interface - essentially virtually network card.
+Sceanarios-
+
+- Mgmt n/w
+- N/w security appliances in VPC
+- Dual home instances with workloads on distinct subnets
+
+
+
+#### EN
+Enhanced Networking
+Uses SR-IOV(Single root I/O Virtualization) to provide high performance n/w for supported instances types. Higher I/o performance and lower CPU utilization. Provides better bandwidth.
+- ENA - Elastic Network Adapter (100 Gbps)
+- Intel 82599 Virtual Function (VF) 10Gbps
+
+#### Elastic Fabric Adapter
+N/w device that you attach to your n/w to acclerate HPC(High performance Computing) and machine learning application.
+EFA can use OS-bypass and gives very low latency, but not supported Linux only Linux.
+
+#### FSx for windows server
+Built on windows file server, it is a fully managed native Microsoft windows file system. Runs windows server message block based file services. Supports AS Users, ACL and DFS.
+
+#### FSx for Lustre
+File system for compute intensive workloads, example HPC, machine learning, media data processing workflows and electronic design automation. Millions of IOPS and sub sec latencies.
+
+
+
+

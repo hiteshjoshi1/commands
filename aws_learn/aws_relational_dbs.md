@@ -20,8 +20,12 @@ Amazon Redshift
 ElasticCache
 
 **Relational Database options** -->
-Multi AZ(Availability Zones) -> For disaster recovery, Failover detected and remediated
-Read Replicas -> For Performance, no automatic failvers.
+Multi AZ(Availability Zones) -> For disaster recovery. Failover detected automatically and remediated.
+Read Replicas -> For Performance, no automatic failvers.- 5 copies/replicas
+
+OLTP - Order number  11101--> get data and do something(Sql, Mysql, etc)
+
+OLAP --> complex query, example profit of a product based by region in multi years.(Redshift)
 
 ## Create an RDS Instance
 

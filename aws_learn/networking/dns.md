@@ -27,9 +27,41 @@ Main Process -
 Browser --> Operating System --> DNS Resolver(ISP or Google.com or OpenDNS)-->IP
 
 Detailed Process -
-```
+
 DNS Resolver --> Query to Root Zone registry in WHOIS Server --> Get the TLD (.com,.gov) and will give the Authoritative NS Record [returns IP or location of an authoritative name server or an error] --> Query Name Server(NS) --> Get SOA (Start Of Authority Record) -->
 Start Record has A Record, AAAA record, CNAME, TTL etc.
+
+#### SOA - Start of Authority Record 
+
+1. name of server that supplied data for zone
+2. administrator of the zone
+3. current version of data file
+4. TTL
+
+#### NS - Name Server Record
+
+NS are used by top level domain servers to direct traffice to content DNS servers which contains authoritative DNS records.
+
+hiteshj.com --> .com --> TLD will give the NS record --> ns1.google.com --> SOA --> DNS Records
+
+
+#### DNS Records subtypes-
+1. A Record 
+Address Record - to translate name(hiteshj) to an IP address.
+
+2.CNAME 
+Canonical Name - used to resolve 1 domain to another.
+mobile.hiteshj.com and m.hiteshj.com point to same IP. This is done using CNAME.
+
+3. Alias Record
+Alias Records are used to map IP to Elastic Load Balancers, Cloud front distributions, S3 buckets configured as website.
+Alias records works like CNAME, that is you can map one DNS Name(www.example.com) to another target DNS Name(elb1234.alb.amazonaws.com)
+** Cname cannot be used for zone apex records (naked domain names) example https://hiteshj.com.. it has to be A Name or Alias.
+
+
+
+
+
 ```
 Root Server --> returns a list of 13 locations of Authoritative gTLD(or ccTLD servers) Name  servers
 DNS Resolver --> iterative query to gTLDs NS -- the TLDs return the Name Servers (NS) of the domain  --> TLD will return a list of all name servers of the domain.
