@@ -77,11 +77,9 @@ There must be a route out from pvt instance to the NAT instance for this to work
 Edit routing table(main) of your VPC, add a route to internet (0.0.0./0) to NAT insatnces.
 
 #### NAT gateway (preferred way as it is highly available)
-Create a NAt gateway in our new subnet which is public.
---Create a new Elastic IP Address.
+Create a NAT gateway in our new subnet which is public.
 
-Then edit main route table of your VPC, add a route to internet (0.0.0./0) to NAT Gateway.
-
+Then edit main route table of your VPC, add a route to internet (0.0.0./0) through NAT Gateway.
 
  
 #### Network ACL(Access Control Lists) -- Optional as default exists
@@ -90,12 +88,12 @@ Default created with VPC, Allow And deny rules.
 Can create your own New NACL in your VPC -- by default everything is denied in rules.
 Associate with public subnet
 
-Then add rules in NACL , inbound rules for 80(http), 443(https) and 22(ssh)  and epheremal ports -> 1024-65535
+Then add rules in NACL ,inbound rules for 80(http), 443(https) and 22(ssh)  and epheremal ports -> 1024-65535
 Outbound rules (http, https and epheremal ports -> 1024-65535 )
 
 Epheremal ports are required for s/w update and all.
 
-NACl rules ... are evaluated top down from Rule#. So Allow All rule on top will override any deny rules down below.
+NACl rules -> are evaluated top down from Rule#. So Allow All rule on top will override any deny rules down below.
 
 A NACL can be associated with multiple subnets.
 NACL run before Security groups settings.
@@ -252,11 +250,18 @@ Recommended -  Create one NAT per AZ so that instances in other AZ are not affec
 9. Network ACL are stateless, need to add specific inbound and outbound rules seprately(Unlike Sec groups).
 
 
-### VPC Flow Logs
+## Load Balancers
+1. Application Load Balancers (Http, Https)
+2, Network Load Balancers (TCP, TLS, UDP)
+3. Classic Load Balancers(prev generation http, https and TCP)
 
-1. VPC flow logs is a feature that enables you to capture IP traffic going in and out of your network interface to your VPC.
-2. Flow data is stored in AWS Cloudwatch Logs or S3 buckets and can be viewed from there.
-3. Can be created at 3 levels -
+**When provisioning a Loadbalancers - you need atleast 2 public subnest 
+
+
+### VPC Flow Logs
+- VPC flow logs is a feature that enables you to capture IP traffic going in and out of your network interface to your VPC.
+- Flow data is stored in AWS Cloudwatch Logs or S3 buckets and can be viewed from there.
+- Can be created at 3 levels -
   - VPC
   - Subnet
   - Network interface level
@@ -278,16 +283,33 @@ You can get Bastion AMIs from Aws marketplace.
 A NAT gateway or NAT instance is used to provide internet connectivity to Ec2 instances in private subnets.Bastions are also called Jump boxes. A bastion host can be used to securely administer ec2 instances.
 
 ### Direct Connect
-Connects your data center to AWS.
-Userful high throughput workloads.
+Connects your data center to AWS. Better private connectivity between AWS and your data center.
+Userful high throughput workloads. 
 Stable or reliable secure connection.
+
+#### Direct connect with VPN
+- CReate a public virtual interface. -- public , Owner
+Select a VLAN that is not used in your n/w
+choose two public ip - one for u and one for amazon peer ip
+BGP key can be auto generated
+
+#### Global Accelerator
+Improves the availaibility and performance of your applocation for local and global users. By default, Global Accelerator provides you with two static IP addresses that you associate with your accelerator. 
+The static IP addresses are anycast from the AWS edge network and distribute incoming application traffic across multiple endpoint resources in multiple AWS Regions, which increases the availability of your applications. Endpoints can be Network Load Balancers, Application Load Balancers, EC2 instances, or Elastic IP addresses that are located in one AWS Region or multiple Regions.
+
+Static IP address
+Accelerator - directs traffic to optimal endpoints, includes 1 or more listeners
+Network zone - iolated n/w zone serves the static ip addressses
+Listener - Listener process inbound connections from our clients to global accelerator.
+Endpoint group - includes 1 or more endpoints in a region. Lets you do blue green deployments.
+Endpoint - Application load balancers, EC2 Instances, Elastic IP address.
 
 
 ## VPC endpoints 
 
 - VPC end point enables you to privately connect your VPC to supported AWP services and VPC endpoint
 services powered by private link without requiring an Internet gateway and Nat device a VPN connection
-or an AWP Direct Connect connection. 
+or an AWS Direct Connect connection. 
 
 - Instances in your VPC do not require public IP addresses to communicate with resources in the service, so traffic between your VPC and other services does not leave the Amazon Network.
 
@@ -298,12 +320,12 @@ Types of VPC endpoints-
 1. Interface endpoints
 2. Gateway endpoints
 
-Interface endpoints - is an __ENI (Elastic Network Interface)__ with a private IP address that serves as an endpoint for traffic destined for that service.
+Interface endpoints - is an __ENI (Elastic Network Interface)__ with a private IP address that serves as an entrypoint for traffic destined for a supported service,  example  of supported service - Api gateway, cloud formation,Ec2 Api, SQS, SNS etc
 
 
 VPC Gateway endpoints - supported for Dynamo DB and S3 currently.
 
 
-NOT CLEAR - Bastions and VPC Endpoints
+
 
  
