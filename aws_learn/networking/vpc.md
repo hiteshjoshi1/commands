@@ -11,15 +11,99 @@ By default VPC creation(does not create any subnets), creates
 Does not create by default -
 1.Subnets
 2.Internet gateway
+--------------------------------------------
 
-
-### Creation order
+### How to create a VPC steps
 1. create VPC (10.0.0.0/16)
 
-2. create subnet (specifiy VPC and subnet address range example 10.0.1.0/24  10.0.2.0/24   and availability zone)
-  A subnet cannot span multiple AZ.
-  
+2. create subnet (specifiy VPC and subnet address range example (10.0.1.0/24 , 10.0.2.0/24)   and availability zone)
+   Note -- A subnet cannot span multiple AZ.
+3.  Then if needed make one of the subnet public.
+Select Subnet --> Modify Auto assign IP  --> Enable auto assign Public IP v4
+10.0.1.0/24  -- Public subnet
+10.0.2.0/24 - Private subnet
 
+4. Add internet gateway for VPC
+Create Internet gateway -- it creates in Detached mode.
+Attach to VPC  and can attach it to  newly created VPC.
+
+You can have 1 internet gateway per VPC.
+
+5. Configure Route tables
+
+Note - Ensure that the main route table(default) is private and not exposed to internet.
+
+So create a MyPublicRouteTable in your VPC.
+
+6. Create Route out  in Route table - Edit Routes
+Add Routes
+
+Destination 0.0.0.0/0
+Target - The Internet Gateway
+
+IPV6 ->  ::/0 
+Destination - Internet gateway
+
+7. Edit Subnet Association and add public subnet 
+in  the public route table
+
+8.Launch EC2 -- Network VPC
+Subnet - public subnet
+ 
+ Launch Ec2 - Network VPC 
+ Subnet - private subnet
+ 
+ Security group do not span Sec Group, so while create EC2 . add a new Sec group in new VPC.
+ 
+ 9. Now we have 2 Ec2 , 1 in public subnet and 1 in pvt subnet,  and they are in 2 seprate sec group.
+ 
+ 10. Create a new Sec group -- why?
+ 
+10.1. Create a new sec group in the new VPC - MyDbSecGroup
+10.2. Add Rules - Inbound rules
+  ICMP(ipV4)-- 10.0.1.0/24
+  HTTP -- 10.0.1.0/24
+  https --10.0.1.0/24
+  ssh - 10.0.1.0/24
+  mysql/aurora - 10.0.1.0/24
+  
+11. Create NAT Instances(Single) / NAT Gateway(Highly available)
+
+#### Nat Instances - 
+Launch EC2 in PUBLIC subnet and my VPC - use community AMI's and search for NAT instances, WebDMZ
+**Disable Source and Destination checks in NAT instances in NAT's Ec2 machine.
+
+There must be a route out from pvt instance to the NAT instance for this to work. for this -->
+Edit routing table(main) of your VPC, add a route to internet (0.0.0./0) to NAT insatnces.
+
+#### NAT gateway (preferred way as it is highly available)
+Create a NAt gateway in our new subnet which is public.
+--Create a new Elastic IP Address.
+
+Then edit main route table of your VPC, add a route to internet (0.0.0./0) to NAT Gateway.
+
+
+ 
+#### Network ACL(Access Control Lists) -- Optional as default exists
+Default created with VPC, Allow And deny rules.
+
+Can create your own New NACL in your VPC -- by default everything is denied in rules.
+Associate with public subnet
+
+Then add rules in NACL , inbound rules for 80(http), 443(https) and 22(ssh)  and epheremal ports -> 1024-65535
+Outbound rules (http, https and epheremal ports -> 1024-65535 )
+
+Epheremal ports are required for s/w update and all.
+
+NACl rules ... are evaluated top down from Rule#. So Allow All rule on top will override any deny rules down below.
+
+A NACL can be associated with multiple subnets.
+NACL run before Security groups settings.
+Each subnet is asscoaited with a NACL, if not specified it is associated with default NACL.
+
+NACL - rules need to be added  seprately for inbound and outbound.
+
+-----------------------------------------
 
 
 Logically isolate section of AWS where you can control Virtual n/w environment including IP addres, subnets, configuration of route tables, network gateways.
@@ -31,7 +115,7 @@ Logically isolate section of AWS where you can control Virtual n/w environment i
   
   VPC is typically a collection of -
   1. Router
-  2.Route table
+  2. Route table
   3. Network ACL
   4. Security Group in public net and Sec Group in pvt subnets
   5. Bastion hosts
