@@ -75,9 +75,30 @@ Utilizes Cloud front edge location to upload files---> Backbone ---> S3 Bucket
 Upload a file to edge location. Which will then moved to S3 bucket using AWS backbone network. This is faster then direct upload to S3.
 So you are region1 and your user is half way across the world you would benefit from Transfer acceleration when he uploads a file.
 
+
+### 3 ways to share s3  bucket across accounts -
+1. Using Bucket policies and IAM(entire bucket, cant lockdown individual objects). -- Programmatic access only
+2. Using Bucket ACL and IAM(works on individual objects) -- Programmatic access only
+
+3. Cross Account IAM roles- programmatic and console access
+This is how Type 3 is done.
+    -LOGIN TO Master Acc, then 
+    --> Cross IAM role --> Select Type of Trusted entity  - choose Another AWS account - Provide Other aws accounts accountID
+    --> Attach policy to this role --> S3FullAccess --> Give role a name and Create Role 
+    
+    This will give out a link.
+ 4. Sign in with another Aws account. 
+       -->Create another user (cant use root account)
+       -->Create Admin grp, with Administrator access policy
+   Sign with the newly created User
+   --> Switch Role / or Just paste the link in Step 3.
+ 5. This switched account can now view S3.  
+
 Questions --
 
 One of your users is trying to upload a 7.5GB file to S3. However, they keep getting the following error message: "Your proposed upload exceeds the maximum allowed object size.". What solution to this problem does AWS recommend?
 Answer - Design your application to use multipart upload API for all objects.
+
+
 
 
