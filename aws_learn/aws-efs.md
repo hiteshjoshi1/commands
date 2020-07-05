@@ -8,6 +8,9 @@
 - Pay as we go , no pre provisioning required.
 - can support 1000 of concurrent NFS connections.
 
+![Screenshot 2020-07-05 at 4 04 07 PM](https://user-images.githubusercontent.com/5917216/86528361-ccb7ce00-bed9-11ea-8508-6ebfc3812b3c.png)
+
+
 Example, 
 - A website can be stored on an EFS   /var/www
 and are mounted to multiple Ec2 instances.
@@ -48,3 +51,4 @@ run this command from www folder
 sudo mount -t efs -o tls fs-f9af20b8:/ /var/www/html
 ```
 where var/www/html is the mount point.
+
