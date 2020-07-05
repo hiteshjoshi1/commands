@@ -28,8 +28,11 @@ Security -
 
 
 # Questions
-A Solutions Architect is designing an application that will encrypt all data in an Amazon Redshift cluster.
+- Q: A Solutions Architect is designing an application that will encrypt all data in an Amazon Redshift cluster.
 Which action will encrypt the data at rest?
-Answer- Use the AWS KMS Default Customer master key
+- Answer: Use the AWS KMS Default Customer master key
 https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html
+
+- Q: A Solution Architect is designing a disaster recovery solution for a 5 TB Amazon Redshift cluster. The recovery site must be at least 500 miles (805 kilometers) from the live site. How should the Architect meet these requirements?
+- A: Enable cross-region snapshots to a different region.
 
