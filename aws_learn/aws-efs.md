@@ -52,3 +52,8 @@ sudo mount -t efs -o tls fs-f9af20b8:/ /var/www/html
 ```
 where var/www/html is the mount point.
 
+# Questions
+
+- Q : An application requires block storage for file updates. The data is 500 GB and must continuously sustain 100 MiB/s of aggregate read/write operations.
+Which storage option is appropriate for this application?
+-A: Amazon EFS
