@@ -56,4 +56,5 @@ where var/www/html is the mount point.
 
 - Q : An application requires block storage for file updates. The data is 500 GB and must continuously sustain 100 MiB/s of aggregate read/write operations.
 Which storage option is appropriate for this application?
--A: Amazon EFS
+- A: Amazon EFS
+- E: Speed is faster than EBS.
