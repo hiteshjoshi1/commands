@@ -25,3 +25,11 @@ Security -
 
 ## Can be only available in 1 AZ.
 - Can restore snapshots to a new AZ in case of outage.
+
+
+# Questions
+A Solutions Architect is designing an application that will encrypt all data in an Amazon Redshift cluster.
+Which action will encrypt the data at rest?
+Answer- Use the AWS KMS Default Customer master key
+https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html
+
