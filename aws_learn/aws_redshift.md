@@ -36,3 +36,7 @@ https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html
 - Q: A Solution Architect is designing a disaster recovery solution for a 5 TB Amazon Redshift cluster. The recovery site must be at least 500 miles (805 kilometers) from the live site. How should the Architect meet these requirements?
 - A: Enable cross-region snapshots to a different region.
 
+- Q: A Solutions Architect needs to build a resilient data warehouse using Amazon Redshift. The Architect needs to rebuild the Redshift cluster in another region.
+- A:  Modify the Redshift cluster and configure cross-region snapshots to the other region.
+- E: https://aws.amazon.com/blogs/aws/automated-cross-region-snapshot-copy-for-amazon-redshift/
+
