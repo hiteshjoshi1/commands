@@ -205,5 +205,14 @@ Built on windows file server, it is a fully managed native Microsoft windows fil
 File system for compute intensive workloads, example HPC, machine learning, media data processing workflows and electronic design automation. Millions of IOPS and sub sec latencies.
 
 
+# Questions
+
+- Q: A call center application consists of a three-tier application using Auto Scaling groups to automatically scale resources as needed. Users report that every morning at 9:00 AM the system becomes very slow for about 15 minutes. A Solution Architect determines that a large percentage of the call center staff starts work at 9:00AM, so Auto Scaling does not have enough time to scale out to meet demand.How can the Architect fix the problem?
+- A: Create an Auto Scaling scheduled action to scale out the necessary resources at 8:30 AM every morning.
+
+- Q: An e-commerce application is hosted in AWS. The last time a new product was launched, the application experienced a performance issue due to an enormous spike in traffic. Management decided that capacity must be doubled the week after the product is launched.
+Which is the MOST efficient way for management to ensure that capacity requirements are met? 
+- A: Add a Scheduled Scaling action.
+
 
 
