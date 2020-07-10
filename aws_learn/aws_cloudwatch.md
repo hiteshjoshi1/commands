@@ -43,4 +43,9 @@ You can create Dashboards- based on Region or global dashboards.
 Cloud Events - Helps you respond to state changes in your AWS resources.
 Logs  - helps to aggregate, monitor and store logs. 
 
+## Questions
+
+- Q: A Solutions Architect needs to design a solution that will enable a security team to detect, review, and perform root cause analysis of security incidents that occur in a cloud environment. The Architect must provide a centralized view of all API events for current and future AWS regions.
+How should the Architect accomplish this task?
+- A: Enable AWS CloudTrail by creating a new trail and apply the trail to all regions.
 
