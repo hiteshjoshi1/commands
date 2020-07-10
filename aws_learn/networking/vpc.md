@@ -325,6 +325,10 @@ Interface endpoints - is an __ENI (Elastic Network Interface)__ with a private I
 
 VPC Gateway endpoints - supported for Dynamo DB and S3 currently.
 
+# Questions
+- Q: A Solutions Architect is designing network architecture for an application that has compliance requirements. The application will be hosted on Amazon EC2 instances in a private subnet and will be using Amazon S3 for storing data. The compliance requirements mandate that the data cannot traverse the public
+Internet.
+- A:Use a VPC endpoint. https://aws.amazon.com/blogs/aws/new-vpc-endpoint-for-amazon-s3/
 
 
 
