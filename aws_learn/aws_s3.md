@@ -40,6 +40,16 @@ Full S3 is quite expensive at around $0.023 per GB for the lowest band. S3 stand
    2. SSE - KMS (Server Side Encryption - Key Management Service)
    3. SSE with customer provided keys(SSE- C)
    4. Client side encryption
+   
+   ----
+ 1. SSE-S3 requires that Amazon S3 manage the data and the encryption keys. For more information about SSE-S3, see Protecting Data Using Server-Side Encryption with Amazon S3-Managed Encryption Keys (SSE-S3).
+
+2. SSE-C requires that you manage the encryption key. For more information about SSE-C, see Protecting Data Using Server-Side Encryption with Customer-Provided Encryption Keys (SSE-C).
+
+3. SSE-KMS requires that AWS manage the data key but you manage the customer master key (CMK) in AWS KMS.
+
+The remainder of this topic discusses how to protect data by using server-side encryption with AWS KMS-managed keys (SS
+   
 
 ### Versioning
 - When versioning enabled on a bucket, it store different versions of files.
@@ -94,10 +104,14 @@ This is how Type 3 is done.
    --> Switch Role / or Just paste the link in Step 3.
  5. This switched account can now view S3.  
 
-Questions --
+## Questions --
 
-One of your users is trying to upload a 7.5GB file to S3. However, they keep getting the following error message: "Your proposed upload exceeds the maximum allowed object size.". What solution to this problem does AWS recommend?
-Answer - Design your application to use multipart upload API for all objects.
+- Q: One of your users is trying to upload a 7.5GB file to S3. However, they keep getting the following error message: "Your proposed upload exceeds the maximum allowed object size.". What solution to this problem does AWS recommend?
+- A: - Design your application to use multipart upload API for all objects.
+
+- Q: A company is evaluating Amazon S3 as a data storage solution for their daily analyst reports. The company has implemented stringent requirements concerning the security of the data at rest. Specifically, the CISO asked for the use of envelope encryption with separate permissions for the use of an envelope key, automated rotation of the encryption keys, and visibility into when an encryption key was used and by whom.
+Which steps should a Solutions Architect take to satisfy the security requirements requested by the CISO?
+- A:  Create an Amazon S3 bucket to store the reports and use Server-Side Encryption with AWS KMS-Managed Keys (SSE-KMS).
 
 
 
