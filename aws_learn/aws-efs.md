@@ -7,6 +7,10 @@
 - Great for file servers.
 - Pay as we go , no pre provisioning required.
 - can support 1000 of concurrent NFS connections.
+- Compatible with NFS 4.0 and NFS 4.1
+- compatible with Linux based AMIs, does not work for windows as of now.
+- Create an EFS volume >> create mount points for the EFS volume in a VPC.
+- An EFS volume can attach to only one VPC at a time.
 
 ![Screenshot 2020-07-05 at 4 04 07 PM](https://user-images.githubusercontent.com/5917216/86528361-ccb7ce00-bed9-11ea-8508-6ebfc3812b3c.png)
 
