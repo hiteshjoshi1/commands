@@ -19,8 +19,8 @@ Eventual consistency for overwrite PUTS and Deletes
 
 ### Storage Classes in S3 
 
-- S3 Standard {can sustain loss of 2 facilities concurrently} -- Costliest - 99.99%
-- S3- IA (S3 Infrequently Accessed - lower fee than s3 but you are charged retrieval fee) - use it when the data kept is  infrequently accessed.
+- S3 Standard {can sustain loss of 2 facilities concurrently} -- for access(uploads and downloads) - 99.99%
+- S3 - IA (S3 Infrequently Accessed - lower fee than s3 but you are charged retrieval fee) - cheaper for storage but costlier for access. Use it only when data is infrequently accessed.
 - S3 One zone -IA (Only in one zone - multi zone resilence not required). Availaibility is 99.50% whereas for S3-IA it is 99.99
 - S3 Intelligent Tiering - Moves data to most cost effective access Tier
 - S3 Glacier - data archiving, retrieval time from Mins to Hours
