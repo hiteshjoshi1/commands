@@ -7,22 +7,28 @@ EBS, EFS, and FSx are all storage services based on block storage.
 
 An EBS volume(if not the root volume) can be detached from an EC2 without stopping the Ec2 instance.
 
+
 ## EBS Types -
 
-- General purpose SSD(gp2) - For most use cases --> 16000 iops per volume
-- Provisioned IOPS SSD(io1) - Highest performing SSDs --> for Databases --> 64000 ips per volume
-- Throughput optimized HDD (st1) - Big data and Data warehouses --> 500 Iops per volume
-- Cold HDD(sc1) - File Servers --> 250 Iops per volume
+<img width="914" alt="Screenshot 2020-07-13 at 7 34 01 PM" src="https://user-images.githubusercontent.com/5917216/87300120-e55e5e80-c53f-11ea-8e4e-b306bbf73337.png">
+
+
+- General purpose SSD(gp2) - For most use cases, general purpose SSD --> 16000 iops per volume (Random access)
+- Provisioned IOPS SSD(io1) - Highest performing SSDs --> Used for Databases--> 64000 ips per volume
+- Throughput optimized HDD (st1) - Big data and Data warehouses and VIDEO Streaming, HIGH (throughput sequential Access) --> 500 Iops per volume
+- Cold HDD(sc1) - File Servers- Cannot be a BOOT Volume --> 250 Iops per volume
 - EBS Magenetic Drive - Infrequently accessed data[Standard] --> 40-200 IOps per volume
 
-EBS types can be changed on the fly, including the size. Volumes will always be in the same avaialibility zones as in EC2.
+EBS types can be changed on the fly, including the size. 
+Volumes will always be in the same avaialibility zones as in EC2.
 
 
-Snapshots are point in time backups of Volumes. They are used to move volumes from 1 AZ to other.
+Snapshots are point in time backups of Volumes. They are used to move volumes from one Availability Zone to another.
 
-Volume -->Create Snapshot--> Create image from Snapshot --> Volume in new region
+This is how you move volumes -
+Volume --> Create Snapshot--> Create AMI from Snapshot --> Volume in new region
 
-however, you can create an AMI from both volumes or snapshot.
+However, you can create an AMI from both volumes or snapshot.
 
 ### Migration - Using Snapshots
 AMI can be moved to move EC2 between Availability Zones(us east 1a, us east 1 b), And
@@ -36,13 +42,14 @@ Virtualization types while creating Images from Snapshot -
 
 Once the Image(AMI- Amazon Machine Image) is created, it can be used to launch Ec2 instances. Move AMI to another region and then create EC2 instances from it.
 
-Snapshots are deleted, whereas AMI have to be de-registered.
-Snapshots are stored in S3.Snapshots are incremental - only changes will be backed up.
+- Snapshots are deleted, whereas AMI have to be de-registered.
+- Snapshots are stored in S3.
+- Snapshots backups are incremental - only changes will be backed up.
 
 When you Terminate EC2 Instance, root device volume will also be deleted. Any other Volumes(non-root volumes) will not be deleted.
 
 
-[AMI 's can be selected based on] ~
+AMI 's can be selected based on ~
 1.Region
 2.OS
 3.Architecture (32 bit or 64 bit)
@@ -53,7 +60,7 @@ When you Terminate EC2 Instance, root device volume will also be deleted. Any ot
 
 NOTE - You can create AMI's from both a Volume or from a snapshot.  
 
-## AMI Types
+## AMI Types -
 - EBS (Amazon EBS Volume created from an Amazon EBS Snapshot)
 - Instance Stores (Instance Store Volume created from a template stored in Amazon S3) - Ephemeral Storage
 
