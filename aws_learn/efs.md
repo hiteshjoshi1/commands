@@ -1,4 +1,4 @@
-# AWS EFS - Elastic File System
+# Elastic File System- AWS EFS
   -- Under Storage
 
 - Great for sharing files between multiple Ec2 servers. This is basically a file system that can be shared between compute instances(ec2). It can be mounted and both instances can access it.
