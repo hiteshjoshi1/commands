@@ -112,7 +112,10 @@ This is how Type 3 is done.
 - Q: A company is evaluating Amazon S3 as a data storage solution for their daily analyst reports. The company has implemented stringent requirements concerning the security of the data at rest. Specifically, the CISO asked for the use of envelope encryption with separate permissions for the use of an envelope key, automated rotation of the encryption keys, and visibility into when an encryption key was used and by whom.
 Which steps should a Solutions Architect take to satisfy the security requirements requested by the CISO?
 - A:  Create an Amazon S3 bucket to store the reports and use Server-Side Encryption with AWS KMS-Managed Keys (SSE-KMS).
-
+-----
+- Q: A news organization plans to migrate their 20 TB video archive to AWS. The files are rarely accessed, but when they are, a request is made in advance and a 3 to 5-hour retrieval time frame is acceptable. However, when there is a breaking news story, the editors require access to archived footage within minutes.
+Which storage solution meets the needs of this organization while providing the LOWEST cost of storage?
+- A:  Store the archive in Amazon Glacier and pay the additional charge for expedited retrieval when needed.
 
 
 
