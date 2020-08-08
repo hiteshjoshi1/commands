@@ -81,3 +81,14 @@ NO
 aws ec2 create-snapshot
 
 
+# Questions
+
+- Q: A Solutions Architect is building an application on AWS that will require 20,000 IOPS on a particular volume to support a media event. Once the event ends, the
+IOPS need is no longer required. The marketing team asks the Architect to build the platform to optimize storage without incurring downtime.
+How should the Architect design the platform to meet these requirements?
+- A: Change the EBS volume type to Provisioned IOPS. 
+
+
+
+
+
