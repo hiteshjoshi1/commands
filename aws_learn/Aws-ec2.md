@@ -214,5 +214,10 @@ File system for compute intensive workloads, example HPC, machine learning, medi
 Which is the MOST efficient way for management to ensure that capacity requirements are met? 
 - A: Add a Scheduled Scaling action.
 
+---
+- Q: An interactive, dynamic website runs on Amazon EC2 instances in a single subnet behind an ELB Classic Load Balancer.
+Which design changes will make the site more highly available?
+- A: Move some amazon ec2 instances to a different subnet. 
+other option - Change the ELB to an Application Load Balancer- will not work as the AZ goes down , so does your application
 
 
