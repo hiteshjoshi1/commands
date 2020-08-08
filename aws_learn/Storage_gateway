@@ -1,0 +1,8 @@
+# AWS Storage gateway
+AWS Storage Gateway is a hybrid cloud storage service that gives you on-premises access to virtually unlimited cloud storage. It is used for 
+moving backups to the cloud, using on-premises file shares backed by cloud storage, and providing low latency access to data in AWS for on-premises applications.
+
+Storage Gateway offers three different types of gateways – 
+1. File Gateway
+2. Tape Gateway
+3. Volume Gateway 
