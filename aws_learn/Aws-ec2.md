@@ -219,5 +219,12 @@ Which is the MOST efficient way for management to ensure that capacity requireme
 Which design changes will make the site more highly available?
 - A: Move some amazon ec2 instances to a different subnet. 
 other option - Change the ELB to an Application Load Balancer- will not work as the AZ goes down , so does your application
+----
+- Q: A company hosts a popular web application. The web application connects to a database running in a private VPC subnet. The web servers must be accessible only to customers on an SSL connection. The RDS MySQL database server must be accessible only from the web servers.
+How should the Architect design a solution to meet the requirements without impacting running applications?
+Option1 . Open an HTTPS port on the security group for web servers and set the source to 0.0.0.0/0. Open the MySQL port on the database security group and attach it to the MySQL instance. Set the source to Web Server Security Group.
+Option 2. Create a network ACL on the web server's subnet, and allow HTTPS inbound, and specify the source as 0.0.0.0/0. Create a network ACL on a database subnet, allow MySQL port inbound for web servers, and deny all outbound traffic.
+- A:  Security groups are at instance level whereas NACL are at subnet level. Editing any NACL can impact other applications at the subnet level.
+Hence answer is Open an HTTPS port on the security group for web servers and set the source to 0.0.0.0/0. Open the MySQL port on the database security group and attach it to the MySQL instance. Set the source to Web Server Security Group.
 
 
