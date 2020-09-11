@@ -1,7 +1,10 @@
 # Elastic Load Balancers
+Elastic Load Balancing is used to automatically distribute your incoming application traffic across all the EC2 instances that you are running, this even works when your instances are in different avalability zones.
 
-Balance load balancer 
+ELBs can work with Auto scaling groups. Auto scaling makes sure that instances move up and down based on the load.
 
+
+## ELB Types -
 1. Application Load Balancers
 2. Network Load Balancer
 3. Classic Load Balancer
