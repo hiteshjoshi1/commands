@@ -1,6 +1,6 @@
 # Cloudwatch
 
-Used for Performance Monitoring 
+Used for Performance Monitoring, insight into deployed services, or scaling
 
 __Monitor Compute__
 - EC2 instances
