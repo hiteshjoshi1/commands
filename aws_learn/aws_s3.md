@@ -104,6 +104,41 @@ This is how Type 3 is done.
    --> Switch Role / or Just paste the link in Step 3.
  5. This switched account can now view S3.  
 
+
+
+### S3 Object Lock modes
+
+S3 object lock - write once and read many semantics. it can help you prevent objects from getting deleted for a fixed amount of time or indefinetely.
+can be on individual files or entire files.
+
+Object lock has 2 modes:
+- Governance mode
+- Compliance mode
+
+Governance modes - alter the retention modes or even delete it
+
+Compliance mode - cant be overrriden or deleted by any user. Its renetention mode cant be changed and its retention period cannot be changed.
+
+Rentention period --  Legal hold (after retention period expiry)- cant delete in legal hold and legal hold does not auto expire.
+
+### S3 Glacier Vault policy
+
+can define worm(write once read many times) semantics.
+you can lock the policy so that it cannot be changed.
+
+## S3 Performance
+more prefixes(more paths inside your bucket where a file is stored) --> more speed
+
+Server side encryption in s3 using KMS - 
+1. Uploading and downloading files will count against KMS Quota
+2. KMS quota is region specific - 5500 req per second, 10000, or 30000 rps for different regions.
+3. You can not request quota increases as now for KMS in a region.
+
+Use Multipart uploads.
+Downloads - use byte range fetches
+
+
+
 ## Questions --
 
 - Q: One of your users is trying to upload a 7.5GB file to S3. However, they keep getting the following error message: "Your proposed upload exceeds the maximum allowed object size.". What solution to this problem does AWS recommend?
