@@ -178,6 +178,32 @@ placement group.
 - You can move an existing instance into a Placement group, but the instance has to be in stopped state.This can be done via cli or AWS SDK, not through console yet.
 - No charge for creating placement groups.
 
+## EC2 Spot Instances
+90% discount compared to on-demand applications.
+Decide what is maximum spot price - instance will be provisioned as long as the Spot price is below your maximum spot price.
+
+**Spot Block - 1 to 6 hours... do not terminate even if the spot price goes over maximum spot price.
+
+- not good for databases
+- not good for critical jobs
+- not good for persistent workloads
+
+Spot instance request -
+1. Max price
+2. Desired number of instances
+3. Instance specs
+4. Request type : one time OR persistent (persistent will recreate if the price goes again below max price)
+5. Valid from and Valid until
+
+### Spot fleets
+collection of spot instances and may be on - demand instances.
+
+#### Spot fleet strategies
+1. capacity optimized -- spot instances comes from the pool with optimal capaity for th number of instances launching,
+2. lowestPrice -- Spot instances comes from the pool with lowest price (default)
+3. diversified -- Spot instances distributes across all pools.
+4. instancepoolstocount -- used along with lowest price, spot insrances are distributed across the number of spot instances pools you specify  
+
 #### ENI
 Elastic Network Interface - essentially virtually network card.
 Sceanarios-
@@ -186,6 +212,12 @@ Sceanarios-
 - N/w security appliances in VPC
 - Dual home instances with workloads on distinct subnets
 
+#### EC2 Hibernate
+- EC2 instance hibernate will save the in memory RAM to EBS root volume. RAM contents are reloaded, the process that were previously running on the instance are resumed, so bootup is quite fast.
+- Instance RA cannot be more than 150 GB.
+- Instance famlies include c3,c4,c5,m3,4,5,r3,4,5, t3 etc
+- Instances cannot be hibernated for more than 60 days.
+- Availaible for On demand instances and reserved instances.
 
 
 #### EN
@@ -203,6 +235,8 @@ Built on windows file server, it is a fully managed native Microsoft windows fil
 
 #### FSx for Lustre
 File system for compute intensive workloads, example HPC, machine learning, media data processing workflows and electronic design automation. Millions of IOPS and sub sec latencies.
+
+
 
 
 # Questions
