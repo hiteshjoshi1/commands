@@ -205,24 +205,42 @@ collection of spot instances and may be on - demand instances.
 4. instancepoolstocount -- used along with lowest price, spot insrances are distributed across the number of spot instances pools you specify  
 
 
-## ENI vs ENA vs EFA,   
-#### ENI
-Elastic Network Interface - essentially virtually network card.
-Sceanarios-
+## ENI vs ENA vs EF
 
-- Mgmt n/w
+#### ENI- Elastic Network Interface 
+Essentially virtually network card.
+Allows
+A primary private IPv4 addess from the ipv4 adsress range of the vpc
+1 or more sec privare ipv4 address from the ipv4 adsress range of the vpc
+1 elastic IP address 
+1 public ipv4 address
+1 or more ipv6 address
+1 or more security group
+1 or more MAC address
+A source and destination check flag
+
+Where would you use ENI-
+- Creating Mgmt n/w
 - N/w security appliances in VPC
-- Dual home instances with workloads on distinct subnets
+- Create Dual homed instances with workloads on distinct subnets
+- Low budget high availaibility solutions.
 
-#### EN
-Enhanced Networking
-Uses SR-IOV(Single root I/O Virtualization) to provide high performance n/w for supported instances types. Higher I/o performance and lower CPU utilization. Provides better bandwidth.
-- ENA - Elastic Network Adapter (100 Gbps)
-- Intel 82599 Virtual Function (VF) 10Gbps
+#### EN- Enhanced Networking
+Uses SR-IOV(Single root I/O Virtualization) to provide high performance n/w for supported instances types. 
+Provides Higher I/O performance and lower CPU utilization. Provides better bandwidth. Lower latencies. 
+no additional charges but the instance type should support it.
+Types of EN - 
+- ENA - Elastic Network Adapter (Network speeds 100 Gbps)
+- Intel 82599 Virtual Function (VF) (Network speeds 10Gbps - older option)
 
-#### Elastic Fabric Adapter
-N/w device that you attach to your n/w to acclerate HPC(High performance Computing) and machine learning application.
-EFA can use OS-bypass and gives very low latency, but not supported Linux only Linux.
+Used for High throughput applications which require higher bandwidth.
+
+#### EFA - Elastic Fabric Adapter
+Network device that you attach to your n/w to acclerate HPC(High performance Computing) and machine learning application.
+EFA can use OS-bypass and gives very low latency, but not supported Windows only Linux.
+
+Answer to you are doing HPC or ML what network adapter you should use?
+Ans- Elastic Fabric Adapter
 
 #### FSx for windows server
 Built on windows file server, it is a fully managed native Microsoft windows file system. Runs windows server message block based file services. Supports AS Users, ACL and DFS.
