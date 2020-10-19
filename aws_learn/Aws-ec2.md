@@ -204,6 +204,8 @@ collection of spot instances and may be on - demand instances.
 3. diversified -- Spot instances distributes across all pools.
 4. instancepoolstocount -- used along with lowest price, spot insrances are distributed across the number of spot instances pools you specify  
 
+
+## ENI vs ENA vs EFA,   
 #### ENI
 Elastic Network Interface - essentially virtually network card.
 Sceanarios-
