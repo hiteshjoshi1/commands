@@ -212,14 +212,6 @@ Sceanarios-
 - N/w security appliances in VPC
 - Dual home instances with workloads on distinct subnets
 
-#### EC2 Hibernate
-- EC2 instance hibernate will save the in memory RAM to EBS root volume. RAM contents are reloaded, the process that were previously running on the instance are resumed, so bootup is quite fast.
-- Instance RA cannot be more than 150 GB.
-- Instance famlies include c3,c4,c5,m3,4,5,r3,4,5, t3 etc
-- Instances cannot be hibernated for more than 60 days.
-- Availaible for On demand instances and reserved instances.
-
-
 #### EN
 Enhanced Networking
 Uses SR-IOV(Single root I/O Virtualization) to provide high performance n/w for supported instances types. Higher I/o performance and lower CPU utilization. Provides better bandwidth.
@@ -236,6 +228,14 @@ Built on windows file server, it is a fully managed native Microsoft windows fil
 #### FSx for Lustre
 File system for compute intensive workloads, example HPC, machine learning, media data processing workflows and electronic design automation. Millions of IOPS and sub sec latencies.
 
+
+
+#### EC2 Hibernate
+- EC2 instance hibernate will save the in memory RAM to EBS root volume. RAM contents are reloaded, the process that were previously running on the instance are resumed, so bootup is quite fast.
+- Instance RA cannot be more than 150 GB.
+- Instance famlies include c3,c4,c5,m3,4,5,r3,4,5, t3 etc
+- Instances cannot be hibernated for more than 60 days.
+- Availaible for On demand instances and reserved instances.
 
 
 
