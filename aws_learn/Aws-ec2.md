@@ -226,12 +226,13 @@ Where would you use ENI-
 - Low budget high availaibility solutions.
 
 #### EN- Enhanced Networking
+
 Uses SR-IOV(Single root I/O Virtualization) to provide high performance n/w for supported instances types. 
 Provides Higher I/O performance and lower CPU utilization. Provides better bandwidth. Lower latencies. 
 no additional charges but the instance type should support it.
 Types of EN - 
 - ENA - Elastic Network Adapter (Network speeds 100 Gbps)
-- Intel 82599 Virtual Function (VF) (Network speeds 10Gbps - older option)
+- Intel 82599 Virtual Function (VF) (Network speeds 10Gbps - legacy option)
 
 Used for High throughput applications which require higher bandwidth.
 
@@ -243,12 +244,38 @@ Answer to you are doing HPC or ML what network adapter you should use?
 Ans- Elastic Fabric Adapter
 
 
-#### EC2 Hibernate
+## EC2 Hibernate
 - EC2 instance hibernate will save the in memory RAM to EBS root volume. RAM contents are reloaded, the process that were previously running on the instance are resumed, so bootup is quite fast.
 - Instance RA cannot be more than 150 GB.
 - Instance famlies include c3,c4,c5,m3,4,5,r3,4,5, t3 etc
 - Instances cannot be hibernated for more than 60 days.
 - Availaible for On demand instances and reserved instances.
+
+
+## AWS HPC - Hi performance compute
+use cases like - genomics, finance risk modeling, weather prediction and even autonomous driving.
+
+Data transfer to AWS -  
+1. snowball and snow mobile
+2. aws data sync (s3,efs, or FSX for windows) - agent on a virtual machine in our on premise data center
+3. direct connect (dedicated n/w between a data center to AWS (not going through internet))
+
+Compute and Networking -
+1. Ec2 instances that are GPU or CPU optimized
+2. Ec2 fleets(Spot instances or spot fleets)
+3. Placement groups (cluster)
+4. Enahanced networking - ENA (Elastic Network adpaters  (SR- IOV))
+5. Elastic fabric Adapter(EFA) - has OS bypass, higher throughput than traditional TCP in cloud based system
+6. Instance attached storage - EBS and Instance store(millions of IOPS; low latency)
+Networking storage - 
+7. S3 (Distributed object storage not file system)
+8. Amazon EFS (can use provisioned IOPS)
+9. Amazon FSx for Lustre for HPC
+
+Orchestration and automation -
+10. AWS batch - multi node parallel jobs, allows u to run single job that spans multiple ec2 instances
+11. AWS parrallel cluster -simple text file model and provision all resources that are needed. Automatic provision of Vpc, subnets, cluster types and instance types
+12.
 
 
 
