@@ -58,13 +58,20 @@ where var/www/html is the mount point.
 
 
 ### FSx for windows server
-A managed windows server that runs on Windows Server Message block(SMB) based file services.
+A managed windows file server that runs on Windows Server Message block(SMB) based file services. 
 Built on windows file server, it is a fully managed native Microsoft windows file system.  
 Supports Active Dir Users, ACL, groups and security policies along with Distributed File System - DFS namespace and replication.
 
+You cant connect an ec2 on windows with a NFS file system , it has to be FSx file system.
 ### FSx for Lustre
-File system for compute intensive workloads, example HPC, machine learning, media data processing workflows and electronic design automation. Millions of IOPS and sub sec latencies.
+Fully managed file system for
+- compute intensive workloads, example HPC, 
+- machine learning,
+- media data processing workflows 
+- electronic design automation. 
+- fsx lustre can store data in amazon s3 as well.
 
+FSX lustre would be used for Millions of IOPS and sub sec latencies. 
 
 # Questions
 
