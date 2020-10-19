@@ -242,13 +242,6 @@ EFA can use OS-bypass and gives very low latency, but not supported Windows only
 Answer to you are doing HPC or ML what network adapter you should use?
 Ans- Elastic Fabric Adapter
 
-#### FSx for windows server
-Built on windows file server, it is a fully managed native Microsoft windows file system. Runs windows server message block based file services. Supports AS Users, ACL and DFS.
-
-#### FSx for Lustre
-File system for compute intensive workloads, example HPC, machine learning, media data processing workflows and electronic design automation. Millions of IOPS and sub sec latencies.
-
-
 
 #### EC2 Hibernate
 - EC2 instance hibernate will save the in memory RAM to EBS root volume. RAM contents are reloaded, the process that were previously running on the instance are resumed, so bootup is quite fast.
