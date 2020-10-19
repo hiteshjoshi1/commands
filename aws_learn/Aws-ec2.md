@@ -57,22 +57,22 @@ Can be purchased ON -Demand or at Reserved Pricing(Discounted 70% of On Demand).
 
 ### EC2 Instance Types - {Not required for Soln Arch Assoc exam}
 
-FIGHT-DR-MC-PXZ-AU (Fight DR Mc Pxz Australia)
-F FPGA
-I IOps
-G Graphics
-H High Disk Throughput
-T t2 Micro - Cheap General purpose
-D Density
-R RAM
-M Main choice for general purpose apps
-C Compute
-P Graphics (Pics)
-X Extreme memory
-Z Extreme Memory and CPU
-A ARM based workloads
-U Bare metal
+**FIGHT-DR-MC-PXZ-AU (Fight DR Mc Pxz Australia)
 
+- F FPGA
+- I IOps
+- G Graphics
+- H High Disk Throughput
+- T t2 Micro - Cheap General purpose
+- D Density
+- R RAM
+- M Main choice for general purpose apps
+- C Compute
+- P Graphics (Pics)
+- X Extreme memory
+- Z Extreme Memory and CPU
+- A ARM based workloads
+- U Bare metal
 
 You specify what type of EC2 instances.
 How much Storage (EBS)  for root device volume? --> this is where the OS gets installed.
