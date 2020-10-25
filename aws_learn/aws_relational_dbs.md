@@ -108,3 +108,14 @@ You can have replicas that have Multi-AZ.
 You can have Read replicas of multi AZ source databases
 Read replicas can be promoted to be their own databases(be their own Master) - this breaks this replication.
 You can have read replica in a completely seprate region.
+
+
+### AWS Data Migration Services
+- DMS allows you to migrate database from on prem to AWS, AWS one db to AWS another db, AWS to on-prem, other cloud providers(azure) to AWS etc.
+- You can do homogeneous migrations(Same src and destination db type) or hetrogeneous migrations(Source and destination db type are different)
+- For hetrogeneous migrations we will need a schema conversion tool.
+
+- Sources - Oracle, Microsoft SQL server, MySQL, MariaDB, PostgresSQL, SAP, Mongodb, Db2, Azure SQL databases, Amazon RDS(Inluding aurora) and even Amazon s3
+- Destination - Oracle, Microsoft SQL server, MySQL, MariaDB, PostgresSQL, SAP, RDS, Redshift, DyanamoDb, S3, Elastic Search, Kinesis data streams, DocumentDB
+
+
