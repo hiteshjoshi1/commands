@@ -22,6 +22,55 @@ Example, EC2 Instances can access S3 will require AWSS3FullAccess role.
 - Power User - can do everything except management of grops and users within IAM.
 - By default new User in AWS will have no access
 
+### ARN - Amazon Resource Name
+
+
+Any resource can be uniquely identified with an ARN.
+
+arn:partition:service: region:accountId:   resource/resource_type, resource: qualifier
+1. partition - aws, aws-cn (AWS china partition)
+2. service - s3, ec2, rds, 
+3. region - us-east-1 , eu-central-1 
+4. 12 digit account id
+
+Examples
+1. arn:aws:iam::1234567:user/hitesh (where 1234567 is accountId, user is resource type and hitesh is the resource)
+2. arn:aws:s3:::my_bucket_name/image.png (an image in s3)
+3. arn:aws:dynamodb:us-east-1:1223455:table/orders (a table in a user account in dyanamo db)
+4. arn:aws:ec2:us-east-1:1223445: instance/* (All ec2 instances in a region and an account 1223445)
+
+### IAM Policies
+
+2 types of IAM policies
+- Identiity policies ( attached to IAM user, group or role)
+- Resource based policies (attached to resources SQS queues, S3 buckets,KMS encryption keys)
+
+A policy has to be attached to have an effect.A policy document is a list of statement in JSON.
+
+Any that is not explicitly allowed == implicitly denied
+Explicit deny > everything else 
+AWS joins all applicable polciies
+
+Policies can be:
+- AWS managed policies 
+- Customer managed policies.
+- Inline policy
+
+### Permission Boundaries
+
+- Used to delegate administration to other users
+- AWS supports permissions boundaries for IAM entitiees(user and roles)
+- prevent privelege escalaton or unnecessarily broad permissions.
+- control maximum permissions an IAM policy can grant
+
+Use cases for permissions boundaries:
+- Devs creating roles for lambda functions.
+- Application owners creating roles for ec2 instances.
+- admins creating adhoc users.
+
+Say a user with Administrator Access --> apply Permission boundaries --> give say Dynamo Db full access
+
+
 ## Advanced IAM
 
 ### AWS Directory Services
@@ -72,6 +121,7 @@ Example, EC2 Instances can access S3 will require AWSS3FullAccess role.
 - Allows on premise users to log on to AWS using AD.
 - Join Ec2 instances using to your existing AD domain
 - Scale across multiple AD connectors.
+- AD compatible
 
 #### Cloud Directory
 
@@ -81,8 +131,8 @@ can be used to Org charts, course catalogues, or device registries.
 
 #### AWS Cognito user pools
 
-- managed user directory for SaaS applications.
-- Sign up or sign in for web or mobile applications
+- Managed user directory for SaaS applications.
+- intended for Sign up or sign in for web or mobile applications
 - Works with Social media identites(federated identity)
 - non AD compatible
 
