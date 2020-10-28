@@ -136,6 +136,36 @@ can be used to Org charts, course catalogues, or device registries.
 - Works with Social media identites(federated identity)
 - non AD compatible
 
+-------------------------------------------------
+
+## AWS Resource Access Manager (RAM)
+Used for account isolation in AWS. Helps in Multi account strategy
+
+Individual accounts or Organizations, you can resources centrally and share them with other accounts.
+
+Services which has resource types that can be shared
+- app mesh
+- aurora
+- codebuild
+- ec2
+- ec2 image builder
+- license manager
+- Reosurce groups 
+- Route53
+
+
+## AWS Single Sign ON(SSO)
+
+- helps centrally managed access to AWS accounts and business applications(office 365, salesforce, G suite etc).
+- allows you to integrate with integrate with  on premise AD/ managed AD  (Or any SAML 2.0 enabled provider) and login to business applications and AWS
+- also allows access to any SAML 2.0 enabled applications using AD context.
+- **all sign on activity is recorded in AWS Cloud Trail.
+
+Security Assertion Markup Language (SAML 2.0)
+
+
+
+
 
 
 
