@@ -102,7 +102,7 @@ The other subnet(10.0.2.0/24) is still associated with the default Route table( 
  
  9. Now that we have 2 Ec2 instances , 1 in public subnet and 1 in pvt subnet,  and they are in 2 seprate sec group (webDMZ and default)
  
- 10. Create a new Sec group -- why?
+ 10. Create a new Sec group -- why? This is most likely due to NAT Instance  which need NAT SG security group.
  
 10.1. Create a new sec group in the new VPC - MyDbSecGroup
 10.2. Add Rules - Inbound rules
@@ -113,18 +113,26 @@ The other subnet(10.0.2.0/24) is still associated with the default Route table( 
   mysql/aurora - 10.0.1.0/24
   
 11. Create NAT Instances(Single) / NAT Gateway(Highly available)
+---------------------------------
 
 #### Nat Instances - 
-Launch EC2 in PUBLIC subnet and my VPC - use community AMI's and search for NAT instances, WebDMZ
-**Disable Source and Destination checks in NAT instances in NAT's Ec2 machine.
+Launch EC2 in PUBLIC subnet of my new VPC 
+- Use community AMI's and search for NAT instances. Use WebDMZ security group
+- **Disable Source and Destination checks in NAT instances in NAT's Ec2 machine.
+- NAT is not supported for IPv6 traffic
 
 There must be a route out from pvt instance to the NAT instance for this to work. for this -->
-Edit routing table(main) of your VPC, add a route to internet (0.0.0./0) to NAT insatnces.
+Edit routing table(main) of your VPC, add a route to internet (0.0.0./0) using the  NAT insatnce just created.
+- associated with Security groups.
 
 #### NAT gateway (preferred way as it is highly available)
 Create a NAT gateway in our new subnet which is public.
-
 Then edit main route table of your VPC, add a route to internet (0.0.0./0) through NAT Gateway.
+- no need to disable source and destination checks
+- no need to patch or scale - managed service
+- automatically assigned IP address
+- not associated with Security groups
+- create NAT gateway in each Avalaibility zone, so that AZ failure will not lead to NAT gateway failure
 
  
 #### Network ACL(Access Control Lists) -- Optional as default exists
