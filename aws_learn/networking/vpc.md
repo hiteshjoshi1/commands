@@ -1,6 +1,45 @@
 # VPC - Virtual Private cloud
+- A VPC Logically isolate section of AWS where you can control Virtual n/w environment including IP address, subnets, configuration of route tables, network gateways.
+- So far we have been using default VPC. All subnets in default VPC have internet access. Each Ec2 instance has both public and private IP address.
+  
+Two ways of connecting to a VPC from outside, both of which connect to Router
+1. Internet Gateway
+2. Virtual Private Gateway
 
-Create a VPC -
+
+A VPC is comprised of -
+1. Internet Gateway (or Virtual Private Gateway)
+2. Router
+3. Route tables
+4. Network ACL
+5. Public Subnet (with a security group and instances) 
+6. Private Subnet (with a security group and instances) 
+
+
+A VPC allows you to create a virtualized enviornment where you have complete control over 
+- Selecting IP address Range
+- Creation of Subnets
+- Configuration of route tables
+- Network gateways
+
+For example you can configure the following:
+- Webserver can be in a public facing subnet.
+- Whereas databases and application servers are in a private subnet not exposed to the internet.
+- In addition Security groups and Network ACL(Access Control Lists) can be created to control access to EC2 instances in each subnet.
+- **One subnet cannot be in multiple availability zones, however an availability zone can have multiple subnets.**
+
+
+- You can also create a Hardware VPN(Virtual private network) connection between a on-prem corporate data center and amazon VPC, so that you can use AWS cloud as an extension of the corporate data center.
+
+```
+Region--> VPC --> [Internet gateway and Virtual Private Gateway] ---> Router --> Router Table --> Network ACLs(Stateless)--> Security Groups(Stateful) -->[Public Subnets and Private subnets]
+```
+
+
+**Network ACLS allows you to do allow and deny rules, which means you can block specific IP's. And when you add a inbound role, it does not automatically add an outbound rule in Network ACL**
+
+
+### To Create a VPC -
 You need to define IPv4 CIDR address block - example 10.0.0.0/16
 
 By default VPC creation(does not create any subnets), creates
@@ -11,25 +50,28 @@ By default VPC creation(does not create any subnets), creates
 Does not create by default -
 1.Subnets
 2.Internet gateway
+
 --------------------------------------------
 
 ### How to create a VPC steps
-1. create VPC (10.0.0.0/16)
+1. Create a VPC ( with IPV4 CIDR Block = 10.0.0.0/16). You cannot provide CIDR block range larger than 16.
+This will create route table, NACL and a Security Group
 
-2. create subnet (specifiy VPC and subnet address range example (10.0.1.0/24 , 10.0.2.0/24)   and availability zone)
-   Note -- A subnet cannot span multiple AZ.
-3.  Then if needed make one of the subnet public.
+2. Create a SUBNET (specifiy VPC and subnet address range example (10.0.1.0/24 , 10.0.2.0/24) and availability zone)
+   Note -- A subnet cannot span multiple AZ but an AZ can have multiple subnets.
+   
+3.  Then if needed make one of the subnet public. By default any subnet created  has auto assign public IP set to NO.
 Select Subnet --> Modify Auto assign IP  --> Enable auto assign Public IP v4
+For example now we have
 10.0.1.0/24  -- Public subnet
 10.0.2.0/24 - Private subnet
 
-4. Add internet gateway for VPC
-Create Internet gateway -- it creates in Detached mode.
-Attach to VPC  and can attach it to  newly created VPC.
+4. Add INTERNET GATEWAY for VPC
+Create Internet gateway -- it creates in Detached mode. Attach Internet gateway to VPC  and can attach it to  newly created VPC.
 
-You can have 1 internet gateway per VPC.
+You can have only 1 internet gateway per VPC. IGs are highly availaible
 
-5. Configure Route tables
+5. Configure ROUTE TABLES
 
 Note - Ensure that the main route table(default) is private and not exposed to internet.
 
@@ -38,24 +80,27 @@ So create a MyPublicRouteTable in your VPC.
 6. Create Route out  in Route table - Edit Routes
 Add Routes
 
-Destination 0.0.0.0/0
-Target - The Internet Gateway
+Destination 0.0.0.0/0 And   Target - The Internet Gateway
 
-IPV6 ->  ::/0 
-Destination - Internet gateway
+IPV6 ->  ::/0 and Target - Internet gateway
 
-7. Edit Subnet Association and add public subnet 
-in  the public route table
+7. Any subnet associated with this new route table(MyPublicRouteTable) will be now public.
+So create a subnet association - Edit Subnet Association and add a subnet to the public route table. So 10.0.1.0/24 is associate with MyPublicRouteTable and now has a route out to the internet
 
-8.Launch EC2 -- Network VPC
-Subnet - public subnet
+The other subnet(10.0.2.0/24) is still associated with the default Route table( the one created with VPC) and hence has no internet access.
+
+8. Launch EC2 in public subnet ->
+- Use the new  VPC in the Network section.
+- Use the  public subnet in the subnet section.
+- Create a new Security Group - say WebDMZ for this EC2 Instance. And give it ssh and HTTP access from internet
  
- Launch Ec2 - Network VPC 
- Subnet - private subnet
+ Launch Ec2 in private subnet ->
+- Use the new  VPC in the Network section.
+- Use the private subnet in the subnet section.
+- use the default security group
  
- Security group do not span Sec Group, so while create EC2 . add a new Sec group in new VPC.
  
- 9. Now we have 2 Ec2 , 1 in public subnet and 1 in pvt subnet,  and they are in 2 seprate sec group.
+ 9. Now that we have 2 Ec2 instances , 1 in public subnet and 1 in pvt subnet,  and they are in 2 seprate sec group (webDMZ and default)
  
  10. Create a new Sec group -- why?
  
@@ -103,52 +148,15 @@ NACL - rules need to be added  seprately for inbound and outbound.
 
 -----------------------------------------
 
-
-Logically isolate section of AWS where you can control Virtual n/w environment including IP addres, subnets, configuration of route tables, network gateways.
-  - So far we have been using default VPC. All subnets in default VPC have internet access. Each Ec2 instance has both public and private IP address.
-  
-  Can connect to a VPC from outside using
-  1. Internet Gateway
-  2. Virtual Private gateway.
-  
-  VPC is typically a collection of -
-  1. Router
-  2. Route table
-  3. Network ACL
-  4. Security Group in public net and Sec Group in pvt subnets
-  5. Bastion hosts
-  
-
-A VPC allows you to create a virtualized enviornment where you have complete control over 
-- Selecting IP address Range
-- Creation of Subnets
-- Configuration of route tables
-- Network gateways
-
-For example you can configure the following:
-- Webserver can be in a public facing subnet.
-- Whereas databases and application servers are in a private subnet not exposed to the internet.
-- In addition Security groups and Network ACL(Access Control Lists) can be created to control access to EC2 instances in each subnet.
-- **1 subnet cannot be in multiple availability zones.**
-- However a AZ can have multiple subnets.
-
-- You can also create a Hardware VPN(Virtual private network) connection between a on-prem corporate data center and amazon VPC, so that you can use AWS cloud as an extension of the corporate data center.
-
-```
-Region--> VPC --> [Internet gateway and Virtual Private Gateway] ---> Router --> Router Table --> Network ACLs(Stateless)--> Security Groups(Stateful) -->[Public Subnets and Private subnets]
-```
-
-
-**Network ACLS allows you to do allow and deny rules, which means you can block specific IP's.**
-
 ## VPC peering
 
 - Allows you to connect one VPC with another with another via direct network route using private IP address.
+- Instances behave as if they are in same private network.
 - You can pair VPCs with other VPC's and with VPC's in other AWS accounts.
 - You can peer VPC between regions.
 - VPC peering is not transitive. It is a star config, 1 central VPC pairs with 4 others.
 
-### When we create a VPC in AWS, we by default create -
+### When we create a VPC in AWS, we create these 3 by default  -
 1. Routing table
 2. Network ACL
 3. Security Group
