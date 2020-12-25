@@ -326,15 +326,17 @@ choose two public ip - one for u and one for amazon peer ip
 BGP key can be auto generated
 
 #### Global Accelerator
-Improves the availaibility and performance of your applocation for local and global users. By default, Global Accelerator provides you with two static IP addresses that you associate with your accelerator. 
+Improves the availaibility and performance of your applocation for local and global users.Global Accelerator directs traffic to optimal endpoints over the AWS global network. By default, Global Accelerator provides you with two static IP addresses that you associate with your accelerator or you can bring your own IP address.
 The static IP addresses are anycast from the AWS edge network and distribute incoming application traffic across multiple endpoint resources in multiple AWS Regions, which increases the availability of your applications. Endpoints can be Network Load Balancers, Application Load Balancers, EC2 instances, or Elastic IP addresses that are located in one AWS Region or multiple Regions.
 
-Static IP address
-Accelerator - directs traffic to optimal endpoints, includes 1 or more listeners
-Network zone - iolated n/w zone serves the static ip addressses
-Listener - Listener process inbound connections from our clients to global accelerator.
-Endpoint group - includes 1 or more endpoints in a region. Lets you do blue green deployments.
-Endpoint - Application load balancers, EC2 Instances, Elastic IP address.
+Global Accelerator has following:
+- Static IP address - supplied by AWS(2) or you can bring your own
+- Accelerator : directs traffic to optimal endpoints over AWS Global network to improve performance of internet application, includes 1 or more listeners
+- DNS Name : Global Acc assigns a default DNS name that points to static IP address that Global Accelerator assigns to you.
+- Network zone : isolated n/w zone that serves the static ip addressses, similar to AZ.
+- Listener : Listener process inbound connections from our clients to global accelerator.Each listener has endpoint groups associated with it.
+- Endpoint group : includes 1 or more endpoints in a region. Lets you do blue green deployments. Adjust traffic using Traffic dial.
+- Endpoint : Application load balancers, Network Load balancers, EC2 Instances, Elastic IP address. You can even have endpoint weights to specify how much traffic is served by an endpoint.
 
 
 ## VPC endpoints 
