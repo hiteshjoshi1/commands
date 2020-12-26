@@ -339,6 +339,19 @@ Global Accelerator has following:
 - Endpoint : Application load balancers, Network Load balancers, EC2 Instances, Elastic IP address. You can even have endpoint weights to specify how much traffic is served by an endpoint.
 
 
+### VPC Private link
+
+To open our applications up to other VPCs, we can either -
+
+1. open into the internet
+2. VPC Peering
+3. Private Link
+
+Private link require Network Load Balancer in Source VPC and Elastic Network Interface(ENI) in Other VPC.
+
+Answer to peering to a VPC to tens or hundreds of other VPCs.
+
+
 ## VPC endpoints 
 
 - VPC end point enables you to privately connect your VPC to supported AWP services and VPC endpoint
@@ -359,11 +372,27 @@ Interface endpoints - is an __ENI (Elastic Network Interface)__ with a private I
 
 VPC Gateway endpoints - supported for Dynamo DB and S3 currently.
 
+### AWS Transit Gateway
+- Allows you to transitive peering between thousands of VPCs and on premises data centers.
+- Works on hub and spoke model.
+- Work on a regional basis, but you can have it across multiple regions/
+- You can use it across multple AWS accounts using RAM (Resourec Access Manager)
+- You can use route tables to limit how VPCs can talk to one another.
+- Works with direct connect as well as VPC connections.
+- Supports IP multicast.
+
+
+### AWS VPN Cloud Hub
+
+- If you have multiple sites, each with its own VPN connection, you can use AWS VPN CloudHub to connect those sites together.
+- Hub and spoke model.
+operates over the public internet , but all traffic between the customer gatewar and VPN cloudhub is encrypted.
+
+
+
 # Questions
 - Q: A Solutions Architect is designing network architecture for an application that has compliance requirements. The application will be hosted on Amazon EC2 instances in a private subnet and will be using Amazon S3 for storing data. The compliance requirements mandate that the data cannot traverse the public
 Internet.
 - A:Use a VPC endpoint. https://aws.amazon.com/blogs/aws/new-vpc-endpoint-for-amazon-s3/
-
-
 
  
