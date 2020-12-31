@@ -207,41 +207,45 @@ collection of spot instances and may be on - demand instances.
 
 ## ENI vs ENA vs EF
 
-#### ENI- Elastic Network Interface 
-Essentially virtually network card.
-Allows
-A primary private IPv4 addess from the ipv4 adsress range of the vpc
-1 or more sec privare ipv4 address from the ipv4 adsress range of the vpc
-1 elastic IP address 
-1 public ipv4 address
-1 or more ipv6 address
-1 or more security group
-1 or more MAC address
-A source and destination check flag
+#### ENI - Elastic Network Interface 
+Essentially virtually network card.When you provision Ec2 instance, it will have an ENI and you can additional ENI.
+An ENI allows - 
+- A primary private IPv4 addess from the ipv4 adsress range of the vpc
+- 1 or more sec privare ipv4 address from the ipv4 adsress range of the vpc
+- 1 elastic IP address 
+- 1 public ipv4 address
+- 1 or more ipv6 address
+- 1 or more security group
+- 1 or more MAC address
+- A source and destination check flag
 
 Where would you use ENI-
-- Creating Mgmt n/w
-- N/w security appliances in VPC
+- Creating management n/w
+- when using N/w security appliances in VPC
 - Create Dual homed instances with workloads on distinct subnets
 - Low budget high availaibility solutions.
 
 #### EN- Enhanced Networking
 
-Uses SR-IOV(Single root I/O Virtualization) to provide high performance n/w for supported instances types. 
-Provides Higher I/O performance and lower CPU utilization. Provides better bandwidth. Lower latencies. 
-no additional charges but the instance type should support it.
-Types of EN - 
+Uses SR-IOV (**Single root I/O Virtualization**) to provide high performance n/w for supported instances types. 
+Provides Higher I/O performance and lower CPU utilizationwhen compared to traditional network interfaces.
+Provides better bandwidth. Lower latencies. 
+No additional charges but the Ec2 instance type should support it.
+
+##### Types of EN - 
 - ENA - Elastic Network Adapter (Network speeds 100 Gbps)
 - Intel 82599 Virtual Function (VF) (Network speeds 10Gbps - legacy option)
 
 Used for High throughput applications which require higher bandwidth.
 
+Extreme network workloads(10 GBSps to 100 Gbps) -- Use Elastic Network Adapters
+
 #### EFA - Elastic Fabric Adapter
-Network device that you attach to your n/w to acclerate HPC(High performance Computing) and machine learning application.
+Network device that you attach to your n/w to acclerate HPC (High performance Computing) and machine learning application.
 EFA can use OS-bypass and gives very low latency, but not supported Windows only Linux.
 
-Answer to you are doing HPC or ML what network adapter you should use?
-Ans- Elastic Fabric Adapter
+Q:  A Sol Architect is doing HPC or ML or may need Os bypass, what network adapter you should use?
+Ans: Elastic Fabric Adapter
 
 
 ## EC2 Hibernate
