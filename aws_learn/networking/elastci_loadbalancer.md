@@ -50,6 +50,13 @@ You can enable sticky session on an Application Load Balancer as well, but the t
 ### Cross Zone load Balancing
 Across zone load balancing can be done using Load balancers in different Availability zones.
 
+With Application Load Balancers, cross-zone load balancing is always enabled.
+
+With Network Load Balancers and Gateway Load Balancers, cross-zone load balancing is disabled by default. After you create the load balancer, you can enable or disable cross-zone load balancing at any time.
+
+With Classic Load Balancer, the default for cross-zone load balancing depends on how you create the load balancer. With the API or CLI, cross-zone load balancing is disabled by default. With the AWS Management Console, the option to enable cross-zone load balancing is selected by default.
+
+
 ### Path Patterns
 
 Path based Routing - routing is done based on the URL path.
