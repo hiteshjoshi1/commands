@@ -55,10 +55,10 @@ cloud-controller-manager allows the cloud vendor’s code and the Kubernetes cod
 ___________________________________
 The following controllers have cloud provider dependencies:
 
-1.Node Controller: For checking the cloud provider to determine if a node has been deleted in the cloud after it stops responding
-2.Route Controller: For setting up routes in the underlying cloud infrastructure
-3.Service Controller: For creating, updating and deleting cloud provider load balancers
-4.Volume Controller: For creating, attaching, and mounting volumes, and interacting with the cloud provider to orchestrate volumes
+1. Node Controller: For checking the cloud provider to determine if a node has been deleted in the cloud after it stops responding
+2. Route Controller: For setting up routes in the underlying cloud infrastructure
+3. Service Controller: For creating, updating and deleting cloud provider load balancers
+4. Volume Controller: For creating, attaching, and mounting volumes, and interacting with the cloud provider to orchestrate volumes
 
 ___________________________________
 
